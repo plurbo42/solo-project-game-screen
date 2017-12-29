@@ -29,4 +29,29 @@ router.get('/search', function (req, res) {
     });
 });
 
+//post new encounter
+router.post('/new', function (req, res) {
+    let userId = req.user.id;
+    let description = req.body.description;
+    console.log('in get search request', req.query)
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`INSERT INTO encounter (description, user_id, round_count)
+                            VALUES ($1, $2, 0);`, [description, userId], function (errorMakingDatabaseQuery, result) {
+                done();
+                if (errorMakingDatabaseQuery) {
+                    console.log('error', errorMakingDatabaseQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(200);
+                }
+            });
+        }
+    });
+});
+
+
 module.exports = router;

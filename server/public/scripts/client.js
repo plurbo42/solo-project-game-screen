@@ -22,6 +22,15 @@ app.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/campaign', {
+      templateUrl: '/views/templates/campaign.html',
+      controller: 'CampaignController as vm',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .when('/info', {
       templateUrl: '/views/templates/info.html',
       controller: 'InfoController as vm',
