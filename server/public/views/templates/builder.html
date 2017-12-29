@@ -1,0 +1,25 @@
+<div ng-include="'views/partials/nav.html'"></div>
+<div class="container">
+    <h1>Encounter Builder</h1>
+    <input type="text" placeholder="Monster Name" ng-model="vm.searchName.searchTerm">
+    <button ng-click="vm.searchEncounter(vm.searchName)">Search</button>
+    {{vm.searchName}}
+    <table class="table table-striped">
+        <thead>
+            <th>Name</th>
+            <th>CR</th>
+            <th>Size</th>
+            <th>Type</th>
+            <th>Hit Points</th>
+            <th>Add</th>
+        </thead>
+        <tbody ng-repeat="monster in vm.monsterArray.list">
+            <td>{{monster.name}}</td>
+            <td>{{monster.challengerating}}</td>
+            <td>{{monster.size}}</td>
+            <td>{{monster.type}}</td>
+            <td>{{monster.hit_points}}</td>
+            <td><button ng-click="vm.addToEncounter(monster.id)">Add to Encounter</button></td>
+        </tbody>
+    </table>
+</div>

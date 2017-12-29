@@ -7,13 +7,22 @@
         <script type="text/javascript" src="vendors/angular/angular.min.js"></script>
         <script type="text/javascript" src="vendors/angular-route/angular-route.min.js"></script>
         <script type="text/javascript" src="scripts/client.js"></script>
+        <link rel="stylesheet" href="vendors/bootstrap.css">
+        
+        <!-- Controllers -->
         <script type="text/javascript" src="scripts/controllers/info.controller.js"></script>
         <script type="text/javascript" src="scripts/controllers/login.controller.js"></script>
         <script type="text/javascript" src="scripts/controllers/user.controller.js"></script>
+        <script type="text/javascript" src="scripts/controllers/builder.controller.js"></script>
+        
+
+        <!-- Services -->
         <script type="text/javascript" src="scripts/services/user.service.js"></script>
+        <script type="text/javascript" src="scripts/services/builder.service.js"></script>
+        
     </head>
 
-    <body ng-app="myApp">
+    <body ng-app="app">
       <header ng-include="'/views/partials/header.html'"></header>
 
       <main ng-view></main>
