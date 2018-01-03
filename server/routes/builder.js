@@ -29,7 +29,7 @@ router.get('/search', function (req, res) {
     });
 });
 
-//post new encounter
+//post new encounter - TODO add campaign id to post 
 router.post('/new', function (req, res) {
     let userId = req.user.id;
     let description = req.body.description;

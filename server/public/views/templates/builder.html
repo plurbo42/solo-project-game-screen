@@ -7,14 +7,21 @@
             <label>Encounter Description</label>
             <textarea ng-model="vm.newEncounterObject.description" placeholder="Encounter Description"></textarea>
             <button ng-click="vm.newEncounter(vm.newEncounterObject)">Create New Encounter</button>
-            {{vm.newEncounterObject}}
         </form>
     </div>
     <br>
-    <h3>Add NPCs</h3>
+    <!-- TODO move this div into an Angular Material sidenav or similar - basically fix the formatting of this page so it's less of a mess -->
     <div>
+        <h3>Select Encounter</h3>
+            <ul>
+                <li></li>
+            </ul>
+    </div>
+    <h3>Add NPCs</h3>
+    <div class="md-inline-form inputdemoBasicUsage">
         <!-- Eventually put show/hide on the divs on this page, or somehow spit out the view so not all options are visible at one time -->
-        <input type="text" placeholder="Monster Name" ng-model="vm.searchName.searchTerm">
+       <md-input-container><input type="text" placeholder="Monster Name" ng-model="vm.searchName.searchTerm"></md-input-container>
+        
         <button ng-click="vm.searchMonster(vm.searchName)">Search</button>
         <table class="table table-striped">
             <thead>
