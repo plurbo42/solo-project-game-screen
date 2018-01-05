@@ -15,16 +15,16 @@ app.service('EncounterService', function($http, $location){
             self.encounterArray.list = response.data;
         })
     };
-    
+
     //get data for current encounter - used on encounter view and builder view to edit and play out current encounter
-    self.currentEncounter = function(encounterId){
-        console.log('in get current encounter', encounterId);
+    self.currentEncounter = function(id){
+        console.log('in get current encounter', id);
         $http({
             method: 'GET',
-            url: 'encounter/current/' + encounterId,
+            url: 'encounter/current/' + id,
         }).then(function(response){
-            console.log(resonsnse.data);
-            self.currentEcnounter.list = response.data;
+            console.log(response.data);
+            self.currentEncounter.list = response.data;
         })
     };
 

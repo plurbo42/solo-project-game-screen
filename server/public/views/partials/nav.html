@@ -1,18 +1,6 @@
-<!-- <div class="navbar">
-  <div class="container" ng-controller="UserController as uc">
-    <ul>
-      <li><a href="#/user">User Home</a></li>
-      <li><a href="#/campaign">Create Campaign</a></li>            
-      <li><a href="#/info">Info Page</a></li>
-      <li><a href="#/builder">Encounter Builder</a></li>
-      <li> <button ng-click="uc.userService.logout()">Log Out</button></li>           
-    </ul>
-  </div>
-</div> -->
 
-
-<div ng-controller="UserController as uc" ng-cloak>
-  <md-content class="md-padding">
+<div ng-controller="UserController as uc">
+  <md-content class="md-padding" ng-cloak>
     <md-nav-bar
       md-no-ink-bar="disableInkBar"
       md-selected-nav-item="currentNavItem"

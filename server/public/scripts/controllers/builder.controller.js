@@ -2,17 +2,20 @@ app.controller('BuilderController', function(UserService, BuilderService, Encoun
     console.log('BuilderController created');
     var self = this;
     self.userService = UserService;
+
+    //BuilderService
     self.newEncounter = BuilderService.newEncounter;    
     self.newEncounterObject = BuilderService.newEncounterObject;
 
     self.searchMonster = BuilderService.searchMonster;
     self.monsterArray = BuilderService.monsterArray;
     self.addToEncounter = BuilderService.addToEncounter;
-    self.encounterArray = BuilderService.encounterArray.list;
-
+    
+    //EncounterService
+    self.encounterArray = EncounterService.encounterArray.list;
     self.currentEncounterArray = EncounterService.currentEncounter.list;
 
-    BuilderService.getEncounter();
+    EncounterService.getEncounter();
     
   });
   

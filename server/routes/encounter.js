@@ -5,14 +5,14 @@ let pool = require('../modules/pool.js');
 
 //get all encounters for this user to populate dropdown
 router.get('/all', function (req, res) {
+    console.log('in get encounters', req.user.id)
     pool.connect(function (errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
             client.query(`SELECT *
-                            FROM encounter e
-                            WHERE e.user_id = req.user.id`, function (errorMakingDatabaseQuery, result) {
+                            FROM encounter e`, function (errorMakingDatabaseQuery, result) {
                 done();
                 if (errorMakingDatabaseQuery) {
                     console.log('error', errorMakingDatabaseQuery);
@@ -25,7 +25,8 @@ router.get('/all', function (req, res) {
     });
 });
 
-router.get('/current', function (req, res) {
+router.get('/current/:id', function (req, res) {
+    console.log(`get current encounter`, req.params)
     pool.connect(function (errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {
             console.log('error', errorConnectingToDatabase);
@@ -36,7 +37,8 @@ router.get('/current', function (req, res) {
                             LEFT JOIN encounter_npc en ON e.id = en.encounter_id
                             LEFT JOIN monsters m ON m.id = en.monster_id
                             LEFT JOIN encounter_loot el ON e.id = el.encounter_id
-                            LEFT JOIN item i ON i.id = el.item_id;`, 
+                            LEFT JOIN item i ON i.id = el.item_id
+                        WHERE e.id = $1;`, [4],
                             function (errorMakingDatabaseQuery, result) {
                 done();
                 if (errorMakingDatabaseQuery) {
