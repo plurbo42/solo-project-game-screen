@@ -8,6 +8,9 @@ app.controller('BuilderController', function(UserService, BuilderService) {
     self.searchMonster = BuilderService.searchMonster;
     self.monsterArray = BuilderService.monsterArray;
     self.addToEncounter = BuilderService.addToEncounter;
+    self.encounterArray = BuilderService.encounterArray.list;
+
+    BuilderService.getEncounter();
     
   });
   

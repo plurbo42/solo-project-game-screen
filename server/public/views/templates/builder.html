@@ -1,47 +1,81 @@
 <div ng-include="'views/partials/nav.html'"></div>
-<div class="container">
-    <h1>Encounter Builder</h1>
-    <div class="newEncounter">
-        <h3>Create New Encounter</h3>
-        <form>
-            <label>Encounter Description</label>
-            <textarea ng-model="vm.newEncounterObject.description" placeholder="Encounter Description"></textarea>
-            <button ng-click="vm.newEncounter(vm.newEncounterObject)">Create New Encounter</button>
-        </form>
-    </div>
-    <br>
-    <!-- TODO move this div into an Angular Material sidenav or similar - basically fix the formatting of this page so it's less of a mess -->
-    <div>
-        <h3>Select Encounter</h3>
-            <ul>
-                <li></li>
-            </ul>
-    </div>
-    <h3>Add NPCs</h3>
-    <div class="md-inline-form inputdemoBasicUsage">
-        <!-- Eventually put show/hide on the divs on this page, or somehow spit out the view so not all options are visible at one time -->
-       <md-input-container><input type="text" placeholder="Monster Name" ng-model="vm.searchName.searchTerm"></md-input-container>
-        
-        <button ng-click="vm.searchMonster(vm.searchName)">Search</button>
-        <table class="table table-striped">
-            <thead>
-                <th>Name</th>
-                <th>CR</th>
-                <th>Size</th>
-                <th>Type</th>
-                <th>Hit Points</th>
-                <th>Add</th>
-            </thead>
-            <tbody ng-repeat="monster in vm.monsterArray.list">
-                <td>{{monster.name}}</td>
-                <td>{{monster.challengerating}}</td>
-                <td>{{monster.size}}</td>
-                <td>{{monster.type}}</td>
-                <td>{{monster.hit_points}}</td>
-                <td>
-                    <button ng-click="vm.addToEncounter(monster.id)">Add to Encounter</button>
-                </td>
-            </tbody>
-        </table>
-    </div>
+
+
+<div ng-cloak>
+    <md-content>
+            <h1>Encounter Builder</h1>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Current Encounter">
+                
+                <!-- TODO move this div into an Angular Material sidenav or similar - basically fix the formatting of this page so it's less of a mess -->
+                <!-- <md-sidenav class="md-whiteframe-4dp" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="right" ng-click="app.toggleList()">
+        <h3>Current Encounter</h3>
+    </md-sidenav> -->
+                <div>
+
+                    <h3>Current Encounter</h3>
+
+                    <md-radio-group ng-model="vm.selectedEncounter.id">
+                        <div ng-repeat="encounter in vm.encounterArray" class="row">
+                            <md-radio-button ng-value="encounter.id">
+                                {{encounter.id}} - {{encounter.description}}
+                            </md-radio-button>
+                        
+                        </div>
+                    </md-radio-group>
+                    <p>You are now editing encounter id {{vm.selectedEncounter.id}}</p> 
+            </md-tab>
+
+            </div>
+
+
+            <md-tab label="Create Encounter">
+                <div class="newEncounter">
+                    <h3>Create New Encounter</h3>
+                    <md-inline-form>
+                        <label>Encounter Description</label>
+                        <textarea ng-model="vm.newEncounterObject.description" placeholder="Encounter Description"></textarea>
+                        <md-button ng-click="vm.newEncounter(vm.newEncounterObject)">Create New Encounter</md-button>
+                    </md-inline-form>
+                </div>
+            </md-tab>
+
+
+
+            <md-tab label="Add NPCs">
+                <!-- search and add monsters in this div -->
+                <h3>Add NPCs</h3>
+                <div class="md-inline-form">
+                    <!-- Eventually put show/hide on the divs on this page, or somehow spit out the view so not all options are visible at one time -->
+                    <md-input-container>
+                        <input type="text" placeholder="Monster Name" ng-model="vm.searchName.searchTerm">
+                    </md-input-container>
+
+                    <md-button class="md-raised md-primary" ng-click="vm.searchMonster(vm.searchName)">Search</md-button>
+                    <table class="table table-striped">
+                        <thead>
+                            <th>Name</th>
+                            <th>CR</th>
+                            <th>Size</th>
+                            <th>Type</th>
+                            <th>Hit Points</th>
+                            <th>Add</th>
+                        </thead>
+                        <tbody ng-repeat="monster in vm.monsterArray.list">
+                            <td>{{monster.name}}</td>
+                            <td>{{monster.challengerating}}</td>
+                            <td>{{monster.size}}</td>
+                            <td>{{monster.type}}</td>
+                            <td>{{monster.hit_points}}</td>
+                            <td>
+                                <md-button class="md-raised md-primary" ng-click="vm.addToEncounter(monster.id, vm.selectedEncounter.id)">Add to Encounter</md-button>
+                            </td>
+                        </tbody>
+                    </table>
+                </div>
+            </md-tab>
+        </md-tabs>
+
+    </md-content>
+
 </div>

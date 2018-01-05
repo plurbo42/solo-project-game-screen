@@ -1,4 +1,4 @@
-<div class="navbar">
+<!-- <div class="navbar">
   <div class="container" ng-controller="UserController as uc">
     <ul>
       <li><a href="#/user">User Home</a></li>
@@ -8,4 +8,26 @@
       <li> <button ng-click="uc.userService.logout()">Log Out</button></li>           
     </ul>
   </div>
+</div> -->
+
+
+<div ng-controller="UserController as uc" ng-cloak>
+  <md-content class="md-padding">
+    <md-nav-bar
+      md-no-ink-bar="disableInkBar"
+      md-selected-nav-item="currentNavItem"
+      nav-bar-aria-label="navigation links">
+  
+      <md-nav-item md-nav-href="#/user" name="user home">User Home</md-nav-item>
+      <md-nav-item md-nav-href="#/campaign" name="campaign">Create Campaign</md-nav-item>
+      <md-nav-item md-nav-href="#/info">Info Page</md-nav-item>
+      <md-nav-item md-nav-href="#/builder" name="builder">Encounter Builder</md-nav-item>
+      
+      <!-- You can also add options for the <code>ui-sref-opts</code> attribute.
+      <md-nav-item md-nav-sref="page6" sref-opts="{reload:true, notify:true}">
+        Page Six
+      </md-nav-item> -->
+     
+
+  </md-content>
 </div>
