@@ -25,6 +25,31 @@ router.get('/all', function (req, res) {
     });
 });
 
+router.get('/current', function (req, res) {
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`SELECT e.id, e.description, en.id AS npc_id, el.id AS loot_id, m.name, m.challengerating
+                            FROM encounter e
+                            LEFT JOIN encounter_npc en ON e.id = en.encounter_id
+                            LEFT JOIN monsters m ON m.id = en.monster_id
+                            LEFT JOIN encounter_loot el ON e.id = el.encounter_id
+                            LEFT JOIN item i ON i.id = el.item_id;`, 
+                            function (errorMakingDatabaseQuery, result) {
+                done();
+                if (errorMakingDatabaseQuery) {
+                    console.log('error', errorMakingDatabaseQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.send(result.rows);
+                }
+            });
+        }
+    });
+});
+
 
 
 module.exports = router;

@@ -5,7 +5,7 @@
     <md-content>
             <h1>Encounter Builder</h1>
         <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Current Encounter">
+            <md-tab label="Current Encounter"> 
                 
                 <!-- TODO move this div into an Angular Material sidenav or similar - basically fix the formatting of this page so it's less of a mess -->
                 <!-- <md-sidenav class="md-whiteframe-4dp" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="right" ng-click="app.toggleList()">
@@ -14,16 +14,18 @@
                 <div>
 
                     <h3>Current Encounter</h3>
+<!-- TODO change this to another get request to pull all data for selected encounter and pull only encounter id/description for radio list -->
 
-                    <md-radio-group ng-model="vm.selectedEncounter.id">
+                    <md-radio-group ng-model="vm.selectedEncounter">
                         <div ng-repeat="encounter in vm.encounterArray" class="row">
-                            <md-radio-button ng-value="encounter.id">
+                            <md-radio-button ng-value="encounter">
                                 {{encounter.id}} - {{encounter.description}}
                             </md-radio-button>
-                        
                         </div>
                     </md-radio-group>
                     <p>You are now editing encounter id {{vm.selectedEncounter.id}}</p> 
+                    
+                    {{vm.selectedEncounter}}
             </md-tab>
 
             </div>

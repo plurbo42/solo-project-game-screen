@@ -49,6 +49,15 @@ app.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/encounter', {
+      templateUrl: '/views/templates/encounter.html',
+      controller: 'EncounterController as vm',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });
