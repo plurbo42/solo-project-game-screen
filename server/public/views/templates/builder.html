@@ -1,7 +1,7 @@
 <div ng-include="'views/partials/nav.html'"></div>
 
 
-<div ng-cloak>
+<div class="content" ng-cloak>
     <md-content>
         <h1>Encounter Builder</h1>
         <md-tabs md-dynamic-height md-border-bottom>
@@ -26,27 +26,29 @@
 
                         <md-button class="md-raised md-primary" ng-click="vm.currentEncounter(vm.selectedEncounter.id)">Edit Selected Encounter</md-button>
                     </md-input-container>
-                    <!-- TODO - call get current list function when npcs are added/edited so this is always current -->
-                    <div ng-repeat="taco in vm.currentEncounterArray.list">
-                        {{taco.name}}
-                    </div>
+                    <!-- TODO - call get current list function when npcs are added/edited so this is always current -->                
+                    <md-list ng-repeat="taco in vm.currentEncounterArray.list">
+                       <md-list-item>{{taco.name}}</md-list-item> 
+                    </md-list>
             </md-tab>
 
-            <!-- Create New Encounter tab -->
+            <!-- Create New Encounter tab TODO - add notes to new encounter request/database-->
             <md-tab label="Create Encounter">
                 <div class="newEncounter">
                     <h3>Create New Encounter</h3>
                     <md-inline-form>
-                        <label>Encounter Description</label>
                         <md-input-container>
-                            <textarea ng-model="vm.newEncounterObject.description" placeholder="Encounter Description"></textarea>
+                            <input type="text" ng-model="vm.newEncounterObject.description" placeholder="Encounter Name">
+                            <textarea ng-model="vm.newEncounterObject.notes" placeholder="Notes"></textarea>                            
                         </md-input-container>
                         <md-button class="md-primary md-raised" ng-click="vm.newEncounter(vm.newEncounterObject)">Create New Encounter</md-button>
                     </md-inline-form>
                 </div>
             </md-tab>
 
-
+            <md-tab label="Random Encounter">
+                <h1>Coming Soon: Generate Random Encounter!</h1>
+            </md-tab>
 
             <md-tab label="Add NPCs">
                 <!-- search and add monsters in this div -->

@@ -58,6 +58,15 @@ app.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/party', {
+      templateUrl: '/views/templates/party.html',
+      controller: 'PartyController as vm',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });

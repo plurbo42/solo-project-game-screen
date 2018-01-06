@@ -1,10 +1,13 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container" ng-cloak>
 
-    <h1 id="welcome" class="lead">Welcome, Game Master {{vm.userObject.userName}}!</h1>
+    <md-content>
 
-    <button class="btn btn-info" ng-click="vm.createCampaign()">Create Campaign</button>
+        <h1 id="welcome" class="lead">Welcome, Game Master {{vm.userObject.userName}}!</h1>
 
+        <md-button class="btn btn-info" ng-click="vm.createCampaign()">Create Campaign</md-button>
+
+    </md-content>
 </div>
 
 <!-- Note - this will eventually be moved to the home/user login screen in all likelyhood. Placing in its own view for now to keep things separate -->
