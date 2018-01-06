@@ -2,7 +2,7 @@ app.service('EncounterService', function($http, $location){
     console.log('EncounterService Loaded');
     var self = this;
     self.encounterArray = { list: [] };
-    self.currentEncounter = { list: [] };
+    self.currentEncounterArray = { list: [] };
 
     //get for list of all encounters - TODO change this to pull only encounters for current campaign
     self.getEncounter = function(){ 
@@ -23,8 +23,8 @@ app.service('EncounterService', function($http, $location){
             method: 'GET',
             url: 'encounter/current/' + id,
         }).then(function(response){
-            console.log(response.data);
-            self.currentEncounter.list = response.data;
+            console.log('current encounter', response.data);
+            self.currentEncounterArray.list = response.data;
         })
     };
 

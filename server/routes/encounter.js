@@ -27,6 +27,7 @@ router.get('/all', function (req, res) {
 
 router.get('/current/:id', function (req, res) {
     console.log(`get current encounter`, req.params)
+    var encounter_id = req.params.id
     pool.connect(function (errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {
             console.log('error', errorConnectingToDatabase);
@@ -38,7 +39,7 @@ router.get('/current/:id', function (req, res) {
                             LEFT JOIN monsters m ON m.id = en.monster_id
                             LEFT JOIN encounter_loot el ON e.id = el.encounter_id
                             LEFT JOIN item i ON i.id = el.item_id
-                        WHERE e.id = $1;`, [4],
+                        WHERE e.id = $1;`, [encounter_id],
                             function (errorMakingDatabaseQuery, result) {
                 done();
                 if (errorMakingDatabaseQuery) {

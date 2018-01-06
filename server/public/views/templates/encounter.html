@@ -5,14 +5,15 @@
     <h1>Encounter</h1>
     <md-input-container>
         <md-select ng-model="vm.currentEncounter">
-            <md-option ng-repeat="encounter in vm.encounterArray" ng-value="vm.encounter.id">
+            <md-option ng-repeat="encounter in vm.encounterArray.list" ng-value="vm.encounter.id">
                 {{encounter.id}} - {{encounter.description}}
             </md-option>
         </md-select>
-        <md-button ng-click="vm.currentEncounter()">
+        <md-button ng-click="vm.getCurrentEncounter(encounter.id)">
             Start Encounter
         </md-button>
     </md-input-container>
 
+    
 
 </md-content>

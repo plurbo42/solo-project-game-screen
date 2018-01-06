@@ -3,6 +3,8 @@ app.controller('BuilderController', function(UserService, BuilderService, Encoun
     var self = this;
     self.userService = UserService;
 
+    EncounterService.getEncounter();
+
     //BuilderService
     self.newEncounter = BuilderService.newEncounter;    
     self.newEncounterObject = BuilderService.newEncounterObject;
@@ -12,10 +14,11 @@ app.controller('BuilderController', function(UserService, BuilderService, Encoun
     self.addToEncounter = BuilderService.addToEncounter;
     
     //EncounterService
-    self.encounterArray = EncounterService.encounterArray.list;
-    self.currentEncounterArray = EncounterService.currentEncounter.list;
 
-    EncounterService.getEncounter();
+    self.encounterArray = EncounterService.encounterArray.list;
+    self.currentEncounter = EncounterService.currentEncounter;    
+    self.currentEncounterArray = EncounterService.currentEncounterArray;
+
     
   });
   

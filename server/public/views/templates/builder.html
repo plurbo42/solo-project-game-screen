@@ -23,24 +23,25 @@
                                 </md-radio-button>
                             </div>
                         </md-radio-group>
-                        <md-button class="md-raised md-primary" ng-click="vm.getCurrentEncounter(selectedEncounter.id)">Edit Selected Encounter</md-button>
+
+                        <md-button class="md-raised md-primary" ng-click="vm.currentEncounter(vm.selectedEncounter.id)">Edit Selected Encounter</md-button>
                     </md-input-container>
-                <div ng-repeat="currentEncounter in vm.currentEncounter">
-                    
+            <!-- TODO - get this to actually display the npc list when the encounter is selected -->
+            <div ng-repeat="taco in vm.currentEncounterArray.list">
+                    {{taco.name}}
                 </div>
-            </md-tab>
-            
+            </md-tab> 
 
-            
-
-
+<!-- Create New Encounter tab -->
             <md-tab label="Create Encounter">
                 <div class="newEncounter">
                     <h3>Create New Encounter</h3>
                     <md-inline-form>
                         <label>Encounter Description</label>
-                        <textarea ng-model="vm.newEncounterObject.description" placeholder="Encounter Description"></textarea>
-                        <md-button ng-click="vm.newEncounter(vm.newEncounterObject)">Create New Encounter</md-button>
+                        <md-input-container>
+                            <textarea ng-model="vm.newEncounterObject.description" placeholder="Encounter Description"></textarea>
+                        </md-input-container>
+                        <md-button class="md-primary md-raised" ng-click="vm.newEncounter(vm.newEncounterObject)">Create New Encounter</md-button>
                     </md-inline-form>
                 </div>
             </md-tab>
@@ -83,4 +84,4 @@
 
     </md-content>
 
-</div>
+    </div>
