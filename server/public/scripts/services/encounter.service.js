@@ -4,6 +4,14 @@ app.service('EncounterService', function($http, $location){
     self.encounterArray = { list: [] };
     self.currentEncounterArray = { list: [] };
 
+    self.rollInitiative = function(characterArray) {
+        for (let i = 0; i < characterArray.length; i++) {
+          var character = characterArray[i];
+          character.initiative = (Math.floor(Math.random() * 20)) + 1;
+        }
+        return characterArray;
+      };
+
     //get for list of all encounters - TODO change this to pull only encounters for current campaign
     self.getEncounter = function(){ 
         console.log('get encounter');
@@ -17,6 +25,7 @@ app.service('EncounterService', function($http, $location){
     };
 
     //get data for current encounter - used on encounter view and builder view to edit and play out current encounter
+    //TODO - currently rolling initiative within this function - will likely want to separate this later? Or add PCs before starting encounter
     self.currentEncounter = function(id){
         console.log('in get current encounter', id);
         $http({
@@ -25,6 +34,7 @@ app.service('EncounterService', function($http, $location){
         }).then(function(response){
             console.log('current encounter', response.data);
             self.currentEncounterArray.list = response.data;
+            self.rollInitiative(self.currentEncounterArray.list);
         })
     };
 

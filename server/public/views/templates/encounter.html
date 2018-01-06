@@ -24,12 +24,12 @@
 
     </md-input-container>
 
-    <!-- Initiative Roller  -->
-    <md-button class="md-fab" ng-click="vm.rollInitiative(vm.currentEncounterArray.list)">Roll</md-button>
+    <!-- Initiative Roller TODO - for the time being, moving this function INSIDE the start encounter function. This will likely have to change later -->
+    <!-- <md-button class="md-fab" ng-click="vm.rollInitiative(vm.currentEncounterArray.list)">Roll</md-button> -->
 
     <md-list flex>
         <md-subheader class="md-no-sticky">Characters</md-subheader>
-        <md-list-item class="md-3-line" ng-repeat="thisEncounter in vm.currentEncounterArray.list" drag-to-reorder="encounter" ng-click="null">
+        <md-list-item class="md-3-line" ng-repeat="thisEncounter in vm.currentEncounterArray.list | orderBy: initiative" drag-to-reorder="encounter" ng-click="null">
             <!-- <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" /> -->
             <div class="md-list-item-text" layout="column">
                 <h3>{{ thisEncounter.name }}</h3>
