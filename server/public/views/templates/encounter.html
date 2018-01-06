@@ -4,16 +4,39 @@
 
     <h1>Encounter</h1>
     <md-input-container>
-        <md-select ng-model="vm.currentEncounter">
+
+        <!-- TODO - change this to a dropdown. For now copying functionality from builder view -->
+        <!-- <md-select ng-model="vm.currentEncounter">
             <md-option ng-repeat="encounter in vm.encounterArray.list" ng-value="vm.encounter.id">
                 {{encounter.id}} - {{encounter.description}}
             </md-option>
-        </md-select>
-        <md-button ng-click="vm.getCurrentEncounter(encounter.id)">
-            Start Encounter
-        </md-button>
+        </md-select> -->
+
+        <md-radio-group ng-hide="vm.showOptions" ng-model="vm.selectedEncounter">
+            <div ng-repeat="encounter in vm.encounterArray.list" class="row">
+                <md-radio-button ng-value="encounter">
+                    {{encounter.id}} - {{encounter.description}}
+                </md-radio-button>
+            </div>
+        </md-radio-group>
+
+        <md-button class="md-raised md-primary" ng-click="vm.getCurrentEncounter(vm.selectedEncounter.id)">Start Encounter</md-button>
+
     </md-input-container>
 
-    
+    <md-list flex>
+        <md-subheader class="md-no-sticky">Characters</md-subheader>
+        <md-list-item class="md-3-line" ng-repeat="thisEncounter in vm.currentEncounterArray.list" ng-click="null">
+            <!-- <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" /> -->
+            <div class="md-list-item-text" layout="column">
+                <h3>{{ thisEncounter.name }}</h3>
+                <h4> Current HP: {{ thisEncounter.current_hit_points }}</h4>
+                <span>
+                    <md-button class="md-fab md-primary md-hue-2" aria-label="Plus HP">+</md-button>
+                    <md-button class="md-fab md-primary md-hue-3" aria-label="Minus HP">-</md-button>
+                </span>
+            </div>
+        </md-list-item>
+
 
 </md-content>
