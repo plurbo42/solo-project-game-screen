@@ -1,28 +1,38 @@
 <div ng-include="'views/partials/nav.html'"></div>
 
-<md-content ng-cloak>
+<md-content ng-cloak layout-padding>
 
     <h1>Encounter</h1>
-    <md-input-container>
+   
 
         <!-- TODO - change this to a dropdown. For now copying functionality from builder view -->
-        <!-- <md-select ng-model="vm.currentEncounter">
-            <md-option ng-repeat="encounter in vm.encounterArray.list" ng-value="vm.encounter.id">
-                {{encounter.id}} - {{encounter.description}}
-            </md-option>
-        </md-select> -->
 
-        <md-radio-group ng-hide="vm.showOptions" ng-model="vm.selectedEncounter">
-            <div ng-repeat="encounter in vm.encounterArray.list" class="row">
-                <md-radio-button ng-value="encounter">
-                    {{encounter.id}} - {{encounter.description}}
-                </md-radio-button>
-            </div>
-        </md-radio-group>
+    <!-- <md-card>
+            <md-input-container layout-padding>
+                    <md-radio-group ng-hide="vm.showOptions" ng-model="vm.selectedEncounter">
+                        <div ng-repeat="encounter in vm.encounterArray.list" class="row">
+                            <md-radio-button ng-value="encounter">
+                                {{encounter.id}} - {{encounter.description}}
+                            </md-radio-button>
+                        </div>
+                    </md-radio-group>
+        
+                    <md-button class="md-raised md-primary" ng-click="vm.getCurrentEncounter(vm.selectedEncounter.id)">Start Encounter</md-button>
+            
+                </md-input-container>
+    </md-card> -->
 
-        <md-button class="md-raised md-primary" ng-click="vm.getCurrentEncounter(vm.selectedEncounter.id)">Start Encounter</md-button>
+    <md-card>
+            <md-input-container>
+                    <label>Select Encounter</label>
+                    <md-select ng-model="encounter.id">
+                        <md-option ng-repeat="encounter in vm.encounterArray.list" ng-value="encounter.id">{{encounter.description}}</md-option>
+                    </md-select>
+                </md-input-container>
 
-    </md-input-container>
+                <md-button class="md-raised md-primary" ng-click="vm.getCurrentEncounter(vm.selectedEncounter.id)">Start Encounter</md-button>
+                
+    </md-card>
 
     <!-- Initiative Roller TODO - for the time being, moving this function INSIDE the start encounter function. This will likely have to change later -->
     <!-- <md-button class="md-fab" ng-click="vm.rollInitiative(vm.currentEncounterArray.list)">Roll</md-button> -->

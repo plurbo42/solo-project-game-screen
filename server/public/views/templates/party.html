@@ -3,68 +3,150 @@
 
 <md-content>
     <h1>Party</h1>
-    <md-tabs>
+    <md-tabs md-dynamic-height md-border-bottom>
 
-        <!-- All party tab -->
-        <md-tab label="party">
+        <!-- <!All party tab -->
+        <!-- <md-tab label="party">
             <md-list ng-repeat="character in vm.partyArray.list">
                 <md-list-item>
                     {{character.name}} {{character.level}} {{character.class}}
                 </md-list-item>
             </md-list>
-        </md-tab>
+        </md-tab> -->
         <!-- Add new Character -->
         <md-tab label="Add Character">
 
             <div layout="column" ng-cloak class="md-inline-form" layout-padding>
 
                 <md-subhead layout-gt-sm="row">Character Details</md-subhead>
+                <md-card>
+                    <md-content layout-gt-sm="row" layout-padding>
+                        <div>
+                            <md-input-container>
+                                <label>Player Name</label>
+                                <input ng-model="character.player_name">
+                            </md-input-container>
 
-                <md-content layout-gt-sm="row" layout-padding>
-                    <div>
-                        <md-input-container>
-                            <label>Player Name</label>
-                            <input ng-model="character.player_name">
-                        </md-input-container>
+                            <md-input-container>
+                                <label>Character Name</label>
+                                <input ng-model="character.name" type="text">
+                            </md-input-container>
+                        </div>
 
-                        <md-input-container>
-                            <label>Character Name</label>
-                            <input ng-model="character.name" type="text">
-                        </md-input-container>
+
+                        <div layout-gt-xs="row">
+                            <md-input-container flex-gt-xs>
+                                <label>Level</label>
+                                <input ng-model="character.level" type="number">
+                            </md-input-container>
+
+                            <md-input-container>
+                                <label>Class</label>
+                                <md-select ng-model="character.class_id">
+                                    <md-option ng-repeat="class in vm.classArray.list" ng-value="class.id">{{class.name}}</md-option>
+                                </md-select>
+                            </md-input-container>
+
+
+                            <md-input-container>
+                                <label>Race</label>
+                                <md-select ng-model="character.race_id">
+                                    <md-option ng-repeat="race in vm.raceArray.list" ng-value="race.id">{{race.name}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                </md-card>
+                <!-- TODO - investigate other methods for formatting than mdCard -->
+
+            <md-subhead>Stats</md-subhead>
+                <md-card>
+                    <div ng-cloak>
+                        <md-content layout="row" layout-padding>
+                            <md-slider-container flex>
+                                <md-input-container>
+                                    <input flex type="number" ng-model="character.strength" aria-label="strength" aria-controls="strength-slider">
+                                </md-input-container>
+                                <md-slider ng-model="character.strength" min="0" max="20" aria-label="strength" id="strength-slider" class="md-accent" md-vertical
+                                    md-range></md-slider>
+                                </md-slider>
+                                <h5>STR</h5>
+                            </md-slider-container>
+
+                            <md-slider-container flex>
+                                <md-input-container>
+                                    <input flex type="number" ng-model="character.dexterity" aria-label="dex" aria-controls="dexterity-slider">
+                                </md-input-container>
+                                <md-slider ng-model="character.dexterity" min="0" max="20" aria-label="dexterity" id="dexterity-slider" class="md-accent"
+                                    md-vertical md-range></md-slider>
+                                </md-slider>
+                                <h5>DEX</h5>
+                            </md-slider-container>
+
+                            <md-slider-container flex>
+                                <md-input-container>
+                                    <input flex type="number" ng-model="character.constitution" aria-label="con" aria-controls="con-slider">
+                                </md-input-container>
+                                <md-slider ng-model="character.constitution" min="0" max="20" aria-label="con" id="con-slider" class="md-accent" md-vertical
+                                    md-range></md-slider>
+                                </md-slider>
+                                <h5>CON</h5>
+                            </md-slider-container>
+
+                            <md-slider-container flex>
+                                <md-input-container>
+                                    <input flex type="number" ng-model="character.intelligence" aria-label="int" aria-controls="int-slider">
+                                </md-input-container>
+                                <md-slider ng-model="character.intelligence" min="0" max="20" aria-label="int" id="int-slider" class="md-accent" md-vertical
+                                    md-range></md-slider>
+                                </md-slider>
+                                <h5>INT</h5>
+                            </md-slider-container>
+
+                            <md-slider-container flex>
+                                <md-input-container>
+                                    <input flex type="number" ng-model="character.wisdom" aria-label="wis" aria-controls="wis-slider">
+                                </md-input-container>
+                                <md-slider ng-model="character.wisdom" min="0" max="20" aria-label="wis" id="wis-slider" class="md-accent" md-vertical md-range></md-slider>
+                                </md-slider>
+                                <h5>WIS</h5>
+                            </md-slider-container>
+
+                            <md-slider-container flex>
+                                <md-input-container>
+                                    <input flex type="number" ng-model="character.charisma" aria-label="cha" aria-controls="cha-slider">
+                                </md-input-container>
+                                <md-slider ng-model="character.charisma" min="0" max="20" aria-label="cha" id="cha-slider" class="md-accent" md-vertical
+                                    md-range></md-slider>
+                                </md-slider>
+                                <h5>CHA</h5>
+                            </md-slider-container>
+
+                        </md-content>
                     </div>
+                </md-card>
 
-
-                    <div layout-gt-xs="row">
-                        <md-input-container flex-gt-xs>
-                            <label>Level</label>
-                            <input ng-model="character.level" type="number">
-                        </md-input-container>
-
+                <md-subhead>More</md-subhead>
+                <md-card>
                     <md-input-container>
-                        <label>Class</label>
-                        <md-select ng-model="character.class_id">
-                            <md-option ng-repeat="class in vm.classArray.list" ng-value="class.id">{{class.name}}</md-option>
-                        </md-select>
+                        <label>HP</label>
+                        <input type="number" ng-model="character.hp">
                     </md-input-container>
 
-
                     <md-input-container>
-                            <label>Race</label>
-                            <md-select ng-model="character.race_id">
-                                <md-option ng-repeat="race in vm.raceArray.list" ng-value="race.id">{{race.name}}</md-option>
-                            </md-select>
+                            <label>AC</label>
+                            <input type="number" ng-model="character.ac">
                         </md-input-container>
-                    </div>
-                    
-                    <md-content>
-                    <md-subhead>Stats</md-subhead>
-                        <div>
-                            
-                        </div>
-                    </md-content>
-                    
+                </md-card>
 
-                    <md-button>Add Character</md-button>
+                <md-subhead>Skills</md-subhead>
+                <md-card>
+
+                    <h4>Add Skill</h4>
+                    <md-input-container>
+                        
+                    </md-input-container>
+
+                <md-button>Add Character</md-button>
                 </md-content>
 
             </div>
