@@ -12,6 +12,7 @@ app.service('EncounterService', function($http, $location){
         return characterArray;
       };
 
+
     //get for list of all encounters - TODO change this to pull only encounters for current campaign
     self.getEncounter = function(){ 
         console.log('get encounter');

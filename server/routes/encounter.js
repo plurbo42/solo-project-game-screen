@@ -33,7 +33,7 @@ router.get('/current/:id', function (req, res) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            client.query(`SELECT e.id, e.description, en.id AS npc_id, el.id AS loot_id, m.name, m.challengerating
+            client.query(`SELECT e.id, e.description, en.id AS npc_id, el.id AS loot_id, m.name, m.challengerating, en.current_hp
                             FROM encounter e
                             LEFT JOIN encounter_npc en ON e.id = en.encounter_id
                             LEFT JOIN monsters m ON m.id = en.monster_id

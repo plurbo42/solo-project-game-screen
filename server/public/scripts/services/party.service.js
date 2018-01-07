@@ -1,7 +1,11 @@
 app.service('PartyService', function ($http, $location) {
     console.log('PartyService Loaded');
     var self = this;
-    var partyArray = { list: [] };
+    self.partyArray = { list: [] };
+
+    self.raceArray = { list: [] };
+    self.classArray = { list: [] };
+    self.alignmentArray = { list: [] };
 
     //TODO - adjust this request to be campaign specific
     self.getParty = function() {
@@ -14,6 +18,35 @@ app.service('PartyService', function ($http, $location) {
         })
     };
 
+    self.getRace = function() {
+        $http({
+            method: 'GET',
+            url: '/party/race',
+        }).then(function(response){
+            console.log(response.data);
+            self.raceArray.list = response.data;
+        })
+    };
+
+    self.getClass = function() {
+        $http({
+            method: 'GET',
+            url: '/party/class',
+        }).then(function(response){
+            console.log(response.data);
+            self.classArray.list = response.data;
+        })
+    };
+
+    self.getAlignment = function() {
+        $http({
+            method: 'GET',
+            url: '/party/alignment',
+        }).then(function(response){
+            console.log(response.data);
+            self.alignmentArray.list = response.data;
+        })
+    };
     //add Character request 
     self.addCharacter = function(newCharacterObject) {
         $http({
@@ -24,7 +57,7 @@ app.service('PartyService', function ($http, $location) {
             console.log(response);
             self.getParty();
         })
-    }
+    };
   
   });
   

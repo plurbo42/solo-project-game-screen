@@ -39,8 +39,11 @@
                     <md-inline-form>
                         <md-input-container>
                             <input type="text" ng-model="vm.newEncounterObject.description" placeholder="Encounter Name">
-                            <textarea ng-model="vm.newEncounterObject.notes" placeholder="Notes"></textarea>                            
                         </md-input-container>
+                        <md-input-container class="md-block">
+                                <label>Notes</label>
+                                <textarea ng-model="vm.newEncounterObject.notes" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                              </md-input-container>
                         <md-button class="md-primary md-raised" ng-click="vm.newEncounter(vm.newEncounterObject)">Create New Encounter</md-button>
                     </md-inline-form>
                 </div>
