@@ -66,6 +66,7 @@ app.service('BuilderService', function ($http, $location) {
             data: encounterAddObject,
         }).then(function (response) {
             console.log(response);
+            self.currentEncounter(encounterId);
         })
     }
 

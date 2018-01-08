@@ -16,22 +16,6 @@ app.controller('BuilderController', function(UserService, BuilderService, Encoun
     self.newEncounter = EncounterService.newEncounter;    
     self.newEncounterObject = EncounterService.newEncounterObject;
     self.encounterArray = EncounterService.encounterArray;
-
-    //TODO - this garbage is for the minimally functional sidenav. Might scrap that idea altogether - REMOVE IF SO
-    // $scope.toShow = "home"; // Default
-    
-    //     $scope.toggleLeft = function() {
-    //         $mdSidenav("left")
-    //           .toggle();
-    //     };
-    
-    //     $scope.close = function () {
-    //       $mdSidenav('left').close();
-    //     };
-    
-    //     $scope.show = function (toShow) {
-    //       $scope.toShow = toShow;
-    //     };
     
   });
   

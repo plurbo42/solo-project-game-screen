@@ -8,12 +8,12 @@ app.controller('EncounterController', function(UserService, EncounterService, $s
     self.currentEncounterArray = EncounterService.currentEncounterArray;
 
     //this does not work yet
-    $scope.$on('dragToReorder.dropped', (e, data) => {
-      self.encounters = data.list.map((encounter, i) => {
-        encounter.rank = i + 1;
-        return encounter;
-      });
-    });
+    // $scope.$on('dragToReorder.dropped', (e, data) => {
+    //   self.encounters = data.list.map((encounter, i) => {
+    //     encounter.rank = i + 1;
+    //     return encounter;
+    //   });
+    // });
 
     //TODO - presently moving this inside the getCurrentEncounter function - this will likely have to change later to allow for the introduction of player characters. 
     // self.rollInitiative = function(characterArray) {

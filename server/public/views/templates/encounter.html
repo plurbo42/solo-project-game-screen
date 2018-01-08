@@ -3,35 +3,17 @@
 <md-content ng-cloak layout-padding>
 
     <h1>Encounter</h1>
-   
-
-        <!-- TODO - change this to a dropdown. For now copying functionality from builder view -->
-
-    <!-- <md-card>
-            <md-input-container layout-padding>
-                    <md-radio-group ng-hide="vm.showOptions" ng-model="vm.selectedEncounter">
-                        <div ng-repeat="encounter in vm.encounterArray.list" class="row">
-                            <md-radio-button ng-value="encounter">
-                                {{encounter.id}} - {{encounter.description}}
-                            </md-radio-button>
-                        </div>
-                    </md-radio-group>
-        
-                    <md-button class="md-raised md-primary" ng-click="vm.getCurrentEncounter(vm.selectedEncounter.id)">Start Encounter</md-button>
-            
-                </md-input-container>
-    </md-card> -->
 
     <md-card>
-            <md-input-container>
-                    <label>Select Encounter</label>
-                    <md-select ng-model="encounter.id">
-                        <md-option ng-repeat="encounter in vm.encounterArray.list" ng-value="encounter.id">{{encounter.description}}</md-option>
-                    </md-select>
-                </md-input-container>
+        <md-input-container>
+            <label>Select Encounter</label>
+            <md-select ng-model="vm.selectedEncounter.id">
+                <md-option ng-repeat="encounter in vm.encounterArray.list" ng-value="encounter.id">{{encounter.description}}</md-option>
+            </md-select>
+        </md-input-container>
 
-                <md-button class="md-raised md-primary" ng-click="vm.getCurrentEncounter(vm.selectedEncounter.id)">Start Encounter</md-button>
-                
+        <md-button class="md-raised md-primary" ng-click="vm.getCurrentEncounter(vm.selectedEncounter.id)">Start Encounter</md-button>
+
     </md-card>
 
     <!-- Initiative Roller TODO - for the time being, moving this function INSIDE the start encounter function. This will likely have to change later -->
