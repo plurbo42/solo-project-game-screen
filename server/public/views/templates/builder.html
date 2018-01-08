@@ -4,33 +4,66 @@
 <div class="content" ng-cloak>
     <md-content>
         <h1>Encounter Builder</h1>
+
+        <md-input-container>
+            <label>Select Encounter</label>
+            <md-select ng-model="encounter.id">
+                <md-option ng-repeat="encounter in vm.encounterArray.list" ng-value="encounter.id">{{encounter.description}}</md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-button class="md-raised md-primary" ng-click="vm.getCurrentEncounter(vm.selectedEncounter.id)">Edit Selected Encounter</md-button>
+
+
+        <!-- TODO - this sidenav opens/closes, but requires $scope, and also does not lock open. It is dumb and angularjs material is dumb and I should have just used bootstrap fml -->
+        <!-- <div layout="column" style="height:500px;" ng-cloak="" class="sidenavdemoBasicUsage">
+            <section layout="row" flex="">
+                <md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4" id="leftSideNav" md-disable-backdrop="true"
+                    md-is-locked-open="$mdMedia('gt-md')">
+                    <md-toolbar class="md-theme-indigo" layout="row">
+                        <h1 class="md-toolbar-tools">Sidenav Left</h1>
+                        <span flex></span>
+                        <md-button ng-click="close()">Close</md-button>
+                    </md-toolbar>
+                    <md-content layout-padding="" layout="column" layout-align="start start">
+                    </md-content>
+                </md-sidenav>
+                    </div>
+                </md-content>
+            </section>
+        </div> -->
+
+
         <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Current Encounter">
+            <!-- <md-tab label="Current Encounter"> -->
 
                 <!-- TODO move this div into an Angular Material sidenav or similar - basically fix the formatting of this page so it's less of a mess -->
-                <!-- <md-sidenav class="md-whiteframe-4dp" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="right" ng-click="app.toggleList()">
-        <h3>Current Encounter</h3>
-    </md-sidenav> -->
-                <div>
+  
+    <!-- </md-sidenav> 
 
-                    <h3>Current Encounter</h3>
-                    <!-- TODO change this to another get request to pull all data for selected encounter and pull only encounter id/description for radio list -->
-                    <md-input-container>
-                        <md-radio-group ng-model="vm.selectedEncounter">
-                            <div ng-repeat="encounter in vm.encounterArray" class="row">
-                                <md-radio-button ng-value="encounter">
-                                    {{encounter.id}} - {{encounter.description}}
-                                </md-radio-button>
-                            </div>
-                        </md-radio-group>
+                <h3>Current Encounter</h3>
+                TODO change this to another get request to pull all data for selected encounter and pull only encounter id/description for radio list
+                <md-input-container>
+                    <md-radio-group ng-model="vm.selectedEncounter">
+                        <div ng-repeat="encounter in vm.encounterArray" class="row">
+                            <md-radio-button ng-value="encounter">
+                                {{encounter.id}} - {{encounter.description}}
+                            </md-radio-button>
+                        </div>
+                    </md-radio-group>
 
-                        <md-button class="md-raised md-primary" ng-click="vm.currentEncounter(vm.selectedEncounter.id)">Edit Selected Encounter</md-button>
-                    </md-input-container>
-                    <!-- TODO - call get current list function when npcs are added/edited so this is always current -->                
-                    <md-list ng-repeat="taco in vm.currentEncounterArray.list">
-                       <md-list-item>{{taco.name}}</md-list-item> 
-                    </md-list>
-            </md-tab>
+                    <md-button class="md-raised md-primary" ng-click="vm.currentEncounter(vm.selectedEncounter.id)">Edit Selected Encounter</md-button>
+                </md-input-container>
+                TODO - call get current list function when npcs are added/edited so this is always current
+                <md-list ng-repeat="taco in vm.currentEncounterArray.list">
+                    <md-list-item>{{taco.name}}</md-list-item>
+                </md-list>
+
+                TODO - add this button to each tab?? (toggles side bar with current encounter info)
+                <md-button ng-click="toggleLeft()" class="md-primary">
+                    Toggle left
+                </md-button>
+            </md-tab> -->
 
             <!-- Create New Encounter tab TODO - add notes to new encounter request/database-->
             <md-tab label="Create Encounter">
@@ -41,9 +74,9 @@
                             <input type="text" ng-model="vm.newEncounterObject.description" placeholder="Encounter Name">
                         </md-input-container>
                         <md-input-container class="md-block">
-                                <label>Notes</label>
-                                <textarea ng-model="vm.newEncounterObject.notes" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-                              </md-input-container>
+                            <label>Notes</label>
+                            <textarea ng-model="vm.newEncounterObject.notes" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                        </md-input-container>
                         <md-button class="md-primary md-raised" ng-click="vm.newEncounter(vm.newEncounterObject)">Create New Encounter</md-button>
                     </md-inline-form>
                 </div>
@@ -88,10 +121,10 @@
 
             <md-tab label="Add Encounter Loot">
                 <h3>Search Loot</h3>
-                    
+
             </md-tab>
         </md-tabs>
 
     </md-content>
 
-    </div>
+</div>

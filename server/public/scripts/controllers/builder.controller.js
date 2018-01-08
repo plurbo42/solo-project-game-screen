@@ -1,4 +1,4 @@
-app.controller('BuilderController', function(UserService, BuilderService, EncounterService) {
+app.controller('BuilderController', function(UserService, BuilderService, EncounterService, $mdSidenav, $scope) {
     console.log('BuilderController created');
     var self = this;
     self.userService = UserService;
@@ -15,10 +15,24 @@ app.controller('BuilderController', function(UserService, BuilderService, Encoun
     
     //EncounterService
 
-    self.encounterArray = EncounterService.encounterArray.list;
+    self.encounterArray = EncounterService.encounterArray;
     self.currentEncounter = EncounterService.currentEncounter;    
     self.currentEncounterArray = EncounterService.currentEncounterArray;
 
+    $scope.toShow = "home"; // Default
+    
+        $scope.toggleLeft = function() {
+            $mdSidenav("left")
+              .toggle();
+        };
+    
+        $scope.close = function () {
+          $mdSidenav('left').close();
+        };
+    
+        $scope.show = function (toShow) {
+          $scope.toShow = toShow;
+        };
     
   });
   
