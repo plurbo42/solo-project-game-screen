@@ -49,6 +49,7 @@ app.service('PartyService', function ($http, $location) {
     };
     //add Character request 
     self.addCharacter = function(newCharacterObject) {
+        console.log('in add character', newCharacterObject)
         $http({
             method: 'POST',
             url: '/party/new',

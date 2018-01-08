@@ -7,6 +7,7 @@ app.controller('PartyController', function(UserService, PartyService) {
     self.raceArray = PartyService.raceArray;
     self.classArray = PartyService.classArray;
     self.alignmentArray = PartyService.alignmentArray;
+    self.addCharacter = PartyService.addCharacter;
 
     PartyService.getParty();
     PartyService.getRace();

@@ -14,7 +14,6 @@ app.service('BuilderService', function ($http, $location) {
                 data: newEncounterObject,
             }).then(function (response) {
                 console.log(response);
-                // self.getCurrentEncounter - with return encounter id???
             })
     };
 

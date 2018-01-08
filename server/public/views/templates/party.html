@@ -6,13 +6,13 @@
     <md-tabs md-dynamic-height md-border-bottom>
 
         <!-- <!All party tab -->
-        <!-- <md-tab label="party">
+        <md-tab label="party">
             <md-list ng-repeat="character in vm.partyArray.list">
                 <md-list-item>
                     {{character.name}} {{character.level}} {{character.class}}
                 </md-list-item>
             </md-list>
-        </md-tab> -->
+        </md-tab>
         <!-- Add new Character -->
         <md-tab label="Add Character">
 
@@ -24,12 +24,12 @@
                         <div>
                             <md-input-container>
                                 <label>Player Name</label>
-                                <input ng-model="character.player_name">
+                                <input ng-model="vm.newCharacter.player_name">
                             </md-input-container>
 
                             <md-input-container>
                                 <label>Character Name</label>
-                                <input ng-model="character.name" type="text">
+                                <input ng-model="vm.newCharacter.name" type="text">
                             </md-input-container>
                         </div>
 
@@ -37,12 +37,12 @@
                         <div layout-gt-xs="row">
                             <md-input-container flex-gt-xs>
                                 <label>Level</label>
-                                <input ng-model="character.level" type="number">
+                                <input ng-model="vm.newCharacter.level" type="number">
                             </md-input-container>
 
                             <md-input-container>
                                 <label>Class</label>
-                                <md-select ng-model="character.class_id">
+                                <md-select ng-model="vm.newCharacter.class_id">
                                     <md-option ng-repeat="class in vm.classArray.list" ng-value="class.id">{{class.name}}</md-option>
                                 </md-select>
                             </md-input-container>
@@ -50,8 +50,15 @@
 
                             <md-input-container>
                                 <label>Race</label>
-                                <md-select ng-model="character.race_id">
+                                <md-select ng-model="vm.newCharacter.race_id">
                                     <md-option ng-repeat="race in vm.raceArray.list" ng-value="race.id">{{race.name}}</md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-input-container>
+                                <label>Alignment</label>
+                                <md-select ng-model="vm.newCharacter.alignment_id">
+                                    <md-option ng-repeat="alignment in vm.alignmentArray.list" ng-value="alignment.id">{{alignment.name}}</md-option>
                                 </md-select>
                             </md-input-container>
                         </div>
@@ -64,9 +71,9 @@
                         <md-content layout="row" layout-padding>
                             <md-slider-container flex>
                                 <md-input-container>
-                                    <input flex type="number" ng-model="character.strength" aria-label="strength" aria-controls="strength-slider">
+                                    <input type="number" ng-model="vm.newCharacter.strength" aria-label="strength" aria-controls="strength-slider">
                                 </md-input-container>
-                                <md-slider ng-model="character.strength" min="0" max="20" aria-label="strength" id="strength-slider" class="md-accent" md-vertical
+                                <md-slider ng-model="vm.newCharacter.strength" min="0" max="20" aria-label="strength" id="strength-slider" class="md-accent" md-vertical
                                     md-range></md-slider>
                                 </md-slider>
                                 <h5>STR</h5>
@@ -74,9 +81,9 @@
 
                             <md-slider-container flex>
                                 <md-input-container>
-                                    <input flex type="number" ng-model="character.dexterity" aria-label="dex" aria-controls="dexterity-slider">
+                                    <input type="number" ng-model="vm.newCharacter.dexterity" aria-label="dex" aria-controls="dexterity-slider">
                                 </md-input-container>
-                                <md-slider ng-model="character.dexterity" min="0" max="20" aria-label="dexterity" id="dexterity-slider" class="md-accent"
+                                <md-slider ng-model="vm.newCharacter.dexterity" min="0" max="20" aria-label="dexterity" id="dexterity-slider" class="md-accent"
                                     md-vertical md-range></md-slider>
                                 </md-slider>
                                 <h5>DEX</h5>
@@ -84,9 +91,9 @@
 
                             <md-slider-container flex>
                                 <md-input-container>
-                                    <input flex type="number" ng-model="character.constitution" aria-label="con" aria-controls="con-slider">
+                                    <input flex type="number" ng-model="vm.newCharacter.constitution" aria-label="con" aria-controls="con-slider">
                                 </md-input-container>
-                                <md-slider ng-model="character.constitution" min="0" max="20" aria-label="con" id="con-slider" class="md-accent" md-vertical
+                                <md-slider ng-model="vm.newCharacter.constitution" min="0" max="20" aria-label="con" id="con-slider" class="md-accent" md-vertical
                                     md-range></md-slider>
                                 </md-slider>
                                 <h5>CON</h5>
@@ -94,9 +101,9 @@
 
                             <md-slider-container flex>
                                 <md-input-container>
-                                    <input flex type="number" ng-model="character.intelligence" aria-label="int" aria-controls="int-slider">
+                                    <input flex type="number" ng-model="vm.newCharacter.intelligence" aria-label="int" aria-controls="int-slider">
                                 </md-input-container>
-                                <md-slider ng-model="character.intelligence" min="0" max="20" aria-label="int" id="int-slider" class="md-accent" md-vertical
+                                <md-slider ng-model="vm.newCharacter.intelligence" min="0" max="20" aria-label="int" id="int-slider" class="md-accent" md-vertical
                                     md-range></md-slider>
                                 </md-slider>
                                 <h5>INT</h5>
@@ -104,18 +111,18 @@
 
                             <md-slider-container flex>
                                 <md-input-container>
-                                    <input flex type="number" ng-model="character.wisdom" aria-label="wis" aria-controls="wis-slider">
+                                    <input flex type="number" ng-model="vm.newCharacter.wisdom" aria-label="wis" aria-controls="wis-slider">
                                 </md-input-container>
-                                <md-slider ng-model="character.wisdom" min="0" max="20" aria-label="wis" id="wis-slider" class="md-accent" md-vertical md-range></md-slider>
+                                <md-slider ng-model="vm.newCharacter.wisdom" min="0" max="20" aria-label="wis" id="wis-slider" class="md-accent" md-vertical md-range></md-slider>
                                 </md-slider>
                                 <h5>WIS</h5>
                             </md-slider-container>
 
                             <md-slider-container flex>
                                 <md-input-container>
-                                    <input flex type="number" ng-model="character.charisma" aria-label="cha" aria-controls="cha-slider">
+                                    <input flex type="number" ng-model="vm.newCharacter.charisma" aria-label="cha" aria-controls="cha-slider">
                                 </md-input-container>
-                                <md-slider ng-model="character.charisma" min="0" max="20" aria-label="cha" id="cha-slider" class="md-accent" md-vertical
+                                <md-slider ng-model="vm.newCharacter.charisma" min="0" max="20" aria-label="cha" id="cha-slider" class="md-accent" md-vertical
                                     md-range></md-slider>
                                 </md-slider>
                                 <h5>CHA</h5>
@@ -129,24 +136,32 @@
                 <md-card>
                     <md-input-container>
                         <label>HP</label>
-                        <input type="number" ng-model="character.hp">
+                        <input type="number" ng-model="vm.newCharacter.hp">
                     </md-input-container>
 
                     <md-input-container>
                             <label>AC</label>
-                            <input type="number" ng-model="character.ac">
+                            <input type="number" ng-model="vm.newCharacter.ac">
+                        </md-input-container>
+
+                        <md-input-container>
+                            <label>Passive Perception</label>
+                            <input type="number" ng-model="vm.newCharacter.passive_perception">
+                        </md-input-container>
+
+
+                        <md-input-container>
+                            <label>Initiative Bonus</label>
+                            <input type="number" ng-model="vm.newCharacter.initiative_bonus">
                         </md-input-container>
                 </md-card>
 
-                <md-subhead>Skills</md-subhead>
+                
                 <md-card>
 
-                    <h4>Add Skill</h4>
-                    <md-input-container>
-                        
-                    </md-input-container>
+                  {{vm.newCharacter}}
 
-                <md-button>Add Character</md-button>
+                <md-button md-raised md-primary ng-click="vm.addCharacter(vm.newCharacter)">Add Character</md-button>
                 </md-content>
 
             </div>
