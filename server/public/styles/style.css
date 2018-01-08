@@ -6,3 +6,8 @@ md-content {
 h1 {
   text-align: center;
 }
+
+.character-profile {
+  max-height: 50px;
+  padding-right: 10px;
+}
