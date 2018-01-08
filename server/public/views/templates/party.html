@@ -8,8 +8,8 @@
         <!-- <!All party tab -->
         <md-tab label="party">
             <md-list ng-repeat="character in vm.partyArray.list">
-                <md-list-item>
-                    {{character.name}} : Level {{character.level}} {{character.class}}, {{character.alignment}}
+                <md-list-item class="md-3-line" ng-click="null">
+                    {{character.name}} : Level {{character.level}} {{character.race}} {{character.class}}, {{character.alignment}}
                 </md-list-item>
             </md-list>
         </md-tab>

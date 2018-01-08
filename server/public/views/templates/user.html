@@ -1,7 +1,7 @@
 <div ng-include="'views/partials/nav.html'"></div>
-<div class="container">
+<md-content layout-align="center center">
 
     <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
-    <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
+    <md-button md-raised md-primary layout="row" layout-align="center center" class="btn btn-default" ng-click="uc.userService.logout()">Log Out</md-button>
     
-</div>
+</md-content> 

@@ -6,11 +6,13 @@ app.service('EncounterService', function ($http, $location) {
     self.newEncounterObject = { description: '' };
     self.playerCharacterArray = { list: [] };
 
+    //TODO - this now adds initiative bonuses, but for some reason is running through the for loop twice?? 
     self.rollInitiative = function (characterArray) {
         for (let i = 0; i < characterArray.length; i++) {
             var character = characterArray[i];
-            character.initiative = (Math.floor(Math.random() * 20)) + 1;
-          //  character.initiative += Number(character.initative_bonus);
+            var bonus = character.initiative_bonus;
+            character.initiative = (Math.floor(Math.random() * 20)) + 1 + bonus;
+            console.log('this array is', characterArray.length, 'long. this is turn', i, 'character', bonus);
         }
         return characterArray;
     };
@@ -28,6 +30,7 @@ app.service('EncounterService', function ($http, $location) {
     };
 
     //TODO - get characters, change to campaign specific. Also, add logic to add just certain characters to the encounter. 
+    //TODO - currently rolling initiative within this function - will likely want to separate this later? 
 
     self.getPlayerCharacters = function () {
         console.log('in get player characters');
@@ -40,13 +43,13 @@ app.service('EncounterService', function ($http, $location) {
             for (let i = 0; i < self.playerCharacterArray.list.length; i++) {
                 var player = self.playerCharacterArray.list[i];
                 self.currentEncounterArray.list.push(player);
+                self.rollInitiative(self.currentEncounterArray.list);
             };
         })
     };
 
 
     //get data for current encounter - used on encounter view and builder view to edit and play out current encounter
-    //TODO - currently rolling initiative within this function - will likely want to separate this later? Or add PCs before starting encounter
     self.currentEncounter = function (id) {
         console.log('in get current encounter', id);
         $http({
@@ -56,7 +59,6 @@ app.service('EncounterService', function ($http, $location) {
             console.log('current encounter', response.data);
             self.currentEncounterArray.list = response.data;
             self.getPlayerCharacters();
-            self.rollInitiative(self.currentEncounterArray.list);
             console.log(self.currentEncounterArray.list, 'is the current encounter')
         })
     };

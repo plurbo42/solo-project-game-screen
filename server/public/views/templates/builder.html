@@ -19,31 +19,6 @@
 
             <!-- TODO move this div into an Angular Material sidenav or similar - basically fix the formatting of this page so it's less of a mess -->
 
-
-            <!-- <h3>Current Encounter</h3>
-                TODO change this to another get request to pull all data for selected encounter and pull only encounter id/description for radio list
-                <md-input-container>
-                    <md-radio-group ng-model="vm.selectedEncounter">
-                        <div ng-repeat="encounter in vm.encounterArray" class="row">
-                            <md-radio-button ng-value="encounter">
-                                {{encounter.id}} - {{encounter.description}}
-                            </md-radio-button>
-                        </div>
-                    </md-radio-group>
-
-                    <md-button class="md-raised md-primary" ng-click="vm.currentEncounter(vm.selectedEncounter.id)">Edit Selected Encounter</md-button>
-                </md-input-container>
-                TODO - call get current list function when npcs are added/edited so this is always current
-                <md-list ng-repeat="taco in vm.currentEncounterArray.list">
-                    <md-list-item>{{taco.name}}</md-list-item>
-                </md-list>
-
-                TODO - add this button to each tab?? (toggles side bar with current encounter info)
-                <md-button ng-click="toggleLeft()" class="md-primary">
-                    Toggle left
-                </md-button>
-            </md-tab>  -->
-
             <md-tab label="Current Encounter">
                 <md-content>
 
@@ -52,8 +27,11 @@
                     <h3> Encounter notes:</h3>
                     <p> {{vm.currentEncounterArray.list[0].notes}} </p>
                     <h3> NPCs:</h3>
-                    <md-list layout-padding ng-repeat="taco in vm.currentEncounterArray.list">
-                        <md-list-item>{{taco.name}}</md-list-item>
+                    <md-list ng-repeat="taco in vm.currentEncounterArray.list">
+                       <md-list-item class="md-1-line" ng-click="null">
+                           {{taco.name}}
+                            <!-- <md-button ng-click="Remove">Remove</md-button> -->
+                       </md-list-item>
                     </md-list>
 
                 </md-content>
