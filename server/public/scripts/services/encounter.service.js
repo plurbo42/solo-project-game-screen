@@ -3,6 +3,8 @@ app.service('EncounterService', function($http, $location){
     var self = this;
     self.encounterArray = { list: [] };
     self.currentEncounterArray = { list: [] };
+    self.currentEncounterDetails = { list: [] };
+    self.newEncounterObject = { description: '' };    
 
     self.rollInitiative = function(characterArray) {
         for (let i = 0; i < characterArray.length; i++) {
@@ -37,6 +39,32 @@ app.service('EncounterService', function($http, $location){
             self.currentEncounterArray.list = response.data;
             self.rollInitiative(self.currentEncounterArray.list);
         })
+    };
+
+    self.currentEncounterDetails = function(id){
+        console.log('in get current encounter', id);
+        $http({
+            method: 'GET',
+            url: 'encounter/current/details' + id,
+        }).then(function(response){
+            console.log('current encounter', response.data);
+            self.currentEncounterArray.list = response.data;
+            self.rollInitiative(self.currentEncounterArray.list);
+        })
+    };
+
+
+    self.newEncounter = function (newEncounterObject) {
+        console.log('clicked new encounter', newEncounterObject);
+            $http({
+                method: 'POST',
+                url: '/builder/new',
+                data: newEncounterObject,
+            }).then(function (response) {
+                console.log(response);
+                self.getEncounter();
+                self.newEncounterObject.description = ''
+            })
     };
 
   });

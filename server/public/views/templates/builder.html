@@ -7,41 +7,20 @@
 
         <md-input-container>
             <label>Select Encounter</label>
-            <md-select ng-model="encounter.id">
+            <md-select ng-model="vm.selectedEncounter.id">
                 <md-option ng-repeat="encounter in vm.encounterArray.list" ng-value="encounter.id">{{encounter.description}}</md-option>
             </md-select>
         </md-input-container>
 
-        <md-button class="md-raised md-primary" ng-click="vm.getCurrentEncounter(vm.selectedEncounter.id)">Edit Selected Encounter</md-button>
-
-
-        <!-- TODO - this sidenav opens/closes, but requires $scope, and also does not lock open. It is dumb and angularjs material is dumb and I should have just used bootstrap fml -->
-        <!-- <div layout="column" style="height:500px;" ng-cloak="" class="sidenavdemoBasicUsage">
-            <section layout="row" flex="">
-                <md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4" id="leftSideNav" md-disable-backdrop="true"
-                    md-is-locked-open="$mdMedia('gt-md')">
-                    <md-toolbar class="md-theme-indigo" layout="row">
-                        <h1 class="md-toolbar-tools">Sidenav Left</h1>
-                        <span flex></span>
-                        <md-button ng-click="close()">Close</md-button>
-                    </md-toolbar>
-                    <md-content layout-padding="" layout="column" layout-align="start start">
-                    </md-content>
-                </md-sidenav>
-                    </div>
-                </md-content>
-            </section>
-        </div> -->
-
+        <md-button class="md-raised md-primary" ng-click="vm.currentEncounter(vm.selectedEncounter.id)">Edit Selected Encounter</md-button>
 
         <md-tabs md-dynamic-height md-border-bottom>
             <!-- <md-tab label="Current Encounter"> -->
 
-                <!-- TODO move this div into an Angular Material sidenav or similar - basically fix the formatting of this page so it's less of a mess -->
-  
-    <!-- </md-sidenav> 
+            <!-- TODO move this div into an Angular Material sidenav or similar - basically fix the formatting of this page so it's less of a mess -->
 
-                <h3>Current Encounter</h3>
+
+                <!-- <h3>Current Encounter</h3>
                 TODO change this to another get request to pull all data for selected encounter and pull only encounter id/description for radio list
                 <md-input-container>
                     <md-radio-group ng-model="vm.selectedEncounter">
@@ -63,7 +42,22 @@
                 <md-button ng-click="toggleLeft()" class="md-primary">
                     Toggle left
                 </md-button>
-            </md-tab> -->
+            </md-tab>  -->
+
+            <md-tab label="Current Encounter">
+                <md-content>
+
+                    <h3> Encounter name:</h3>
+                    <p>{{vm.currentEncounterArray.list[0].description}}</p>
+                    <h3> Encounter notes:</h3>
+                    <p> {{vm.currentEncounterArray.list[0].notes}} </p>
+                    <h3> NPCs:</h3>
+                    <md-list layout-padding ng-repeat="taco in vm.currentEncounterArray.list">
+                        <md-list-item>{{taco.name}}</md-list-item>
+                    </md-list>
+
+                </md-content>
+            </md-tab>
 
             <!-- Create New Encounter tab TODO - add notes to new encounter request/database-->
             <md-tab label="Create Encounter">

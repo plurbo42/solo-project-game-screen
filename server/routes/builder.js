@@ -59,14 +59,15 @@ router.get('/search', function (req, res) {
 router.post('/new', function (req, res) {
     let userId = req.user.id;
     let description = req.body.description;
+    let notes = req.body.notes
     console.log('in get search request', req.query)
     pool.connect(function (errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            client.query(`INSERT INTO encounter (description, user_id, round_count)
-                            VALUES ($1, $2, 0);`, [description, userId], function (errorMakingDatabaseQuery, result) {
+            client.query(`INSERT INTO encounter (description, user_id, round_count, notes)
+                            VALUES ($1, $2, 0, $3);`, [description, userId, notes], function (errorMakingDatabaseQuery, result) {
                 done();
                 if (errorMakingDatabaseQuery) {
                     console.log('error', errorMakingDatabaseQuery);

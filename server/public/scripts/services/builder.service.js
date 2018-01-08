@@ -3,9 +3,9 @@ app.service('BuilderService', function ($http, $location) {
     var self = this;
     self.monsterArray = { list: [] };
     self.encounterArray = { list: [] };
-    self.newEncounterObject = { description: '' };
+    self.currentEncounterArray = { list: [] };
 
-    //add new encounter - TODO - add campaign logic. Need to put return on post request to pull into Current Encounter get request QUESTION should this also move to encounter service??
+    // add new encounter - TODO - add campaign logic. Need to put return on post request to pull into Current Encounter get request QUESTION should this also move to encounter service??
     self.newEncounter = function (newEncounterObject) {
         console.log('clicked new encounter', newEncounterObject);
             $http({
@@ -14,7 +14,6 @@ app.service('BuilderService', function ($http, $location) {
                 data: newEncounterObject,
             }).then(function (response) {
                 console.log(response);
-                self.getEncounter();
                 // self.getCurrentEncounter - with return encounter id???
             })
     };
@@ -24,12 +23,23 @@ app.service('BuilderService', function ($http, $location) {
         console.log('get encounter');
         $http({
             method: 'GET',
-            url: '/builder/encounterlist',
+            url: '/encounter/all',
         }).then(function (response) {
             console.log('encounter list', response.data)
             self.encounterArray.list = response.data
         })
-    }
+    };
+
+    self.currentEncounter = function(id){
+        console.log('in get current encounter', id);
+        $http({
+            method: 'GET',
+            url: 'encounter/current/' + id,
+        }).then(function(response){
+            console.log('current encounter', response.data);
+            self.currentEncounterArray.list = response.data;
+        })
+    };
 
 
     self.searchMonster = function (monsterNameObject) {
