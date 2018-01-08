@@ -33,7 +33,7 @@ router.get('/current/:id', function (req, res) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            client.query(`SELECT e.id, e.description, e.notes, en.id AS npc_id, el.id AS loot_id, m.name, m.challengerating, en.current_hp
+            client.query(`SELECT e.id, e.description, e.notes, en.id AS npc_id, el.id AS loot_id, m.name, m.challengerating, en.current_hp, 0 AS initiative_bonus
                             FROM encounter e
                             LEFT JOIN encounter_npc en ON e.id = en.encounter_id
                             LEFT JOIN monsters m ON m.id = en.monster_id
@@ -53,6 +53,30 @@ router.get('/current/:id', function (req, res) {
     });
 });
 
+
+//TODO - add campaign specific logic, option to select only certain characters with IN
+router.get('/players', function (req, res) {
+    console.log(`get encounter players`)
+    var encounter_id = req.params.id
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`SELECT c.name, c.hp AS current_hp, c.AC, c.initiative_bonus
+                            FROM characters c;`,
+                            function (errorMakingDatabaseQuery, result) {
+                done();
+                if (errorMakingDatabaseQuery) {
+                    console.log('error', errorMakingDatabaseQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.send(result.rows);
+                }
+            });
+        }
+    });
+});
 
 
 module.exports = router;
