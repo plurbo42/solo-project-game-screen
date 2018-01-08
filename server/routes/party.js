@@ -11,7 +11,11 @@ router.get('/all', function (req, res) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            client.query(`SELECT * FROM characters c;`, function (errorMakingDatabaseQuery, result) {
+            client.query(`SELECT c.id, c.name, c.player_name, c.strength, c.dexterity, c.constitution, c.wisdom, c.charisma, c.hp, c.ac, c.level, cs.name AS class, a.name AS alignment, r.name AS race
+                            FROM characters c 
+                            JOIN classes cs ON c.class_id = cs.id
+                            JOIN alignment a ON c.alignment_id = a.id
+                            JOIN race r ON c.race_id = r.id;`, function (errorMakingDatabaseQuery, result) {
                 done();
                 if (errorMakingDatabaseQuery) {
                     console.log('error', errorMakingDatabaseQuery);
