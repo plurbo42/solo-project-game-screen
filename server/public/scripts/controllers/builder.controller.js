@@ -1,11 +1,12 @@
-app.controller('BuilderController', function(UserService, BuilderService, EncounterService, CampaignService) {
+app.controller('BuilderController', function(UserService, BuilderService, EncounterService, CampaignService, $routeParams) {
     console.log('BuilderController created');
     var self = this;
     self.userService = UserService;
 
     self.selectedCampaignId = CampaignService.selectedCampaignId;    
+    self.campaignId = $routeParams.id
 
-    EncounterService.getEncounter();
+    EncounterService.getEncounter($routeParams.id);
 
     //BuilderService
     self.searchMonster = BuilderService.searchMonster;

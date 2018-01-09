@@ -18,11 +18,11 @@ app.service('EncounterService', function ($http, $location) {
     };
 
     //get for list of all encounters - TODO change this to pull only encounters for current campaign
-    self.getEncounter = function () {
+    self.getEncounter = function (id) {
         console.log('get encounter');
         $http({
             method: 'GET',
-            url: '/encounter/all',
+            url: '/encounter/all/' + id,
         }).then(function (response) {
             console.log(response.data);
             self.encounterArray.list = response.data;

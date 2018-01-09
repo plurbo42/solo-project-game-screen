@@ -4,15 +4,16 @@ let path = require('path'); //not sure if needed on this route
 let pool = require('../modules/pool.js');
 
 //get all encounters for this user to populate dropdown
-router.get('/all', function (req, res) {
-    console.log('in get encounters', req.user.id)
+router.get('/all/:id', function (req, res) {
+    console.log('in get encounters', req.params)
     pool.connect(function (errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
             client.query(`SELECT *
-                            FROM encounter e`, function (errorMakingDatabaseQuery, result) {
+                            FROM encounter e
+                            WHERE e.campaign_id = $1`, [req.params.id], function (errorMakingDatabaseQuery, result) {
                 done();
                 if (errorMakingDatabaseQuery) {
                     console.log('error', errorMakingDatabaseQuery);
