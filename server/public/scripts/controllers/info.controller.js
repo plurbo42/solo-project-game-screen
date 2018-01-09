@@ -1,5 +1,7 @@
-app.controller('InfoController', function(UserService) {
+app.controller('InfoController', function(UserService, CampaignService) {
   console.log('InfoController created');
-  var vm = this;
-  vm.userService = UserService;
+  var self = this;
+  self.userService = UserService;
+
+  self.selectedCampaignId = CampaignService.selectedCampaignId;
 });

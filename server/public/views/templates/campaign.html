@@ -3,7 +3,7 @@
 
     <md-content ng-cloak>
 
-        <h1 id="welcome" class="lead">Welcome, {{vm.userObject.userName}}. Enter a game!</h1>
+        <h1 id="welcome" class="lead">Welcome, {{vm.userObject.userName}}. Start your Adventure!</h1>
 
         <md-list layout="column" ng-repeat="campaign in vm.campaignArray.list">
             <md-list-item class="md-3-line" ng-click="null">
@@ -19,7 +19,6 @@
             <md-button class="md-raised md-primary" ng-click="vm.addCampaignDialog($event)">Create Campaign</md-button>
         </md-input>
 
-        {{vm.status}}
     </md-content>
 </div>
 
