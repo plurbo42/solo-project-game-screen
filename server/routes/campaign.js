@@ -29,7 +29,7 @@ router.get('/list', function (req, res) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            client.query(`SELECT * FROM campaign c
+            client.query(`SELECT c.*, cu.is_gm FROM campaign c
                             JOIN campaign_user cu ON c.id = cu.campaign_id
                             WHERE cu.user_id = $1`, [req.user.id], function (errorMakingDatabaseQuery, result) {
                 done();

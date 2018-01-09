@@ -10,7 +10,12 @@
     </md-button>
     <h1>Game Screen</h1>
 
-    <md-input-container layout="row" layout-align="end center">
+    <md-input-container ng-if="uc.userObject.userName" layout="row" layout-align="end center">
         <md-button ng-click="uc.userService.logout()">Log Out</md-button>
     </md-input-container>
+
+    <md-input-container ng-if="uc.userObject.userName" layout="row" layout-align="end center">
+        <md-button ng-href="#/campaign">Change Campaign</md-button>
+    </md-input-container>
+
 </md-toolbar>
