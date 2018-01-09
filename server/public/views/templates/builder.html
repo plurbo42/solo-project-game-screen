@@ -14,10 +14,12 @@
 
         <md-button class="md-raised md-primary" ng-click="vm.currentEncounter(vm.selectedEncounter.id)">Edit Selected Encounter</md-button>
 
+
         <md-tabs md-dynamic-height md-border-bottom>
             <!-- <md-tab label="Current Encounter"> -->
 
             <!-- TODO move this div into an Angular Material sidenav or similar - basically fix the formatting of this page so it's less of a mess -->
+            
 
             <md-tab label="Current Encounter">
                 <md-content>
@@ -29,7 +31,7 @@
                     <h3> NPCs:</h3>
                     <md-list ng-repeat="taco in vm.currentEncounterArray.list">
                        <md-list-item class="md-1-line" ng-click="null">
-                           {{taco.name}}
+                           {{taco.name}}, CR {{taco.challengerating}}
                             <!-- <md-button ng-click="Remove">Remove</md-button> -->
                        </md-list-item>
                     </md-list>

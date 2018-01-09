@@ -11,7 +11,7 @@ router.get('/all', function (req, res) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            client.query(`SELECT c.id, c.name, c.player_name, c.strength, c.dexterity, c.constitution, c.wisdom, c.charisma, c.hp, c.ac, c.level, cs.name AS class, a.name AS alignment, r.name AS race
+            client.query(`SELECT c.id, c.name, c.player_name, c.strength, c.dexterity, c.constitution, c.wisdom, c.charisma, c.hp, c.ac, c.level, cs.name AS class, a.name AS alignment, r.name AS race, c.bio
                             FROM characters c 
                             JOIN classes cs ON c.class_id = cs.id
                             JOIN alignment a ON c.alignment_id = a.id
@@ -109,15 +109,16 @@ router.post('/new', function (req, res) {
     var ac = req.body.ac;
     var passive_perception = req.body.passive_perception;
     var initiative_bonus = req.body.initiative_bonus;
+    var bio = req.body.bio;
     console.log('in add new character', req.body);
     pool.connect(function (errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            client.query(`INSERT INTO characters (player_name, name, level, race_id, class_id, alignment_id, strength, dexterity, constitution, intelligence, wisdom, charisma, hp, ac, passive_perception, initiative_bonus)
-                        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16);`,
-                        [player_name, name, level, race_id, class_id, alignment_id, strength, dexterity, constitution, intelligence, wisdom, charisma, hp, ac, passive_perception, initiative_bonus],
+            client.query(`INSERT INTO characters (player_name, name, level, race_id, class_id, alignment_id, strength, dexterity, constitution, intelligence, wisdom, charisma, hp, ac, passive_perception, initiative_bonus, bio)
+                        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17);`,
+                        [player_name, name, level, race_id, class_id, alignment_id, strength, dexterity, constitution, intelligence, wisdom, charisma, hp, ac, passive_perception, initiative_bonus, bio],
                         function (errorMakingDatabaseQuery, result) {
                 done();
                 if (errorMakingDatabaseQuery) {

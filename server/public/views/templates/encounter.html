@@ -3,7 +3,7 @@
 <md-content ng-cloak layout-padding>
 
     <h1>Encounter</h1>
- 
+
     <md-card>
         <md-input-container>
             <label>Select Encounter</label>
@@ -29,8 +29,8 @@
                 <h4>Current HP: {{ thisEncounter.current_hp }}</h4>
                 <h4>Initiative Roll = {{thisEncounter.initiative}}</h4>
                 <span>
-                    <md-button class="md-fab md-primary md-hue-2" aria-label="Plus HP" ng-click="thisEncounter.current_hp = thisEncounter.current_hp + 1">+</md-button>
                     <md-button class="md-fab md-primary md-hue-3" aria-label="Minus HP" ng-click="thisEncounter.current_hp = thisEncounter.current_hp - 1">-</md-button>
+                    <md-button class="md-fab md-primary md-hue-2" aria-label="Plus HP" ng-click="thisEncounter.current_hp = thisEncounter.current_hp + 1">+</md-button>
                 </span>
             </div>
         </md-list-item>

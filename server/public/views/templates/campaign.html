@@ -5,9 +5,23 @@
 
         <h1 id="welcome" class="lead">Welcome, Game Master {{vm.userObject.userName}}!</h1>
 
-        <md-button class="btn btn-info" ng-click="vm.createCampaign()">Create Campaign</md-button>
+        <h3>Enter Campaign</h3>
+        <md-list layout="column" ng-repeat="campaign in vm.campaignArray.list">
+            <md-list-item class="md-3-line" ng-click="null">
+                <p>{{campaign.title}}</p>
+                <span>
+                    <md-button class="md-raised md-primary">Invite</md-button>
+                    <md-button class="md-raised md-primary" md-nav-href="#/user" name="user home">Enter</md-button>
+                </span>
+            </md-list-item>
+        </md-list>
 
+        <md-input layout="column" layout-align="center center">
+            <md-button class="md-raised md-primary" ng-click="vm.addCampaignDialog($event)">Create Campaign</md-button>
+        </md-input>
+
+        {{vm.status}}
     </md-content>
 </div>
 
-<!-- Note - this will eventually be moved to the home/user login screen in all likelyhood. Placing in its own view for now to keep things separate -->
+<!-- Note TODO - this will eventually be moved to the home/user login screen in all likelyhood. Placing in its own view for now to keep things separate -->
