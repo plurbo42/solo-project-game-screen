@@ -1,7 +1,9 @@
-app.controller('BuilderController', function(UserService, BuilderService, EncounterService) {
+app.controller('BuilderController', function(UserService, BuilderService, EncounterService, CampaignService) {
     console.log('BuilderController created');
     var self = this;
     self.userService = UserService;
+
+    self.selectedCampaignId = CampaignService.selectedCampaignId;    
 
     EncounterService.getEncounter();
 

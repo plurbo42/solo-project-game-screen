@@ -40,7 +40,7 @@ app.config(function($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/builder', {
+    .when('/builder/:id', {
       templateUrl: '/views/templates/builder.html',
       controller: 'BuilderController as vm',
       resolve: {
@@ -49,7 +49,7 @@ app.config(function($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/encounter', {
+    .when('/encounter/:id', {
       templateUrl: '/views/templates/encounter.html',
       controller: 'EncounterController as vm',
       resolve: {
@@ -58,7 +58,7 @@ app.config(function($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/party', {
+    .when('/party/:id', {
       templateUrl: '/views/templates/party.html',
       controller: 'PartyController as vm',
       resolve: {

@@ -6,6 +6,7 @@ app.service('CampaignService', function ($http, $location) {
   self.selectedCampaignId = '';
 
   self.setSelectedCampaign = function (id) {
+    console.log('The selected campaign is campaign id', id);
     self.selectedCampaignId = id;
   }
 
