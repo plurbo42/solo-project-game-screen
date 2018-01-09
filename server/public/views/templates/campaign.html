@@ -1,17 +1,16 @@
-<div ng-include="'views/partials/nav.html'"></div>
+<!-- <div ng-include="'views/partials/nav.html'"></div> -->
 <div class="container" ng-cloak>
 
     <md-content>
 
-        <h1 id="welcome" class="lead">Welcome, Game Master {{vm.userObject.userName}}!</h1>
+        <h1 id="welcome" class="lead">Welcome, {{vm.userObject.userName}}. Enter a game!</h1>
 
-        <h3>Enter Campaign</h3>
         <md-list layout="column" ng-repeat="campaign in vm.campaignArray.list">
             <md-list-item class="md-3-line" ng-click="null">
                 <p>{{campaign.title}}</p>
                 <span>
                     <md-button class="md-raised md-primary">Invite</md-button>
-                    <md-button class="md-raised md-primary" md-nav-href="#/user" name="user home">Enter</md-button>
+                    <md-button class="md-raised md-primary" ng-href="#/board/{{campaign.id}}" name="user home" ng-click="vm.setSelectedCampaign(campaign.id)">Enter</md-button>
                 </span>
             </md-list-item>
         </md-list>

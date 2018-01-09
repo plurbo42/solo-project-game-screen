@@ -67,6 +67,15 @@ app.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/board/:id', {
+      templateUrl: '/views/templates/board.html',
+      controller: 'BoardController as vm',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });

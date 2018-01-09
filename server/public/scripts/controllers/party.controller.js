@@ -1,4 +1,4 @@
-app.controller('PartyController', function(UserService, PartyService) {
+app.controller('PartyController', function(UserService, PartyService, CampaignService, $routeParams) {
     console.log('PartyController created');
     var self = this;
     self.userService = UserService;
@@ -14,5 +14,7 @@ app.controller('PartyController', function(UserService, PartyService) {
     PartyService.getRace();
     PartyService.getClass();
     PartyService.getAlignment();
+
+
 
   });

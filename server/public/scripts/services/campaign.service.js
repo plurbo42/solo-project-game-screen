@@ -3,6 +3,12 @@ app.service('CampaignService', function ($http, $location) {
   var self = this;
   self.campaignArray = { list: [] };
 
+  self.selectedCampaignId = '';
+
+  self.setSelectedCampaign = function (id) {
+    self.selectedCampaignId = id;
+  }
+
   self.createCampaign = function () {
     console.log('clicked create campaign')
     $http({

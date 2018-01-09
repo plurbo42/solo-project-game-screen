@@ -5,10 +5,13 @@ app.controller('CampaignController', function(UserService, CampaignService, $mdD
     self.userObject = UserService.userObject;
     self.createCampaign = CampaignService.createCampaign;
 
+    self.setSelectedCampaign = CampaignService.setSelectedCampaign;
+    self.selectedCampaignId = CampaignService.selectedCampaignId;
+
     self.campaignArray = CampaignService.campaignArray;
     CampaignService.getCampaign();
 
-    //dialog functionality - TODO add this for new campaign and invite users 
+    //dialog functionality - TODO - tie this to post request; create custom dialog for invite user button
     self.status = '';
     self.addCampaignDialog = function (ev) {
       console.log('dialog')
@@ -16,7 +19,7 @@ app.controller('CampaignController', function(UserService, CampaignService, $mdD
         .title('Add a new Campaign')
         .textContent('Add a short campaign title')
         .placeholder('Campaign Name')
-        // .arialabel('Campaign Name')
+        //.arialabel('CampaignName')
         .initialValue('')
         .targetEvent(ev)
         .required(true)

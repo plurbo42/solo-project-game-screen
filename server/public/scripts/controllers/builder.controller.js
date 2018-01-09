@@ -1,4 +1,4 @@
-app.controller('BuilderController', function(UserService, BuilderService, EncounterService, $mdSidenav, $scope) {
+app.controller('BuilderController', function(UserService, BuilderService, EncounterService) {
     console.log('BuilderController created');
     var self = this;
     self.userService = UserService;
