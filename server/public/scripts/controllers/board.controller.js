@@ -1,7 +1,7 @@
-app.controller('BoardController', function(UserService, BoardService, CampaignService){
+app.controller('BoardController', function(UserService, BoardService, CampaignService, $routeParams){
     console.log('BoardController created');
     var self = this;
 
-    self.selectedCampaignId = CampaignService.selectedCampaignId;
+    self.selectedCampaignId = $routeParams.id;
 
 })

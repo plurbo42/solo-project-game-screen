@@ -3,8 +3,7 @@ app.controller('BuilderController', function(UserService, BuilderService, Encoun
     var self = this;
     self.userService = UserService;
 
-    self.selectedCampaignId = CampaignService.selectedCampaignId;    
-    self.campaignId = $routeParams.id
+    self.selectedCampaignId = $routeParams.id
 
     EncounterService.getEncounter($routeParams.id);
 

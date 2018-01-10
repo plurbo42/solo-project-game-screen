@@ -1,4 +1,4 @@
-app.controller('InfoController', function(UserService, CampaignService) {
+app.controller('InfoController', function(UserService, CampaignService, $routeParams) {
   console.log('InfoController created');
   var self = this;
   self.userService = UserService;

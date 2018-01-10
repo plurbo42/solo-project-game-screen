@@ -31,7 +31,7 @@ app.config(function($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/info', {
+    .when('/info/:id', {
       templateUrl: '/views/templates/info.html',
       controller: 'InfoController as vm',
       resolve: {
