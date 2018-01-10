@@ -10,6 +10,7 @@
             <md-list ng-repeat="character in vm.partyArray.list">
                 <md-list-item class="md-3-line" ng-click="null">
                     <img class="character-profile" ng-src="../images/honk.png" /> {{character.name}} : Level {{character.level}} {{character.race}} {{character.class}}, {{character.alignment}}
+                    <md-divider></md-divider>
                 </md-list-item>
             </md-list>
         </md-tab>

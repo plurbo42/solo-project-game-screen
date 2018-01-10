@@ -4,7 +4,7 @@ app.controller('PartyController', function(UserService, PartyService, CampaignSe
     self.userService = UserService;
 
     //Campaign Service
-    self.selectedCampaignId = CampaignService.selectedCampaignId;    
+    self.selectedCampaignId = $routeParams.id;    
 
     //PartyService
     self.partyArray = PartyService.partyArray;

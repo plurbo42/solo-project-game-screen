@@ -76,6 +76,15 @@ app.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/character/:id', {
+      templateUrl: '/views/templates/character.html',
+      controller: 'CharacterController as vm',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });
