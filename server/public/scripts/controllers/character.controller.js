@@ -1,4 +1,4 @@
-app.controller('CharacterController', function(UserService, PartyService, CharacterService, CampaignService, $routeParams) {
+app.controller('CharacterController', function(UserService, PartyService, CharacterService, CampaignService, SpellService, $routeParams) {
     console.log('CharacterController created');
     var self = this;
     self.userService = UserService;

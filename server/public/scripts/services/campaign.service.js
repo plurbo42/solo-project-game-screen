@@ -2,6 +2,7 @@ app.service('CampaignService', function ($http, $location) {
   console.log('CampaignService Loaded');
   var self = this;
   self.campaignArray = { list: [] };
+  self.campaignDetailArray = { list: [] };
 
   self.selectedCampaignId = '';
 
@@ -29,6 +30,16 @@ app.service('CampaignService', function ($http, $location) {
         console.log(response.data);
         self.campaignArray.list = response.data;
       })
-  }
+  };
+
+  self.campaignDetail = function () {
+    $http({
+      method: 'GET',
+      url: '/campaign/detail'
+    }).then(function(response){
+      console.log(response.data);
+      self.campaignDetailArray.list = response.data
+    })
+  };
 
 });

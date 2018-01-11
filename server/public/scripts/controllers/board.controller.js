@@ -4,4 +4,6 @@ app.controller('BoardController', function(UserService, BoardService, CampaignSe
 
     self.selectedCampaignId = $routeParams.id;
 
+    
+
 })
