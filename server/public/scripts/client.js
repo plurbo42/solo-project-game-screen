@@ -1,4 +1,6 @@
-var app = angular.module('app', ['ngRoute', 'ngMaterial', 'ngDragToReorder', 'mdDataTable']);
+var app = angular.module('app', ['ngRoute', 'ngMaterial', 'ngDragToReorder']);
+
+// TODO - figure out how to inject ngMdIcons and mdDataTable for better table formatting options
 
 /// Routes ///
 app.config(function($routeProvider, $locationProvider) {
