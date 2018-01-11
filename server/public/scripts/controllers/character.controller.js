@@ -4,7 +4,7 @@ app.controller('CharacterController', function(UserService, PartyService, Charac
     self.userService = UserService;
 
     //Campaign Service
-    self.selectedCampaignId = CampaignService.selectedCampaignId;    
+    self.selectedCampaignId = $routeParams.id;    
 
     //PartyService
     self.partyArray = PartyService.partyArray;
@@ -14,12 +14,14 @@ app.controller('CharacterController', function(UserService, PartyService, Charac
     self.addCharacter = PartyService.addCharacter;
     self.newCharacter = PartyService.newCharacterObject;
 
-
     PartyService.getParty();
     PartyService.getRace();
     PartyService.getClass();
     PartyService.getAlignment();
 
+    //Character Service
+    self.characterSheetArray = CharacterService.characterSheetArray.list;
+    CharacterService.getCharacterSheet(self.selectedCampaignId);
 
-
+  
   });
