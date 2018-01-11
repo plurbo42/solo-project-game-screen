@@ -1,4 +1,4 @@
-app.controller('CampaignController', function(UserService, CampaignService, $mdDialog) {
+app.controller('CampaignController', function(UserService, CampaignService, $mdDialog, $routeParams) {
     console.log('CampaignController created');
     var self = this;
     self.userService = UserService;
@@ -6,7 +6,7 @@ app.controller('CampaignController', function(UserService, CampaignService, $mdD
     self.createCampaign = CampaignService.createCampaign;
 
     self.setSelectedCampaign = CampaignService.setSelectedCampaign;
-    self.selectedCampaignId = CampaignService.selectedCampaignId;
+    self.selectedCampaignId = $routeParams.id;
 
     self.campaignArray = CampaignService.campaignArray;
     CampaignService.getCampaign();

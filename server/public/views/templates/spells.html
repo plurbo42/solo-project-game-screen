@@ -12,10 +12,12 @@
     </md-input-container>
     <md-button ng-click="vm.getSpellByClass(vm.spellClass.id)">Search</md-button>
 
-    <md-list ng-repeat="spell in vm.spellArray.list">
+    <md-list class="md-2-line" ng-click="null" ng-repeat="spell in vm.spellArray.list">
         <md-list-item>
-            {{spell.name}}
+            {{spell.name}} - Level {{spell.spell_level}}
+            <md-button class="md-raised md-primary">Add to Spellbook</md-button>
         </md-list-item>
+        <md-divider></md-divider>
     </md-list>
 
 </md-content>

@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ngMaterial', 'ngDragToReorder']);
+var app = angular.module('app', ['ngRoute', 'ngMaterial', 'ngDragToReorder', 'mdDataTable']);
 
 /// Routes ///
 app.config(function($routeProvider, $locationProvider) {
