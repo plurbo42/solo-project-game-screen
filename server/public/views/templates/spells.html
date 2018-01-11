@@ -1,0 +1,21 @@
+<div ng-include="'views/partials/playernav.html'"></div>
+
+<md-content>
+<h1>Spells</h1>
+
+
+<md-input-container>
+        <label>View Spells By Class</label>
+        <md-select ng-model="vm.spellClass.id">
+            <md-option ng-repeat="class in vm.classArray.list" ng-value="class.id">{{class.name}}</md-option>
+        </md-select>
+    </md-input-container>
+    <md-button ng-click="vm.getSpellByClass(vm.spellClass.id)">Search</md-button>
+
+    <md-list ng-repeat="spell in vm.spellArray.list">
+        <md-list-item>
+            {{spell.name}}
+        </md-list-item>
+    </md-list>
+
+</md-content>

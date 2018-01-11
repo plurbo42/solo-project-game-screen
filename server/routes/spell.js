@@ -1,0 +1,63 @@
+let express = require('express');
+let router = express.Router();
+let path = require('path'); //not sure if needed on this route
+let pool = require('../modules/pool.js');
+
+
+//get classlist for spell selection - TODO maybe just use the get from party instead so as not to duplicate code
+router.get('/class', function (req, res) {
+    console.log('in get classes')
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`SELECT * 
+                          FROM classes c
+                          WHERE c.has_spellcasting = true;`, function (errorMakingDatabaseQuery, result) {
+                done();
+                if (errorMakingDatabaseQuery) {
+                    console.log('error', errorMakingDatabaseQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.send(result.rows);
+                }
+            });
+        }
+    });
+});
+
+router.get('/spellclass/:id', function (req, res) {
+    console.log('in get spell by class')
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`SELECT 
+                            s.name, 
+                            s.description, 
+                            s.spell_level, 
+                            CONCAT(CASE WHEN s.verbal_component = true THEN 'V' ELSE '' END, CASE WHEN s.somatic_component = true THEN 'S' ELSE '' END, CASE WHEN s.material_component = true THEN 'M' ELSE '' END) AS components,
+                            s.material_component_list,
+                            s.is_ritual,
+                            s.duration,
+                            s.casting_time,
+                            s.spell_range
+                    FROM spell s 
+                    JOIN spell_class sc ON s.id = sc.spell_id
+                    WHERE sc.class_id = $1
+                    ORDER BY s.spell_level;`, [req.params.id], function (errorMakingDatabaseQuery, result) {
+                done();
+                if (errorMakingDatabaseQuery) {
+                    console.log('error', errorMakingDatabaseQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.send(result.rows);
+                }
+            });
+        }
+    });
+});
+
+module.exports = router;

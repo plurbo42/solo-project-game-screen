@@ -85,6 +85,15 @@ app.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/spells/:id', {
+      templateUrl: '/views/templates/spells.html',
+      controller: 'SpellController as vm',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });
