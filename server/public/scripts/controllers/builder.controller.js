@@ -18,6 +18,9 @@ app.controller('BuilderController', function(UserService, BuilderService, Encoun
     self.newEncounter = EncounterService.newEncounter;    
     self.newEncounterObject = EncounterService.newEncounterObject;
     self.encounterArray = EncounterService.encounterArray;
-    
+    self.groupsArray = EncounterService.groupsArray;
+    self.getEncounterDetail = EncounterService.getEncounterDetail;
+    self.getEncounterGroup = EncounterService.getEncounterGroup;
+
   });
   

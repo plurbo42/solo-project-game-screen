@@ -175,7 +175,11 @@
                     <md-list>
                         <md-list-item ng-repeat="skill in vm.skillsArray.list">
                             <md-input-container>
+                                <!-- <md-checkbox ng-model="vm.newCharacter.skill_id"></md-checkbox> -->
                                 {{skill.name}}
+                            </md-input-container>
+                            <md-input-container layout="padding">
+                                <input type="number" placeholder="+">
                             </md-input-container>
                         </md-list-item>
                     </md-list>

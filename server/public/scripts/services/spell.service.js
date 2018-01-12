@@ -4,6 +4,8 @@ app.service('SpellService', function ($http, $location) {
 
     self.spellArray = { list: [] };
     self.classArray = { list: [] };
+    self.spellbookArray = { list: [] };
+    
 
     self.getClassList = function() {
       $http({
@@ -20,6 +22,15 @@ app.service('SpellService', function ($http, $location) {
         url: '/spell/spellclass/' + classId,
       }).then(function (response){
         self.spellArray.list = response.data;
+      })
+    };
+
+    self.getCharacterSpellbook = function(characterId) {
+      $http({
+        method: 'GET',
+        url: '/spell/spellbook/' + characterId,
+      }).then(function (response){
+        self.spellbookArry.list = response.data;
       })
     };
 

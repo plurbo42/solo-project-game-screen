@@ -16,10 +16,50 @@
         </md-tab>
 
         <!-- View character Details -->
-        <md-tab label="Character Sheet">
+        <md-tab label="Character Sheet" ng-repeat="character in vm.characterSheetArray.details">
             <md-subhead>Character Details</md-subhead>
+            <md-card layout-padding>
+                <span>
+                    <span layout-padding>
+                        <strong>Player Name:</strong> {{character.player_name}}
+                    </span>
+                    <span layout-padding>
+                        <strong>Character Name:</strong> {{character.name}}
+                    </span>
+                    <span layout-padding>
+                        <strong>Level:</strong> {{character.level}}
+                    </span>
+                    <span layout-padding>
+                        <strong>Race:</strong> {{character.race}}
+                    </span>
+                    <span layout-padding>
+                        <strong>Class:</strong> {{character.class}}
+                    </span>
+                </span>
+
+            </md-card>
+            <md-subhead>Attributes</md-subhead>
             <md-card>
-                <p>{{vm.characterSheetArray}}</p>
+                <md-list>
+                    <md-list-item class="md-1-line" ng-click="null">
+                       <b layout-padding>Strength:</b> {{character.strength}}
+                    </md-list-item>
+                    <md-list-item class="md-1-line" ng-click="null">
+                        <b layout-padding>Dexterity:</b> {{character.dexterity}}
+                    </md-list-item>
+                    <md-list-item class="md-1-line" ng-click="null">
+                        <b layout-padding>Constitution:</b> {{character.constitution}}
+                    </md-list-item>
+                    <md-list-item class="md-1-line" ng-click="null">
+                        <b layout-padding>Intelligence:</b> {{character.intelligence}}
+                    </md-list-item>
+                    <md-list-item class="md-1-line" ng-click="null">
+                        <b layout-padding>Wisdom:</b> {{character.wisdom}}
+                    </md-list-item>
+                    <md-list-item class="md-1-line" ng-click="null">
+                        <b layout-padding>Charisma:</b> {{character.charisma}}
+                    </md-list-item>
+                </md-list>
             </md-card>
         </md-tab>
 

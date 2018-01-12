@@ -1,10 +1,14 @@
-app.controller('CharacterController', function(UserService, PartyService, CharacterService, CampaignService, SpellService, $routeParams) {
+app.controller('CharacterController', function (UserService, PartyService, CharacterService, CampaignService, SpellService, $routeParams) {
     console.log('CharacterController created');
     var self = this;
     self.userService = UserService;
 
     //Campaign Service
-    self.selectedCampaignId = $routeParams.id;    
+    self.selectedCampaignId = $routeParams.id;
+
+    //Character Service
+    self.characterSheetArray = CharacterService.characterSheetArray;
+    CharacterService.getCharacterSheet($routeParams.id);    
 
     //PartyService
     self.partyArray = PartyService.partyArray;
@@ -19,9 +23,8 @@ app.controller('CharacterController', function(UserService, PartyService, Charac
     PartyService.getClass();
     PartyService.getAlignment();
 
-    //Character Service
-    self.characterSheetArray = CharacterService.characterSheetArray.list;
-    CharacterService.getCharacterSheet(self.selectedCampaignId);
 
-  
-  });
+    //Spell Service 
+    self.getCharacterSpellbook = SpellService.getCharacterSpellbook;
+
+});
