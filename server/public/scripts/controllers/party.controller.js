@@ -11,6 +11,7 @@ app.controller('PartyController', function(UserService, PartyService, CampaignSe
     self.raceArray = PartyService.raceArray;
     self.classArray = PartyService.classArray;
     self.alignmentArray = PartyService.alignmentArray;
+    self.skillsArray = PartyService.skillsArray;
     self.addCharacter = PartyService.addCharacter;
     self.newCharacter = PartyService.newCharacterObject;
 
@@ -19,7 +20,6 @@ app.controller('PartyController', function(UserService, PartyService, CampaignSe
     PartyService.getRace();
     PartyService.getClass();
     PartyService.getAlignment();
-
-
+    PartyService.getSkillList();
 
   });

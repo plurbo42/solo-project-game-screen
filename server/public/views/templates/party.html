@@ -168,6 +168,19 @@
                     </md-input-container>
                 </md-card>
 
+                <md-subhead>
+                    Add Skills
+                </md-subhead>
+                <md-card>
+                    <md-list>
+                        <md-list-item ng-repeat="skill in vm.skillsArray.list">
+                            <md-input-container>
+                                {{skill.name}}
+                            </md-input-container>
+                        </md-list-item>
+                    </md-list>
+                </md-card>
+
                 <md-card>
 
                     <md-button md-raised md-primary ng-click="vm.addCharacter(vm.newCharacter)">Add Character</md-button>

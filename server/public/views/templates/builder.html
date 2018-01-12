@@ -39,7 +39,7 @@
                 </md-content>
             </md-tab>
 
-            <!-- Create New Encounter tab TODO - add notes to new encounter request/database-->
+            <!-- Create New Encounter tab-->
             <md-tab label="Create Encounter">
                 <div class="newEncounter">
                     <h3>Create New Encounter</h3>
@@ -58,6 +58,23 @@
 
             <md-tab label="Random Encounter">
                 <h1>Coming Soon: Generate Random Encounter!</h1>
+            </md-tab>
+            
+            <!-- Add encounter group tab - TODO complete post logic, add button functionality and repeat for existing groups -->
+            <md-tab label="Encounter Groups">
+                <p>Add encounter groups track hordes as a single initiative item, or delay groups to appear at a specified round count</p>
+                <md-input-container>
+                    <input type="text" ng-model="vm.newEncounterGroupObject.name" placeholder="Group Name">
+                </md-input-container>
+                <md-input-container>
+                    <input type="number" ng-model="vm.newEncounterGroupObject.round_delay">
+                </md-input-container>
+                <md-button>Create Group</md-button>
+                <md-list>
+                    <md-list-item>
+
+                    </md-list-item>
+                </md-list>
             </md-tab>
 
             <md-tab label="Add NPCs">

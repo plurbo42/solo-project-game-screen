@@ -6,6 +6,8 @@ app.service('PartyService', function ($http, $location) {
     self.raceArray = { list: [] };
     self.classArray = { list: [] };
     self.alignmentArray = { list: [] };
+    self.skillsArray = { list: [] };
+    
 
     self.newCharacterObject = { strength: 10, dexterity: 10, constitution: 10, intelligence: 10, wisdom: 10, charisma: 10}
 
@@ -49,6 +51,17 @@ app.service('PartyService', function ($http, $location) {
             self.alignmentArray.list = response.data;
         })
     };
+
+    self.getSkillList = function() {
+        $http({
+            method: 'GET',
+            url: '/party/skills',
+        }).then(function(response){
+            console.log(response.data);
+            self.skillsArray.list = response.data;
+        })
+    };
+
     //add Character request 
     self.addCharacter = function(newCharacterObject) {
         console.log('in add character', newCharacterObject)
