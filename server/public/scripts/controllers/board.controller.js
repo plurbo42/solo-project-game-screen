@@ -4,6 +4,8 @@ app.controller('BoardController', function(UserService, BoardService, CampaignSe
 
     self.selectedCampaignId = $routeParams.id;
 
-    
+    CampaignService.getCampaignDetail(self.selectedCampaignId);
+    self.campaignDetailArray = CampaignService.campaignDetailArray;
+
 
 })

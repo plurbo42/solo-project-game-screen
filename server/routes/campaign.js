@@ -44,7 +44,7 @@ router.get('/list', function (req, res) {
     });
 });
 
-router.get('/detail', function (req, res) {
+router.get('/detail/:id', function (req, res) {
     pool.connect(function (errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {
             console.log('error', errorConnectingToDatabase);
@@ -53,7 +53,7 @@ router.get('/detail', function (req, res) {
             client.query(`SELECT c.*, cu.is_gm FROM campaign c
                             JOIN campaign_user cu ON c.id = cu.campaign_id
                             WHERE cu.user_id = $1
-                            AND c.id = $2`, [req.user.id, req.body.id], function (errorMakingDatabaseQuery, result) {
+                            AND c.id = $2`, [req.user.id, req.params.id], function (errorMakingDatabaseQuery, result) {
                 done();
                 if (errorMakingDatabaseQuery) {
                     console.log('error', errorMakingDatabaseQuery);

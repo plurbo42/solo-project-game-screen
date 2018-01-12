@@ -9,7 +9,7 @@ app.service('CampaignService', function ($http, $location) {
   self.setSelectedCampaign = function (id) {
     console.log('The selected campaign is campaign id', id);
     self.selectedCampaignId = id;
-  }
+  };
 
   self.createCampaign = function () {
     console.log('clicked create campaign')
@@ -25,20 +25,20 @@ app.service('CampaignService', function ($http, $location) {
   self.getCampaign = function () {
       $http({
         method: 'GET',
-        url: '/campaign/list'
+        url: '/campaign/list',
       }).then(function (response) {
         console.log(response.data);
         self.campaignArray.list = response.data;
       })
   };
 
-  self.campaignDetail = function () {
+  self.getCampaignDetail = function (campaignId) {
     $http({
       method: 'GET',
-      url: '/campaign/detail'
+      url: '/campaign/detail/' + campaignId,
     }).then(function(response){
       console.log(response.data);
-      self.campaignDetailArray.list = response.data
+      self.campaignDetailArray.list = response.data;
     })
   };
 
