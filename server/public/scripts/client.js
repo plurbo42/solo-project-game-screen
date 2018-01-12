@@ -96,6 +96,24 @@ app.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/partyinventory/:id', {
+      templateUrl: '/views/templates/partyinventory.html',
+      controller: 'PartyInventoryController as vm',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/crafting/:id', {
+      templateUrl: '/views/templates/crafting.html',
+      controller: 'CraftingController as vm',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });
