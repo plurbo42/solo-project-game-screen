@@ -6,8 +6,7 @@ app.service('EncounterService', function ($http, $location) {
     self.newEncounterObject = { description: '' };
     self.playerCharacterArray = { list: [] };
 
-    self.roundCount = 1;
-    self.turnsInRound = 0;
+    self.encounterStatus = { roundCount: 1, turnsInRound: 0}
 
     //TODO - this now adds initiative bonuses, but for some reason is running through the for loop twice?? 
     self.rollInitiative = function (characterArray) {
@@ -16,7 +15,7 @@ app.service('EncounterService', function ($http, $location) {
             var bonus = character.initiative_bonus;
             character.initiative = (Math.floor(Math.random() * 20)) + 1 + bonus;
             // console.log('this array is', characterArray.length, 'long. this is turn', i, 'character', bonus);
-        }
+        };
         characterArray.sort(function (a, b) {
             return b.initiative - a.initiative
         });
@@ -25,14 +24,13 @@ app.service('EncounterService', function ($http, $location) {
 
     self.nextTurn = function (characterArray) {
         thisCharacter = characterArray.shift()
-        console.log(thisCharacter);
         characterArray.push(thisCharacter);
-        // self.turnsInRound ++
-        // if (characterArray.length = self.turnsInRound){
-        //     self.roundCount ++;
-        //     self.turnsInRound = 0;
-        // }
-    }
+        self.encounterStatus.turnsInRound ++;
+        if (characterArray.length == self.encounterStatus.turnsInRound){
+            self.encounterStatus.roundCount ++;
+            self.encounterStatus.turnsInRound = 0;
+        };
+    };
 
 
     //get for list of all encounters - TODO change this to pull only encounters for current campaign

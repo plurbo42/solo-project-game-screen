@@ -3,8 +3,6 @@ app.controller('EncounterController', function(UserService, EncounterService, Pa
     var self = this;
     self.userService = UserService;
 
-    self.roundCount = EncounterService.roundCount;
-
     self.selectedCampaignId = $routeParams.id;
 
     self.encounterArray = EncounterService.encounterArray;
@@ -13,6 +11,9 @@ app.controller('EncounterController', function(UserService, EncounterService, Pa
     self.currentEncounterArray = EncounterService.currentEncounterArray;
 
     self.nextTurn = EncounterService.nextTurn;
+
+    self.encounterStatus = EncounterService.encounterStatus;
+  
     
   });
   

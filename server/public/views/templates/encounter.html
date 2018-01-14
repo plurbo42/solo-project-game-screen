@@ -28,7 +28,7 @@
 
     </md-card>
 
-   <span><h3>Round Count: {{vm.roundCount}}</h3> <md-button ng-click="vm.nextTurn(vm.currentEncounterArray.list)" class="md-fab">TURN+</md-button></span>
+   <span><h3>Round Count: {{vm.encounterStatus.roundCount}}</h3> <md-button ng-click="vm.nextTurn(vm.currentEncounterArray.list)" class="md-fab">TURN+</md-button></span>
     <!-- Initiative Roller TODO - for the time being, moving this function INSIDE the start encounter function. This will likely have to change later -->
     <!-- <md-button class="md-fab" ng-click="vm.rollInitiative(vm.currentEncounterArray.list)">Roll</md-button> -->
     <md-list flex>
