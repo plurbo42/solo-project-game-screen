@@ -16,11 +16,10 @@
 
 
         <md-tabs md-dynamic-height md-border-bottom>
-            <!-- <md-tab label="Current Encounter"> -->
 
             <!-- TODO move this div into an Angular Material sidenav or similar - basically fix the formatting of this page so it's less of a mess -->
             
-
+            <!-- TODO add remove NPC functionality -->
             <md-tab label="Current Encounter">
                 <md-content>
 
@@ -32,7 +31,7 @@
                     <md-list ng-repeat="taco in vm.currentEncounterArray.list">
                        <md-list-item class="md-1-line" ng-click="null">
                            {{taco.name}}, CR {{taco.challengerating}}
-                            <!-- <md-button ng-click="Remove">Remove</md-button> -->
+                            <md-button class="md-raised md-warn npc_remove">Remove</md-button>
                        </md-list-item>
                     </md-list>
 

@@ -57,8 +57,8 @@ router.get('/current/:id', function (req, res) {
 
 //TODO - add campaign specific logic, option to select only certain characters with IN
 router.get('/players', function (req, res) {
-    console.log(`get encounter players`)
-    var encounter_id = req.params.id
+    console.log(`get encounter players`);
+    var encounter_id = req.params.id;
     pool.connect(function (errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {
             console.log('error', errorConnectingToDatabase);
@@ -73,6 +73,29 @@ router.get('/players', function (req, res) {
                     res.sendStatus(500);
                 } else {
                     res.send(result.rows);
+                }
+            });
+        }
+    });
+});
+
+//Post new encounter Group
+router.post('/newgroup/:id', function (req, res) {
+    console.log('in post new group', req.params.id);
+    var encounter_id = req.params.id;
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`;`,
+                            function (errorMakingDatabaseQuery, result) {
+                done();
+                if (errorMakingDatabaseQuery) {
+                    console.log('error', errorMakingDatabaseQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(200);
                 }
             });
         }
