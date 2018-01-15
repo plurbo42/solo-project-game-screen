@@ -9,6 +9,8 @@ app.controller('EncounterController', function(UserService, EncounterService, Pa
     EncounterService.getEncounter(self.selectedCampaignId);
     self.getCurrentEncounter = EncounterService.currentEncounter;
     self.currentEncounterArray = EncounterService.currentEncounterArray;
+    self.getEncounterDetails = EncounterService.getEncounterDetails;
+    self.encounterDetails = EncounterService.encounterDetails;
 
     self.nextTurn = EncounterService.nextTurn;
 

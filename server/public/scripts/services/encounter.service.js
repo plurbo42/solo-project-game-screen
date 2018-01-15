@@ -5,6 +5,7 @@ app.service('EncounterService', function ($http, $location) {
     self.currentEncounterArray = { list: [] };
     self.newEncounterObject = { description: '' };
     self.playerCharacterArray = { list: [] };
+    self.encounterDetails = { details: [] };
 
     self.encounterStatus = { roundCount: 0, turnsInRound: 0}
 
@@ -96,6 +97,16 @@ app.service('EncounterService', function ($http, $location) {
         })
     };
 
+    self.getEncounterDetails = function (id) {
+        console.log('in get current encounter', id);
+        $http({
+            method: 'GET',
+            url: 'encounter/details/' + id,
+        }).then(function (response) {
+            console.log('details encounter', response.data);
+            self.encounterDetails.details = response.data;
+        })
+    };
 
 
 });

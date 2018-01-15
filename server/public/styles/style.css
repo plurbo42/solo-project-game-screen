@@ -30,5 +30,5 @@ h1 {
 
 
 .currentItem {
-  border: 5px solid green;
+  border: 5px double green;
 }

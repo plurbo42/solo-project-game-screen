@@ -79,7 +79,7 @@ router.get('/players', function (req, res) {
     });
 });
 
-//Post new encounter Group
+//Post new encounter Group - TODO this is not active functionality, may want to remove for the time being
 router.post('/newgroup/:id', function (req, res) {
     console.log('in post new group', req.params.id);
     var encounter_id = req.params.id;
@@ -96,6 +96,30 @@ router.post('/newgroup/:id', function (req, res) {
                     res.sendStatus(500);
                 } else {
                     res.sendStatus(200);
+                }
+            });
+        }
+    });
+});
+
+router.get('/details/:id', function (req, res) {
+    console.log(`get current encounter`, req.params)
+    var encounter_id = req.params.id
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`SELECT *
+                            FROM encounter e
+                        WHERE e.id = $1;`, [encounter_id],
+                            function (errorMakingDatabaseQuery, result) {
+                done();
+                if (errorMakingDatabaseQuery) {
+                    console.log('error', errorMakingDatabaseQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.send(result.rows);
                 }
             });
         }

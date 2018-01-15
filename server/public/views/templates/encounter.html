@@ -13,7 +13,7 @@
                         <md-option ng-repeat="encounter in vm.encounterArray.list" ng-value="encounter.id">{{encounter.description}}</md-option>
                     </md-select>
                 </md-input-container>
-                <md-button class="md-raised md-accent">View Encounter Details</md-button>
+                <md-button ng-click="vm.getEncounterDetails(vm.selectedEncounter.id)" class="md-raised md-accent">View Encounter Details</md-button>
                 <!-- TODO - roll options - if time permits, add options to roll initiative in a group or individually. Later, add options for encounter groups when that functionality is working -->
                 <!-- <md-radio-group ng.model="vm.selectedEncounter.rollOption">
                     <md-radio-button value="group" class="md-primary">
@@ -30,6 +30,8 @@
                 <md-button class="md-raised md-primary" ng-click="vm.getCurrentEncounter(vm.selectedEncounter.id)">Roll Initiative</md-button>
 
             </md-card>
+           <h3> {{vm.encounterDetails.details[0].description}}</h3>
+           <p>{{vm.encounterDetails.details[0].notes}}</p>
         </div>
 
         <div flex="70">
