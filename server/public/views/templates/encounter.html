@@ -4,11 +4,8 @@
 
     <h1>Encounter</h1>
     <div layout="row" layout-wrap>
-        <div flex="20">
+        <div flex="30">
 
-
-
-            <!-- TODO - add option for initiative group -->
             <md-card layout-padding>
                 <md-input-container>
                     <label>Select Encounter</label>
@@ -16,24 +13,26 @@
                         <md-option ng-repeat="encounter in vm.encounterArray.list" ng-value="encounter.id">{{encounter.description}}</md-option>
                     </md-select>
                 </md-input-container>
-                <md-radio-group ng.model="vm.selectedEncounter.rollOption">
+                <md-button class="md-raised md-accent">View Encounter Details</md-button>
+                <!-- TODO - roll options - if time permits, add options to roll initiative in a group or individually. Later, add options for encounter groups when that functionality is working -->
+                <!-- <md-radio-group ng.model="vm.selectedEncounter.rollOption">
                     <md-radio-button value="group" class="md-primary">
                         <label for="">Roll NPC initiative as single group</label>
                     </md-radio-button>
-                    <!-- <md-radio-button>
+                    <md-radio-button>
                 <label for="">Roll NPC initiative in Encounter Groups</label>
-            </md-radio-button> -->
+            </md-radio-button>
                     <md-radio-button value="individual">
                         <label for="">Roll NPC initiative individually</label>
                     </md-radio-button>
-                </md-radio-group>
+                </md-radio-group> -->
 
                 <md-button class="md-raised md-primary" ng-click="vm.getCurrentEncounter(vm.selectedEncounter.id)">Roll Initiative</md-button>
 
             </md-card>
         </div>
 
-        <div flex="80">
+        <div flex="70">
             <span>
                 <h3>Round Count: {{vm.encounterStatus.roundCount}}</h3>
                 <md-button ng-click="vm.nextTurn(vm.currentEncounterArray.list)" class="md-raised md-accent">TURN</md-button>

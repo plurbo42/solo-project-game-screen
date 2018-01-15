@@ -14,7 +14,9 @@ app.controller('SpellController', function (UserService, SpellService, CampaignS
 
     CharacterService.getCharacterSheet($routeParams.id);
 
-    // console.log(CharacterService.characterSheetArray.details[0])
+    self.characterSheetArray = CharacterService.characterSheetArray;
+
+    console.log('The character details are:', vm.characterSheetArray)
     // self.characterId = CharacterService.characterSheetArray[0].id;
 
 

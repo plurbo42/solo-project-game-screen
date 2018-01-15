@@ -9,9 +9,9 @@ app.service('CharacterService', function($location, $http){
             method: 'GET',
             url: '/character/sheet/' + campaignId,
         }).then(function(response){
-            console.log(response.data);
+            console.log('getCharacterSheetResponse is',response.data);
             self.characterSheetArray.details = response.data;
-        })
-    }
+        });
+    };
 
 });

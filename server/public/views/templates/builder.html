@@ -18,7 +18,7 @@
         <md-tabs md-dynamic-height md-border-bottom>
 
             <!-- TODO move this div into an Angular Material sidenav or similar - basically fix the formatting of this page so it's less of a mess -->
-            
+
             <!-- TODO add remove NPC functionality -->
             <md-tab label="Current Encounter">
                 <md-content>
@@ -29,10 +29,10 @@
                     <p> {{vm.currentEncounterArray.list[0].notes}} </p>
                     <h3> NPCs:</h3>
                     <md-list ng-repeat="taco in vm.currentEncounterArray.list">
-                       <md-list-item class="md-1-line" ng-click="null">
-                           {{taco.name}}, CR {{taco.challengerating}}
+                        <md-list-item class="md-1-line" ng-click="null">
+                            {{taco.name}}, CR {{taco.challengerating}}
                             <md-button class="md-raised md-warn npc_remove">Remove</md-button>
-                       </md-list-item>
+                        </md-list-item>
                     </md-list>
 
                 </md-content>
@@ -57,23 +57,6 @@
 
             <md-tab label="Random Encounter">
                 <h1>Coming Soon: Generate Random Encounter!</h1>
-            </md-tab>
-            
-            <!-- Add encounter group tab - TODO complete post logic, add button functionality and repeat for existing groups -->
-            <md-tab label="Encounter Groups">
-                <p>Add encounter groups track hordes as a single initiative item, or delay groups to appear at a specified round count</p>
-                <md-input-container>
-                    <input type="text" ng-model="vm.newEncounterGroupObject.name" placeholder="Group Name">
-                </md-input-container>
-                <md-input-container>
-                    <input type="number" ng-model="vm.newEncounterGroupObject.round_delay" placeholder="Round Delay">
-                </md-input-container>
-                <md-button class="md-raised md-primary">Create Group</md-button>
-                <md-list>
-                    <md-list-item>
-
-                    </md-list-item>
-                </md-list>
             </md-tab>
 
             <md-tab label="Add NPCs">
@@ -111,6 +94,51 @@
 
             <md-tab label="Add Encounter Loot">
                 <h3>Search Loot</h3>
+                <div class="md-inline-form">
+                    <!-- Eventually put show/hide on the divs on this page, or somehow spit out the view so not all options are visible at one time -->
+                    <!-- Search loot by name -->
+                    <div>
+                        <md-input-container>
+                            <input type="text" placeholder="Item Name" ng-model="vm.searchItem.searchTerm">
+                        </md-input-container>
+
+                        <md-button class="md-raised md-accent" ng-click="vm.searchItem(vm.searchName)">Search</md-button>
+                    </div>
+
+                    <!-- Search loot by type -->
+                    <div>
+                        <md-input-container>
+                            <label>Search Loot by Type</label>
+                            <md-select ng-model="vm.searchItemType.id">
+                                    <md-option ng-repeat="type in vm.typeArray.list" ng-value="type.id">{{type.name}}</md-option>
+                                </md-select>
+                        </md-input-container>
+
+                        <md-button class="md-raised md-accent" ng-click="vm.searchItemType(vm.searchItemType.id)">Search All</md-button>
+                        <md-button class="md-raised md-accent" ng-click="vm.randomItemType(vm.searchItemType.id)">Get Random Item of Type</md-button>                        
+                    </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Is Weapon</th>
+                            <th>Price</th>
+                            <th>Weight</th>
+                            <th>Add</th>
+                        </thead>
+                        <tbody ng-repeat="item in vm.itemArray.list">
+                            <td>{{item.name}}</td>
+                            <td>{{item.description}}</td>
+                            <td>{{item.is_weapon}}</td>
+                            <td>{{item.cost}} {{item.units}}</td>
+                            <td>{{item.weight}}</td>
+                            <td>
+                                <md-button class="md-raised md-primary" ng-click="vm.addToEncounterLoot(item.id, vm.selectedEncounter.id)">Add to Encounter</md-button>
+                            </td>
+                        </tbody>
+                    </table>
+                </div>
 
             </md-tab>
         </md-tabs>
