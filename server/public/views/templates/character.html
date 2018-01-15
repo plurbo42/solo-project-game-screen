@@ -38,8 +38,9 @@
                 </span>
 
             </md-card>
-            <md-subhead>Attributes</md-subhead>
-            <md-card>
+            <md-subhead>Attributes</md-subhead>            
+            <div flex layout="row" class="attributes">
+            <md-card >
                 <md-list>
                     <md-list-item class="md-1-line" ng-click="null">
                        <b layout-padding>Strength:</b> {{character.strength}}
@@ -60,7 +61,33 @@
                         <b layout-padding>Charisma:</b> {{character.charisma}}
                     </md-list-item>
                 </md-list>
-            </md-card>
+            </md-card>   
+            <div layout="column">
+            <md-subhead>Stats</md-subhead>            
+                    <md-card >
+                        <md-list>
+                            <md-list-item class="md-1-line" ng-click="null">
+                               <b layout-padding>HP:</b> {{character.hp}}
+                            </md-list-item>
+                            <md-list-item class="md-1-line" ng-click="null">
+                                <b layout-padding>AC:</b> {{character.ac}}
+                            </md-list-item>
+                            <md-list-item class="md-1-line" ng-click="null">
+                                <b layout-padding>Constitution:</b> {{character.constitution}}
+                            </md-list-item>
+                            <md-list-item class="md-1-line" ng-click="null">
+                                <b layout-padding>Intelligence:</b> {{character.intelligence}}
+                            </md-list-item>
+                            <md-list-item class="md-1-line" ng-click="null">
+                                <b layout-padding>Wisdom:</b> {{character.wisdom}}
+                            </md-list-item>
+                            <md-list-item class="md-1-line" ng-click="null">
+                                <b layout-padding>Charisma:</b> {{character.charisma}}
+                            </md-list-item>
+                        </md-list>
+                    </md-card>
+                </div>
+                    </div>      
         </md-tab>
 
         <!-- Character's spells -->

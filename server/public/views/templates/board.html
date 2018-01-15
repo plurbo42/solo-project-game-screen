@@ -4,4 +4,25 @@
 
 <md-content>
     <h1>{{vm.campaignDetailArray.list[0].title}}</h1>
+
+    <div layout="row" layout-wrap>
+        <div flex="20">20%
+            <div>
+                <img src="./images/honk.png" class="campaign-photo" alt="">
+            </div>
+            Next Session:
+            <p>{{vm.campaignData.nextSession}}</p>
+            Game Master:
+            <p>{{vm.campaignData.gm}}</p>
+            Users in this campaign:
+            <md-list ng-repeat="user in vm.userList">
+                <md-list-item>
+                    {{user.username}}
+                </md-list-item>
+            </md-list>
+        </div>
+        <div flex="80">80%
+
+        </div>
+    </div>
 </md-content>
