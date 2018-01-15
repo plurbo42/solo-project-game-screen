@@ -3,53 +3,65 @@
 <md-content ng-cloak layout-padding>
 
     <h1>Encounter</h1>
+    <div layout="row" layout-wrap>
+        <div flex="20">
 
-    <!-- TODO - add option for initiative group -->
-    <md-card>
-        <md-input-container>
-            <label>Select Encounter</label>
-            <md-select ng-model="vm.selectedEncounter.id">
-                <md-option ng-repeat="encounter in vm.encounterArray.list" ng-value="encounter.id">{{encounter.description}}</md-option>
-            </md-select>
-        </md-input-container>
-        <md-radio-group ng.model="vm.selectedEncounter.rollOption">
-            <md-radio-button value="group" class="md-primary">
-                <label for="">Roll NPC initiative as single group</label>
-            </md-radio-button>
-            <!-- <md-radio-button>
+
+
+            <!-- TODO - add option for initiative group -->
+            <md-card layout-padding>
+                <md-input-container>
+                    <label>Select Encounter</label>
+                    <md-select ng-model="vm.selectedEncounter.id">
+                        <md-option ng-repeat="encounter in vm.encounterArray.list" ng-value="encounter.id">{{encounter.description}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-radio-group ng.model="vm.selectedEncounter.rollOption">
+                    <md-radio-button value="group" class="md-primary">
+                        <label for="">Roll NPC initiative as single group</label>
+                    </md-radio-button>
+                    <!-- <md-radio-button>
                 <label for="">Roll NPC initiative in Encounter Groups</label>
             </md-radio-button> -->
-            <md-radio-button value="individual">
-                <label for="">Roll NPC initiative individually</label>
-            </md-radio-button>
-        </md-radio-group>
+                    <md-radio-button value="individual">
+                        <label for="">Roll NPC initiative individually</label>
+                    </md-radio-button>
+                </md-radio-group>
 
-        <md-button class="md-raised md-primary" ng-click="vm.getCurrentEncounter(vm.selectedEncounter.id)">Roll Initiative</md-button>
+                <md-button class="md-raised md-primary" ng-click="vm.getCurrentEncounter(vm.selectedEncounter.id)">Roll Initiative</md-button>
 
-    </md-card>
+            </md-card>
+        </div>
 
-   <span><h3>Round Count: {{vm.encounterStatus.roundCount}}</h3> <md-button ng-click="vm.nextTurn(vm.currentEncounterArray.list)" class="md-fab">TURN</md-button></span>
-    <!-- Initiative Roller TODO - for the time being, moving this function INSIDE the start encounter function. This will likely have to change later -->
-    <!-- <md-button class="md-fab" ng-click="vm.rollInitiative(vm.currentEncounterArray.list)">Roll</md-button> -->
-    <md-list flex>
-        <md-subheader class="md-no-sticky">Characters</md-subheader>
-        <md-divider></md-divider>
-        <md-list-item class="md-3-line" ng-repeat="thisEncounter in vm.currentEncounterArray.list" drag-to-reorder="encounter"
-            ng-click="null" ng-class='{currentItem:$first}'>
-            <!-- <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" /> -->
-            <div class="md-list-item-text" layout="column">
+        <div flex="80">
+            <span>
+                <h3>Round Count: {{vm.encounterStatus.roundCount}}</h3>
+                <md-button ng-click="vm.nextTurn(vm.currentEncounterArray.list)" class="md-raised md-accent">TURN</md-button>
+            </span>
+
+            <!-- Initiative Roller TODO - for the time being, moving this function INSIDE the start encounter function. This will likely have to change later -->
+            <!-- <md-button class="md-fab" ng-click="vm.rollInitiative(vm.currentEncounterArray.list)">Roll</md-button> -->
+
+            <md-list flex>
+                <md-subheader class="md-no-sticky">Characters</md-subheader>
                 <md-divider></md-divider>
-                <h3>{{ thisEncounter.name }}</h3>
-                <h4>Current HP: {{ thisEncounter.current_hp }}</h4>
-                <h4>Initiative Roll = {{thisEncounter.initiative}}</h4>
-                <p>AC: {{thisEncounter.ac}}</p>
-                <span>
-                    <md-button class="md-fab md-primary md-hue-3" aria-label="Minus HP" ng-click="thisEncounter.current_hp = thisEncounter.current_hp - 1">-</md-button>
-                    <md-button class="md-fab md-primary md-hue-2" aria-label="Plus HP" ng-click="thisEncounter.current_hp = thisEncounter.current_hp + 1">+</md-button>
-                </span>
-                <md-button flex layout-align="end end">Remove from Encounter</md-button>                
-            </div>
-        </md-list-item>
-
+                <md-list-item class="md-3-line" ng-repeat="thisEncounter in vm.currentEncounterArray.list" drag-to-reorder="encounter" ng-click="null"
+                    ng-class='{currentItem:$first}'>
+                    <!-- <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" /> -->
+                    <div class="md-list-item-text" layout="column">
+                        <md-divider></md-divider>
+                        <h3>{{ thisEncounter.name }}</h3>
+                        <h4>Current HP: {{ thisEncounter.current_hp }}</h4>
+                        <h4>Initiative Roll = {{thisEncounter.initiative}}</h4>
+                        <p>AC: {{thisEncounter.ac}}</p>
+                        <span>
+                            <md-button class="md-fab md-primary md-hue-3" aria-label="Minus HP" ng-click="thisEncounter.current_hp = thisEncounter.current_hp - 1">-</md-button>
+                            <md-button class="md-fab md-primary md-hue-2" aria-label="Plus HP" ng-click="thisEncounter.current_hp = thisEncounter.current_hp + 1">+</md-button>
+                        </span>
+                        <md-button flex layout-align="end end">Remove from Encounter</md-button>
+                    </div>
+                </md-list-item>
+        </div>
+    </div>
 
 </md-content>

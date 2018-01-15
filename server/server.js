@@ -15,6 +15,7 @@ var encounter = require('./routes/encounter');
 var party = require('./routes/party');
 var spell = require('./routes/spell');
 var character = require('./routes/character');
+var board = require('./routes/board');
 
 
 var port = process.env.PORT || 5000;
@@ -42,6 +43,7 @@ app.use('/encounter', encounter);
 app.use('/party', party);
 app.use('/spell', spell);
 app.use('/character', character);
+app.use('/board', board);
 
 
 // Catch all bucket, must be last!
