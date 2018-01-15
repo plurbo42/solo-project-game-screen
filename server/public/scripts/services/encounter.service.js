@@ -6,7 +6,7 @@ app.service('EncounterService', function ($http, $location) {
     self.newEncounterObject = { description: '' };
     self.playerCharacterArray = { list: [] };
 
-    self.encounterStatus = { roundCount: 1, turnsInRound: 0}
+    self.encounterStatus = { roundCount: 0, turnsInRound: 0}
 
     //TODO - this now adds initiative bonuses, but for some reason is running through the for loop twice?? 
     self.rollInitiative = function (characterArray) {
@@ -19,6 +19,8 @@ app.service('EncounterService', function ($http, $location) {
         characterArray.sort(function (a, b) {
             return b.initiative - a.initiative
         });
+        self.encounterStatus.roundCount = 1;
+        self.encounterStatus.turnsInRound = 0;
         return characterArray;
     };
 

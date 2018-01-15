@@ -3,7 +3,7 @@ var app = angular.module('app', ['ngRoute', 'ngMaterial', 'ngDragToReorder']);
 // TODO - figure out how to inject ngMdIcons and mdDataTable for better table formatting options
 
 /// Routes ///
-app.config(function($routeProvider, $locationProvider) {
+app.config(function($routeProvider, $locationProvider, $mdThemingProvider) {
   $locationProvider.hashPrefix('');
   console.log('app -- config')
   $routeProvider
@@ -117,4 +117,11 @@ app.config(function($routeProvider, $locationProvider) {
     .otherwise({
       redirectTo: 'home'
     });
+
+    $mdThemingProvider.theme('default')
+    .primaryPalette('blue-grey')
+    .accentPalette('grey')
+    .warnPalette('amber')
+
+  
 });

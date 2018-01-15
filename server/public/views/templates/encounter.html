@@ -35,13 +35,14 @@
         <md-subheader class="md-no-sticky">Characters</md-subheader>
         <md-divider></md-divider>
         <md-list-item class="md-3-line" ng-repeat="thisEncounter in vm.currentEncounterArray.list" drag-to-reorder="encounter"
-            ng-click="null">
+            ng-click="null" ng-class='{currentItem:$first}'>
             <!-- <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" /> -->
             <div class="md-list-item-text" layout="column">
                 <md-divider></md-divider>
                 <h3>{{ thisEncounter.name }}</h3>
                 <h4>Current HP: {{ thisEncounter.current_hp }}</h4>
                 <h4>Initiative Roll = {{thisEncounter.initiative}}</h4>
+                <p>AC: {{thisEncounter.ac}}</p>
                 <span>
                     <md-button class="md-fab md-primary md-hue-3" aria-label="Minus HP" ng-click="thisEncounter.current_hp = thisEncounter.current_hp - 1">-</md-button>
                     <md-button class="md-fab md-primary md-hue-2" aria-label="Plus HP" ng-click="thisEncounter.current_hp = thisEncounter.current_hp + 1">+</md-button>
