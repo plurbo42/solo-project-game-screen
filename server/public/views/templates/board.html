@@ -6,7 +6,7 @@
     <h1>{{vm.campaignDetailArray.list[0].title}}</h1>
 
     <div layout="row" layout-wrap>
-        <div flex="20">20%
+        <div flex="20">
             <div>
                 <img src="./images/honk.png" class="campaign-photo" alt="">
             </div>
@@ -21,8 +21,27 @@
                 </md-list-item>
             </md-list>
         </div>
-        <div flex="80">80%
+        <div flex="80">
+            <div class="newComment" flex layout="column">
+                <md-input-container>
+                    <label>Post a new comment:</label>
+                    <textarea ng-model="vm.newComment.content" rows="3" md-select-on-focus></textarea>
+                </md-input-container>
+                <md-button class="md-raised md-primary">Post!</md-button>
+            </div>
+            <md-list flex>
 
+            <!-- TODO - add pictures to photos -->
+                <md-subheader class="md-no-sticky">Comments</md-subheader>
+                <md-list-item class="md-3-line" ng-repeat="comment in vm.commentArray" ng-click="null">
+                    <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{ item.who }}</h3>
+                        <h4>{{ item.what }}</h4>
+                        <p>{{ item.notes }}</p>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
         </div>
     </div>
 </md-content>

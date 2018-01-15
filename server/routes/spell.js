@@ -60,4 +60,25 @@ router.get('/spellclass/:id', function (req, res) {
     });
 });
 
+router.get('/addToSpellbook', function (req, res) {
+    console.log('in add to spellbook', req.body)
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`INSERT INTO character_spell (spell_id, character_id)
+                            VALUES ($1, $2);`, [req.body.spellId, req.body.characterId], function (errorMakingDatabaseQuery, result) {
+                done();
+                if (errorMakingDatabaseQuery) {
+                    console.log('error', errorMakingDatabaseQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(200);
+                }
+            });
+        }
+    });
+});
+
 module.exports = router;

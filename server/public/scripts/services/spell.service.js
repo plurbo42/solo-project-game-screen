@@ -34,5 +34,18 @@ app.service('SpellService', function ($http, $location) {
       })
     };
 
+    self.addToSpellbook = function(characterId, spellId) {
+      var characterSpell = {};
+      characterSpell.characterId = characterId;
+      characterSpell.spellId = spellId;
+      $http({
+        method: 'POST',
+        url: '/spell/addToSpellbook',
+        data: characterSpell,
+      }).then(function (response){
+        console.log(response)
+      })
+    };
+
   });
   

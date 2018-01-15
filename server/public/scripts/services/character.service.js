@@ -13,4 +13,5 @@ app.service('CharacterService', function($location, $http){
             self.characterSheetArray.details = response.data;
         })
     }
+
 });

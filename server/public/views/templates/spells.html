@@ -1,10 +1,10 @@
 <div ng-include="'views/partials/playernav.html'"></div>
 
 <md-content>
-<h1>Spells</h1>
+    <h1>Spells</h1>
 
 
-<md-input-container>
+    <md-input-container>
         <label>View Spells By Class</label>
         <md-select ng-model="vm.spellClass.id">
             <md-option ng-repeat="class in vm.classArray.list" ng-value="class.id">{{class.name}}</md-option>
@@ -14,8 +14,10 @@
 
     <md-list class="md-2-line" ng-click="null" ng-repeat="spell in vm.spellArray.list">
         <md-list-item>
-            {{spell.name}} - Level {{spell.spell_level}}
-            <md-button class="md-raised md-primary">Add to Spellbook</md-button>
+            {{spell.name}} - Level {{spell.spell_level}} 
+            <span flex layout-align="end">
+                <md-button ng-click="" class="md-raised md-primary">Add to Spellbook</md-button>
+            </span>
         </md-list-item>
         <md-divider></md-divider>
     </md-list>
