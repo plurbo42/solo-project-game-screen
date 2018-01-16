@@ -4,17 +4,19 @@ app.service('BuilderService', function ($http, $location) {
     self.monsterArray = { list: [] };
     self.encounterArray = { list: [] };
     self.currentEncounterArray = { list: [] };
+    self.itemTypeArray = { list: [] };
+    self.itemSearchArray = { list: [] };
 
     // add new encounter - TODO - add campaign logic. Need to put return on post request to pull into Current Encounter get request QUESTION should this also move to encounter service??
     self.newEncounter = function (newEncounterObject) {
         console.log('clicked new encounter', newEncounterObject);
-            $http({
-                method: 'POST',
-                url: '/builder/new',
-                data: newEncounterObject,
-            }).then(function (response) {
-                console.log(response);
-            })
+        $http({
+            method: 'POST',
+            url: '/builder/new',
+            data: newEncounterObject,
+        }).then(function (response) {
+            console.log(response);
+        });
     };
 
     // this should probably be handled in Encounter service ?? - this logic will be needed in encounter view and builder view
@@ -26,18 +28,18 @@ app.service('BuilderService', function ($http, $location) {
         }).then(function (response) {
             console.log('encounter list', response.data)
             self.encounterArray.list = response.data
-        })
+        });
     };
 
-    self.currentEncounter = function(id){
+    self.currentEncounter = function (id) {
         console.log('in get current encounter', id);
         $http({
             method: 'GET',
             url: 'encounter/current/' + id,
-        }).then(function(response){
+        }).then(function (response) {
             console.log('current encounter', response.data);
             self.currentEncounterArray.list = response.data;
-        })
+        });
     };
 
 
@@ -50,7 +52,7 @@ app.service('BuilderService', function ($http, $location) {
         }).then(function (response) {
             console.log(response.data);
             self.monsterArray.list = response.data;
-        })
+        });
     };
 
     //add monster from search result to encounter
@@ -66,7 +68,30 @@ app.service('BuilderService', function ($http, $location) {
         }).then(function (response) {
             console.log(response);
             self.currentEncounter(encounterId);
-        })
-    }
+        });
+    };
+
+    //get list of item types for type dropdown
+    self.getItemType = function () {
+        $http({
+            method: 'GET',
+            url: 'builder/itemtype',
+        }).then(function(response){
+            console.log(response.data);
+            self.itemTypeArray.list = response.data
+        });
+    };
+
+    self.itemSearch = function (searchTerm) {
+        console.log('item name search, search term', searchTerm);
+        $http({
+            method: 'GET',
+            url: 'builder/itemSearch',
+            params: searchTerm,
+        }).then(function(response){
+            console.log(response.data);
+            self.itemSearchArray.list = response.data
+        });
+    };
 
 });

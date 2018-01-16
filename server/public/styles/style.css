@@ -32,3 +32,11 @@ h1 {
 .currentItem {
   border: 5px double green;
 }
+
+p {
+  font-family: 'IM Fell English', serif;  
+}
+
+.table {
+  font-family: 'IM Fell English', serif;    
+}

@@ -102,7 +102,7 @@
                             <input type="text" placeholder="Item Name" ng-model="vm.searchItem.searchTerm">
                         </md-input-container>
 
-                        <md-button class="md-raised md-accent" ng-click="vm.searchItem(vm.searchName)">Search</md-button>
+                        <md-button class="md-raised md-accent" ng-click="vm.itemSearch(vm.searchItem)">Search</md-button>
                     </div>
 
                     <!-- Search loot by type -->
@@ -110,7 +110,7 @@
                         <md-input-container>
                             <label>Search Loot by Type</label>
                             <md-select ng-model="vm.searchItemType.id">
-                                    <md-option ng-repeat="type in vm.typeArray.list" ng-value="type.id">{{type.name}}</md-option>
+                                    <md-option ng-repeat="type in vm.itemTypeArray.list" ng-value="type.id">{{type.type}}</md-option>
                                 </md-select>
                         </md-input-container>
 
@@ -122,17 +122,15 @@
                         <thead>
                             <th>Name</th>
                             <th>Description</th>
-                            <th>Is Weapon</th>
                             <th>Price</th>
                             <th>Weight</th>
                             <th>Add</th>
                         </thead>
-                        <tbody ng-repeat="item in vm.itemArray.list">
+                        <tbody ng-repeat="item in vm.itemSearchArray.list">
                             <td>{{item.name}}</td>
                             <td>{{item.description}}</td>
-                            <td>{{item.is_weapon}}</td>
                             <td>{{item.cost}} {{item.units}}</td>
-                            <td>{{item.weight}}</td>
+                            <td>{{item.weight}}lbs</td>
                             <td>
                                 <md-button class="md-raised md-primary" ng-click="vm.addToEncounterLoot(item.id, vm.selectedEncounter.id)">Add to Encounter</md-button>
                             </td>

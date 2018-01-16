@@ -6,6 +6,7 @@ app.controller('BuilderController', function(UserService, BuilderService, Encoun
     self.selectedCampaignId = $routeParams.id
 
     EncounterService.getEncounter($routeParams.id);
+    BuilderService.getItemType();
 
     //BuilderService
     self.searchMonster = BuilderService.searchMonster;
@@ -13,6 +14,9 @@ app.controller('BuilderController', function(UserService, BuilderService, Encoun
     self.addToEncounter = BuilderService.addToEncounter;
     self.currentEncounter = BuilderService.currentEncounter;    
     self.currentEncounterArray = BuilderService.currentEncounterArray;
+    self.itemTypeArray = BuilderService.itemTypeArray;
+    self.itemSearch = BuilderService.itemSearch;
+    self.itemSearchArray = BuilderService.itemSearchArray;
     
     //EncounterService
     self.newEncounter = EncounterService.newEncounter;    
@@ -21,6 +25,8 @@ app.controller('BuilderController', function(UserService, BuilderService, Encoun
     self.groupsArray = EncounterService.groupsArray;
     self.getEncounterDetail = EncounterService.getEncounterDetail;
     self.getEncounterGroup = EncounterService.getEncounterGroup;
+
+
 
   });
   

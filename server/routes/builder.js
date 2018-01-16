@@ -77,5 +77,51 @@ router.post('/addnpc', function (req, res) {
     });
 });
 
+//get item by name search 
+router.get('/itemSearch', function (req, res) {
+    let searchTerm = `%${req.query.searchTerm}%`;
+    console.log('in get search request', req.query);
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`SELECT *
+                            FROM item i 
+                            WHERE i.name ILIKE $1`, [searchTerm], function (errorMakingDatabaseQuery, result) {
+                done();
+                if (errorMakingDatabaseQuery) {
+                    console.log('error', errorMakingDatabaseQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.send(result.rows);
+                }
+            });
+        }
+    });
+});
+
+//get item type list for dropdown
+router.get('/itemtype', function (req, res) {
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`SELECT *
+                            FROM item_type
+                            ORDER BY type`, function (errorMakingDatabaseQuery, result) {
+                done();
+                if (errorMakingDatabaseQuery) {
+                    console.log('error', errorMakingDatabaseQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.send(result.rows);
+                }
+            });
+        }
+    });
+});
+
 
 module.exports = router;
