@@ -35,6 +35,7 @@ router.get('/spellclass/:id', function (req, res) {
             res.sendStatus(500);
         } else {
             client.query(`SELECT 
+                            s.id,
                             s.name, 
                             s.description, 
                             s.spell_level, 
@@ -60,7 +61,7 @@ router.get('/spellclass/:id', function (req, res) {
     });
 });
 
-router.get('/addToSpellbook', function (req, res) {
+router.post('/addToSpellbook', function (req, res) {
     console.log('in add to spellbook', req.body)
     pool.connect(function (errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {

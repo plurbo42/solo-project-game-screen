@@ -34,10 +34,11 @@ app.service('SpellService', function ($http, $location) {
       })
     };
 
-    self.addToSpellbook = function(characterId, spellId) {
+    self.addToSpellbook = function(spellId, characterId) {
       var characterSpell = {};
       characterSpell.characterId = characterId;
       characterSpell.spellId = spellId;
+      console.log('addToSpellBook', characterSpell);
       $http({
         method: 'POST',
         url: '/spell/addToSpellbook',

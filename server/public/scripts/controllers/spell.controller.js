@@ -17,7 +17,7 @@ app.controller('SpellController', function (UserService, SpellService, CampaignS
     self.characterSheetArray = CharacterService.characterSheetArray;
 
     console.log('The character details are:', self.characterSheetArray)
-    // self.characterId = CharacterService.characterSheetArray[0].id;
+   
 
 
 

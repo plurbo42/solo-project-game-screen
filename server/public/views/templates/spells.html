@@ -3,7 +3,6 @@
 <md-content>
     <h1>Spells</h1>
 
-
     <md-input-container>
         <label>View Spells By Class</label>
         <md-select ng-model="vm.spellClass.id">
@@ -16,10 +15,10 @@
         <md-list-item>
             {{spell.name}} - Level {{spell.spell_level}} 
             <span flex layout-align="end">
-                <md-button ng-click="" class="md-raised md-primary">Add to Spellbook</md-button>
+                <md-button ng-click="vm.addToSpellbook(spell.id, vm.characterSheetArray.details[0].id)" class="md-raised md-primary">Add to Spellbook</md-button>
             </span>
         </md-list-item>
         <md-divider></md-divider>
     </md-list>
 
-</md-content>
+</md-content> 
