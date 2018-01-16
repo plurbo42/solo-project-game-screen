@@ -27,10 +27,11 @@ app.controller('EncounterController', function(UserService, EncounterService, Pa
             .targetEvent(ev)
             .ok('Confirm')
             .cancel('Cancel');
-  
       $mdDialog.show(confirm).then(function() {
         console.log('encounter ended');
         self.endEncounter(self.selectedEncounter.id)
+        self.currentEncounterArray = {};
+        EncounterService.getEncounter(self.selectedCampaignId);
       }, function() {
        console.log('cancelled encounter end');
       });

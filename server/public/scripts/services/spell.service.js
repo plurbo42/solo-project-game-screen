@@ -30,6 +30,7 @@ app.service('SpellService', function ($http, $location) {
         method: 'GET',
         url: '/spell/spellbook/' + campaignId,
       }).then(function (response){
+        console.log('spellbook:', response.data)
         self.spellbookArray.list = response.data;
       })
     };

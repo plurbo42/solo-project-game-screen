@@ -89,9 +89,20 @@ router.get('/spellbook/:id', function (req, res) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            client.query(`SELECT * 
-                          FROM classes c
-                          WHERE c.has_spellcasting = true;`, function (errorMakingDatabaseQuery, result) {
+            client.query(`SELECT cs.*, 
+                                s.name, 
+                                s.spell_level,
+                                CONCAT(CASE WHEN s.verbal_component = true THEN 'V' ELSE '' END, CASE WHEN s.somatic_component = true THEN 'S' ELSE '' END, CASE WHEN s.material_component = true THEN 'M' ELSE '' END) AS components,
+                                s.material_component_list,
+                                s.is_ritual,
+                                s.duration,
+                                s.spell_range, 
+                                s.casting_time
+                            FROM character_spell cs 
+                            JOIN characters c ON c.id = cs.character_id
+                            JOIN spell s ON s.id = cs.spell_id
+                        WHERE c.campaign_id = $1
+                        AND c.user_id = $2;`, [req.params.id, req.user.id], function (errorMakingDatabaseQuery, result) {
                 done();
                 if (errorMakingDatabaseQuery) {
                     console.log('error', errorMakingDatabaseQuery);
