@@ -218,8 +218,9 @@ app.service('EncounterService', function ($http, $location) {
         });
     };
 
-    self.removeCharacterFromInitiativeOrder = function (characterId) {
-        console.log('remove character', characterId);
+    self.removeCharacterFromInitiativeOrder = function (characterIndex) {
+        console.log('remove character', characterIndex);
+        self.currentEncounterArray.list.splice(characterIndex, 1);
     };
 
 });

@@ -58,7 +58,7 @@
                             <md-button class="md-fab md-primary md-hue-3" aria-label="Minus HP" ng-click="thisEncounter.current_hp = thisEncounter.current_hp - 1">-</md-button>
                             <md-button class="md-fab md-primary md-hue-2" aria-label="Plus HP" ng-click="thisEncounter.current_hp = thisEncounter.current_hp + 1">+</md-button>
                         </span>
-                        <md-button ng-click="vm.removeCharacterFromInitiativeOrder(thisEncounter)" flex layout-align="end end">Remove from Encounter</md-button>
+                        <md-button ng-click="vm.removeCharacterFromInitiativeOrder(vm.currentEncounterArray.list.indexOf(thisEncounter))" flex layout-align="end end">Remove from Encounter</md-button>
 
                     </div>
                 </md-list-item>
