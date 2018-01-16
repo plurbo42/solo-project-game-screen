@@ -56,21 +56,21 @@ app.service('BuilderService', function ($http, $location) {
         });
     };
 
-    //add monster from search result to encounter TODO MOVE THIS TO ENCOUNTER SERVICE
-    self.addToEncounter = function (monsterId, encounterId) {
-        var encounterAddObject = {};
-        encounterAddObject.monsterId = monsterId;
-        encounterAddObject.encounterId = encounterId;
-        console.log('add monster', encounterAddObject)
-        $http({
-            method: 'POST',
-            url: '/builder/addnpc',
-            data: encounterAddObject,
-        }).then(function (response) {
-            console.log(response);
-            self.currentEncounter(encounterId);
-        });
-    };
+    // //add monster from search result to encounter TODO MOVE THIS TO ENCOUNTER SERVICE
+    // self.addToEncounter = function (monsterId, encounterId) {
+    //     var encounterAddObject = {};
+    //     encounterAddObject.monsterId = monsterId;
+    //     encounterAddObject.encounterId = encounterId;
+    //     console.log('add monster', encounterAddObject)
+    //     $http({
+    //         method: 'POST',
+    //         url: '/builder/addnpc',
+    //         data: encounterAddObject,
+    //     }).then(function (response) {
+    //         console.log(response);
+    //         self.currentEncounter(encounterId);
+    //     });
+    // };
 
     //get list of item types for type dropdown
     self.getItemType = function () {

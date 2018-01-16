@@ -39,7 +39,7 @@ app.service('EncounterService', function ($http, $location) {
     };
 
 
-    //get for list of all encounters - TODO change this to pull only encounters for current campaign
+    //get for list of all encounters 
     self.getEncounter = function (id) {
         console.log('get encounter', id);
         $http({
@@ -49,6 +49,22 @@ app.service('EncounterService', function ($http, $location) {
             console.log(response.data);
             self.encounterArray.list = response.data;
         })
+    };
+
+    //add monster from search result to encounter TODO MOVE THIS TO ENCOUNTER SERVICE
+    self.addToEncounter = function (monsterId, encounterId) {
+        var encounterAddObject = {};
+        encounterAddObject.monsterId = monsterId;
+        encounterAddObject.encounterId = encounterId;
+        console.log('add monster', encounterAddObject)
+        $http({
+            method: 'POST',
+            url: '/builder/addnpc',
+            data: encounterAddObject,
+        }).then(function (response) {
+            console.log(response);
+            self.getEditingEncounter(encounterId);
+        });
     };
 
     //TODO - get characters, change to campaign specific. Also, add logic to add just certain characters to the encounter. 
@@ -168,9 +184,20 @@ app.service('EncounterService', function ($http, $location) {
         $http({
             method: 'DELETE',
             url: 'encounter/lootDelete/' + encounterLootId,
-        }).then(function (response){
+        }).then(function (response) {
             console.log(response);
             self.getEncounterItems(self.editingEncounterId);
+        });
+    };
+
+    self.deleteNPC = function (encounterNPCId) {
+        console.log('delete npc', encounterNPCId);
+        $http({
+            method: 'DELETE',
+            url: 'encounter/npcDelete/' + encounterNPCId,
+        }).then(function (response) {
+            console.log(response);
+            self.getEditingEncounter(self.editingEncounterId);
         });
     };
 

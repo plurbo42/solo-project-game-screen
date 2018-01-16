@@ -11,10 +11,6 @@ app.controller('BuilderController', function(UserService, BuilderService, Encoun
     //BuilderService
     self.searchMonster = BuilderService.searchMonster;
     self.monsterArray = BuilderService.monsterArray;
-    self.addToEncounter = BuilderService.addToEncounter;
-    //the below two can likely be removed
-    // self.currentEncounter = BuilderService.currentEncounter;    
-   // self.currentEncounterArray = BuilderService.currentEncounterArray;
     self.itemTypeArray = BuilderService.itemTypeArray;
     self.itemSearch = BuilderService.itemSearch;
     self.itemSearchArray = BuilderService.itemSearchArray;
@@ -34,11 +30,10 @@ app.controller('BuilderController', function(UserService, BuilderService, Encoun
     //get encounter information for encounter to be edited
     self.getEditingEncounter = EncounterService.getEditingEncounter;
     self.editingEncounterArray = EncounterService.editingEncounterArray;
-
-    //the below two can likely be removed
-    // self.currentEncounter = EncounterService.currentEncounter;    
-    // self.currentEncounterArray = EncounterService.currentEncounterArray;
+    self.deleteNPC = EncounterService.deleteNPC;
+    self.addToEncounter = EncounterService.addToEncounter;
     
+
   
   });
   
