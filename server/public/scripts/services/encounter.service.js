@@ -6,8 +6,9 @@ app.service('EncounterService', function ($http, $location) {
     self.newEncounterObject = { description: '' };
     self.playerCharacterArray = { list: [] };
     self.encounterDetails = { details: [] };
+    self.encounterItemsArray = { list: [] };
 
-    self.encounterStatus = { roundCount: 0, turnsInRound: 0}
+    self.encounterStatus = { roundCount: 0, turnsInRound: 0 }
 
     //TODO - this now adds initiative bonuses, but for some reason is running through the for loop twice?? 
     self.rollInitiative = function (characterArray) {
@@ -28,9 +29,9 @@ app.service('EncounterService', function ($http, $location) {
     self.nextTurn = function (characterArray) {
         thisCharacter = characterArray.shift()
         characterArray.push(thisCharacter);
-        self.encounterStatus.turnsInRound ++;
-        if (characterArray.length == self.encounterStatus.turnsInRound){
-            self.encounterStatus.roundCount ++;
+        self.encounterStatus.turnsInRound++;
+        if (characterArray.length == self.encounterStatus.turnsInRound) {
+            self.encounterStatus.roundCount++;
             self.encounterStatus.turnsInRound = 0;
         };
     };
@@ -68,7 +69,8 @@ app.service('EncounterService', function ($http, $location) {
     };
 
 
-    //get data for current encounter - used on encounter view and builder view to edit and play out current encounter
+    //get data for current encounter - used on the encounter view to pull data for current encounter and add players 
+    // then calls get PCs get Details and get Items to pull all relevant information into the view in question
     self.currentEncounter = function (id) {
         console.log('in get current encounter', id);
         $http({
@@ -78,8 +80,22 @@ app.service('EncounterService', function ($http, $location) {
             console.log('current encounter', response.data);
             self.currentEncounterArray.list = response.data;
             self.getPlayerCharacters();
-            console.log(self.currentEncounterArray.list, 'is the current encounter')
+            console.log(self.currentEncounterArray.list, 'is the current encounter');
+            self.getEncounterDetails(id);
+            self.getEncounterItems(id);
         })
+    };
+
+    self.currentEncounter = function (id) {
+        console.log('in get current encounter', id);
+        $http({
+            method: 'GET',
+            url: 'encounter/current/' + id,
+        }).then(function (response) {
+            console.log('current encounter', response.data);
+            self.currentEncounterArray.list = response.data;
+            self.getEncounterItems(id);
+        });
     };
 
     self.newEncounter = function (newEncounterObject) {
@@ -97,6 +113,7 @@ app.service('EncounterService', function ($http, $location) {
         })
     };
 
+    //get details of encounter - description/notes/id for display on DOM
     self.getEncounterDetails = function (id) {
         console.log('in get current encounter', id);
         $http({
@@ -108,5 +125,18 @@ app.service('EncounterService', function ($http, $location) {
         })
     };
 
+    self.getEncounterItems = function (id) {
+        console.log('getEncounterItems id', id);
+        $http({
+            method: 'GET',
+            url: 'encounter/items/' + id
+        }).then(function (response) {
+            self.encounterItemsArray.list = response.data;
+        });
+    };
+
+    self.endEncounter = function (id) {
+        console.log('in end encounter', id);
+    }
 
 });

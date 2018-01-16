@@ -12,7 +12,7 @@ app.controller('BuilderController', function(UserService, BuilderService, Encoun
     self.searchMonster = BuilderService.searchMonster;
     self.monsterArray = BuilderService.monsterArray;
     self.addToEncounter = BuilderService.addToEncounter;
-    self.currentEncounter = BuilderService.currentEncounter;    
+    // self.currentEncounter = BuilderService.currentEncounter;    
     self.currentEncounterArray = BuilderService.currentEncounterArray;
     self.itemTypeArray = BuilderService.itemTypeArray;
     self.itemSearch = BuilderService.itemSearch;
@@ -25,8 +25,12 @@ app.controller('BuilderController', function(UserService, BuilderService, Encoun
     self.groupsArray = EncounterService.groupsArray;
     self.getEncounterDetail = EncounterService.getEncounterDetail;
     self.getEncounterGroup = EncounterService.getEncounterGroup;
-
-
-
+    self.getEncounterItems = EncounterService.getEncounterItems;
+    self.encounterItemsArray = EncounterService.encounterItemsArray;
+    self.addLootToEncounter = EncounterService.addLootToEncounter;
+    self.currentEncounter = EncounterService.currentEncounter;    
+    self.currentEncounterArray = EncounterService.currentEncounterArray;
+    
+  
   });
   

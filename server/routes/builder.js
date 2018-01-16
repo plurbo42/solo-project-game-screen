@@ -54,6 +54,7 @@ router.post('/new', function (req, res) {
     });
 });
 
+//add npc to encounter
 router.post('/addnpc', function (req, res) {
     console.log('in add npc', req.body)
     pool.connect(function (errorConnectingToDatabase, client, done) {
@@ -117,6 +118,28 @@ router.get('/itemtype', function (req, res) {
                     res.sendStatus(500);
                 } else {
                     res.send(result.rows);
+                }
+            });
+        }
+    });
+});
+
+//add loot to encounter
+router.post('/addLoot', function (req, res) {
+    console.log('in add loot', req.body)
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`INSERT INTO encounter_loot (encounter_id, item_id)
+                            VALUES ($1, $2);`, [req.body.encounterId, req.body.itemId], function (errorMakingDatabaseQuery, result) {
+                done();
+                if (errorMakingDatabaseQuery) {
+                    console.log('error', errorMakingDatabaseQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(200);
                 }
             });
         }

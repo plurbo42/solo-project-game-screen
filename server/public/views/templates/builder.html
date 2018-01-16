@@ -34,6 +34,10 @@
                             <md-button class="md-raised md-warn npc_remove">Remove</md-button>
                         </md-list-item>
                     </md-list>
+                    <md-list ng-repeat="loot in vm.encounterItemsArray.list">
+                            {{loot.name}} 
+                        <md-button class="md-raised md-warn npc_remove">Remove</md-button>
+                    </md-list>
 
                 </md-content>
             </md-tab>
@@ -110,12 +114,12 @@
                         <md-input-container>
                             <label>Search Loot by Type</label>
                             <md-select ng-model="vm.searchItemType.id">
-                                    <md-option ng-repeat="type in vm.itemTypeArray.list" ng-value="type.id">{{type.type}}</md-option>
-                                </md-select>
+                                <md-option ng-repeat="type in vm.itemTypeArray.list" ng-value="type.id">{{type.type}}</md-option>
+                            </md-select>
                         </md-input-container>
 
                         <md-button class="md-raised md-accent" ng-click="vm.searchItemType(vm.searchItemType.id)">Search All</md-button>
-                        <md-button class="md-raised md-accent" ng-click="vm.randomItemType(vm.searchItemType.id)">Get Random Item of Type</md-button>                        
+                        <md-button class="md-raised md-accent" ng-click="vm.randomItemType(vm.searchItemType.id)">Get Random Item of Type</md-button>
                     </div>
 
                     <table class="table table-striped">
@@ -132,7 +136,7 @@
                             <td>{{item.cost}} {{item.units}}</td>
                             <td>{{item.weight}}lbs</td>
                             <td>
-                                <md-button class="md-raised md-primary" ng-click="vm.addToEncounterLoot(item.id, vm.selectedEncounter.id)">Add to Encounter</md-button>
+                                <md-button class="md-raised md-primary" ng-click="vm.addLootToEncounter(item.id, vm.selectedEncounter.id)">Add to Encounter</md-button>
                             </td>
                         </tbody>
                     </table>
