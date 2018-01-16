@@ -7,6 +7,7 @@ app.service('EncounterService', function ($http, $location) {
     self.playerCharacterArray = { list: [] };
     self.encounterDetails = { details: [] };
     self.encounterItemsArray = { list: [] };
+    self.editingEncounterArray = { list: [] };
 
     self.encounterStatus = { roundCount: 0, turnsInRound: 0 }
 
@@ -51,7 +52,6 @@ app.service('EncounterService', function ($http, $location) {
 
     //TODO - get characters, change to campaign specific. Also, add logic to add just certain characters to the encounter. 
     //TODO - currently rolling initiative within this function - will likely want to separate this later? 
-
     self.getPlayerCharacters = function () {
         console.log('in get player characters');
         $http({
@@ -86,18 +86,21 @@ app.service('EncounterService', function ($http, $location) {
         })
     };
 
-    self.currentEncounter = function (id) {
-        console.log('in get current encounter', id);
+    //TODO - this is the same get request as above, but calls different items below. Is this OK to do? Or should they be separate?
+    // At this point, they pull the same data, and I see no reason this should change with planned features
+    self.getEditingEncounter = function (id) {
+        console.log('in get editing encounter', id);
         $http({
             method: 'GET',
             url: 'encounter/current/' + id,
         }).then(function (response) {
             console.log('current encounter', response.data);
-            self.currentEncounterArray.list = response.data;
+            self.editingEncounterArray.list = response.data;
             self.getEncounterItems(id);
         });
     };
 
+    //add new encounter to list of encounters for this campaign
     self.newEncounter = function (newEncounterObject) {
         console.log('clicked new encounter', newEncounterObject);
         $http({
@@ -125,6 +128,7 @@ app.service('EncounterService', function ($http, $location) {
         })
     };
 
+    //get list of items in editing encounter
     self.getEncounterItems = function (id) {
         console.log('getEncounterItems id', id);
         $http({
@@ -132,6 +136,22 @@ app.service('EncounterService', function ($http, $location) {
             url: 'encounter/items/' + id
         }).then(function (response) {
             self.encounterItemsArray.list = response.data;
+        });
+    };
+
+    //add loot to this encounter
+    self.addLootToEncounter = function (itemId, encounterId) {
+        var encounterAddObject = {};
+        encounterAddObject.itemId = itemId;
+        encounterAddObject.encounterId = encounterId;
+        console.log('addLootToEncounter', encounterAddObject, encounterId)
+        $http({
+            method: 'POST',
+            url: '/builder/addLoot',
+            data: encounterAddObject,
+        }).then(function (response) {
+            console.log(response);
+            self.currentEncounter(encounterId);
         });
     };
 

@@ -111,8 +111,9 @@ router.get('/items/:id', function (req, res) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            client.query(`SELECT *
+            client.query(`SELECT el.id AS encounter_loot_id, el.encounter_id, i.*
                             FROM encounter_loot el
+                                JOIN item i ON i.id = el.item_id
                         WHERE el.encounter_id = $1;`, [encounter_id],
                             function (errorMakingDatabaseQuery, result) {
                 done();

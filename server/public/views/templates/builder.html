@@ -12,7 +12,7 @@
             </md-select>
         </md-input-container>
 
-        <md-button class="md-raised md-primary" ng-click="vm.currentEncounter(vm.selectedEncounter.id)">Edit Selected Encounter</md-button>
+        <md-button class="md-raised md-primary" ng-click="vm.getEditingEncounter(vm.selectedEncounter.id)">Edit Selected Encounter</md-button>
 
 
         <md-tabs md-dynamic-height md-border-bottom>
@@ -28,7 +28,7 @@
                     <h3> Encounter notes:</h3>
                     <p> {{vm.currentEncounterArray.list[0].notes}} </p>
                     <h3> NPCs:</h3>
-                    <md-list ng-repeat="taco in vm.currentEncounterArray.list">
+                    <md-list ng-repeat="taco in vm.editingEncounterArray.list">
                         <md-list-item class="md-1-line" ng-click="null">
                             {{taco.name}}, CR {{taco.challengerating}}
                             <md-button class="md-raised md-warn npc_remove">Remove</md-button>

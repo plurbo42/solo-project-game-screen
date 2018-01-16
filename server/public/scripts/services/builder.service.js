@@ -8,16 +8,16 @@ app.service('BuilderService', function ($http, $location) {
     self.itemSearchArray = { list: [] };
 
     // // add new encounter - TODO - add campaign logic. Need to put return on post request to pull into Current Encounter get request QUESTION should this also move to encounter service??
-    // self.newEncounter = function (newEncounterObject) {
-    //     console.log('clicked new encounter', newEncounterObject);
-    //     $http({
-    //         method: 'POST',
-    //         url: '/builder/new',
-    //         data: newEncounterObject,
-    //     }).then(function (response) {
-    //         console.log(response);
-    //     });
-    // };
+    self.newEncounter = function (newEncounterObject) {
+        console.log('clicked new encounter', newEncounterObject);
+        $http({
+            method: 'POST',
+            url: '/builder/new',
+            data: newEncounterObject,
+        }).then(function (response) {
+            console.log(response);
+        });
+    };
 
     // // this should probably be handled in Encounter service ?? - this logic will be needed in encounter view and builder view
     // self.getEncounter = function () {
@@ -56,7 +56,7 @@ app.service('BuilderService', function ($http, $location) {
         });
     };
 
-    //add monster from search result to encounter
+    //add monster from search result to encounter TODO MOVE THIS TO ENCOUNTER SERVICE
     self.addToEncounter = function (monsterId, encounterId) {
         var encounterAddObject = {};
         encounterAddObject.monsterId = monsterId;
@@ -95,22 +95,5 @@ app.service('BuilderService', function ($http, $location) {
             self.itemSearchArray.list = response.data
         });
     };
-
-    //add loot to this encounter
-    self.addLootToEncounter = function (itemId, encounterId) {
-        var encounterAddObject = {};
-        encounterAddObject.itemId = itemId;
-        encounterAddObject.encounterId = encounterId;
-        console.log('addLootToEncounter', encounterAddObject, encounterId)
-        $http({
-            method: 'POST',
-            url: '/builder/addLoot',
-            data: encounterAddObject,
-        }).then(function(response){
-            console.log(response);
-            self.currentEncounter(encounterId);           
-        });
-    };
-
 
 });
