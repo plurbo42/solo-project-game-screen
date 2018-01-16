@@ -179,15 +179,15 @@
                                 {{skill.name}}
                             </md-input-container>
                             <md-input-container layout="padding">
-                                <input type="number" placeholder="+">
+                                <input ng-model="skill.bonus" type="number" placeholder="+">
                             </md-input-container>
                         </md-list-item>
                     </md-list>
                 </md-card>
-
+                {{vm.skillsArray.list}}
                 <md-card>
 
-                    <md-button md-raised md-primary ng-click="vm.addCharacter(vm.newCharacter)">Add Character</md-button>
+                    <md-button md-raised md-primary ng-click="vm.addCharacter(vm.newCharacter, skill)">Add Character</md-button>
                 </md-card>
                 </md-content>
 

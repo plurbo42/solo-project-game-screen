@@ -28,6 +28,7 @@ app.service('EncounterService', function ($http, $location) {
         return characterArray;
     };
 
+    //next turn 
     self.nextTurn = function (characterArray) {
         thisCharacter = characterArray.shift()
         characterArray.push(thisCharacter);
@@ -37,7 +38,6 @@ app.service('EncounterService', function ($http, $location) {
             self.encounterStatus.turnsInRound = 0;
         };
     };
-
 
     //get for list of all encounters 
     self.getEncounter = function (id) {

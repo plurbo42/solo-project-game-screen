@@ -17,14 +17,14 @@ router.get('/search', function (req, res) {
                                 JOIN monster_type mt ON mt.id = m.monster_type_id
                                 JOIN size s ON s.id = m.size_id
                             WHERE m.name ILIKE $1;`, [searchTerm], function (errorMakingDatabaseQuery, result) {
-                done();
-                if (errorMakingDatabaseQuery) {
-                    console.log('error', errorMakingDatabaseQuery);
-                    res.sendStatus(500);
-                } else {
-                    res.send(result.rows);
-                }
-            });
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        console.log('error', errorMakingDatabaseQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.send(result.rows);
+                    }
+                });
         }
     });
 });
@@ -43,14 +43,14 @@ router.post('/new', function (req, res) {
         } else {
             client.query(`INSERT INTO encounter (description, user_id, round_count, notes, campaign_id)
                             VALUES ($1, $2, 0, $3, $4);`, [description, userId, notes, campaign_id], function (errorMakingDatabaseQuery, result) {
-                done();
-                if (errorMakingDatabaseQuery) {
-                    console.log('error', errorMakingDatabaseQuery);
-                    res.sendStatus(500);
-                } else {
-                    res.sendStatus(200);
-                }
-            });
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        console.log('error', errorMakingDatabaseQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(200);
+                    }
+                });
         }
     });
 });
@@ -67,14 +67,14 @@ router.post('/addnpc', function (req, res) {
                             SELECT $1, m.id, m.hit_points 
                             FROM monsters m
                             WHERE m.id = $2;`, [req.body.encounterId, req.body.monsterId], function (errorMakingDatabaseQuery, result) {
-                done();
-                if (errorMakingDatabaseQuery) {
-                    console.log('error', errorMakingDatabaseQuery);
-                    res.sendStatus(500);
-                } else {
-                    res.sendStatus(200);
-                }
-            });
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        console.log('error', errorMakingDatabaseQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(200);
+                    }
+                });
         }
     });
 });
@@ -91,14 +91,14 @@ router.get('/itemSearch', function (req, res) {
             client.query(`SELECT *
                             FROM item i 
                             WHERE i.name ILIKE $1`, [searchTerm], function (errorMakingDatabaseQuery, result) {
-                done();
-                if (errorMakingDatabaseQuery) {
-                    console.log('error', errorMakingDatabaseQuery);
-                    res.sendStatus(500);
-                } else {
-                    res.send(result.rows);
-                }
-            });
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        console.log('error', errorMakingDatabaseQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.send(result.rows);
+                    }
+                });
         }
     });
 });
@@ -113,14 +113,14 @@ router.get('/itemtype', function (req, res) {
             client.query(`SELECT *
                             FROM item_type
                             ORDER BY type`, function (errorMakingDatabaseQuery, result) {
-                done();
-                if (errorMakingDatabaseQuery) {
-                    console.log('error', errorMakingDatabaseQuery);
-                    res.sendStatus(500);
-                } else {
-                    res.send(result.rows);
-                }
-            });
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        console.log('error', errorMakingDatabaseQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.send(result.rows);
+                    }
+                });
         }
     });
 });
@@ -135,16 +135,16 @@ router.post('/addLoot', function (req, res) {
         } else {
             client.query(`INSERT INTO encounter_loot (encounter_id, item_id)
                             VALUES ($1, $2);`, [req.body.encounterId, req.body.itemId], function (errorMakingDatabaseQuery, result) {
-                done();
-                if (errorMakingDatabaseQuery) {
-                    console.log('error', errorMakingDatabaseQuery);
-                    res.sendStatus(500);
-                } else {
-                    res.sendStatus(200);
-                }
-            });
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        console.log('error', errorMakingDatabaseQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(200);
+                    }
+                });
         }
-    }); 
+    });
 });
 
 
