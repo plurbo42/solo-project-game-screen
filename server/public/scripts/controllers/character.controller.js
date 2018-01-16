@@ -25,6 +25,7 @@ app.controller('CharacterController', function (UserService, PartyService, Chara
 
 
     //Spell Service 
-    self.getCharacterSpellbook = SpellService.getCharacterSpellbook;
-
+    SpellService.getCharacterSpellbook(self.selectedCampaignId);
+    self.spellbookArray = SpellService.spellbookArray;
+    console.log(self.spellbookArray);
 });

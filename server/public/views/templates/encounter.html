@@ -39,7 +39,9 @@
                 <!-- Probably do not want to use selectedId here, just in case someone changes it before ending. Probably set a current ID when the encounter is started TODO -->
                 <h3>Round Count: {{vm.encounterStatus.roundCount}}</h3>
                 <md-button ng-click="vm.nextTurn(vm.currentEncounterArray.list)" class="md-raised md-accent">TURN</md-button>
-                <md-button ng-click="vm.endEncounter(vm.selectedEncounter.id)" class="md-raised md-warn">END ENCOUNTER</md-button>
+                <!-- <md-button ng-click="vm.endEncounter(vm.selectedEncounter.id)" class="md-raised md-warn">END ENCOUNTER</md-button> -->
+                <md-button ng-click="vm.showConfirm($event)" class="md-raised md-warn">END ENCOUNTER</md-button>
+                
             </span>
 
             <md-list flex>

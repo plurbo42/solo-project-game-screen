@@ -82,4 +82,26 @@ router.post('/addToSpellbook', function (req, res) {
     });
 });
 
+router.get('/spellbook/:id', function (req, res) {
+    console.log('in get spellbook')
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`SELECT * 
+                          FROM classes c
+                          WHERE c.has_spellcasting = true;`, function (errorMakingDatabaseQuery, result) {
+                done();
+                if (errorMakingDatabaseQuery) {
+                    console.log('error', errorMakingDatabaseQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.send(result.rows);
+                }
+            });
+        }
+    });
+});
+
 module.exports = router;

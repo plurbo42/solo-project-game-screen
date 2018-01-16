@@ -25,12 +25,12 @@ app.service('SpellService', function ($http, $location) {
       })
     };
 
-    self.getCharacterSpellbook = function(characterId) {
+    self.getCharacterSpellbook = function(campaignId) {
       $http({
         method: 'GET',
-        url: '/spell/spellbook/' + characterId,
+        url: '/spell/spellbook/' + campaignId,
       }).then(function (response){
-        self.spellbookArry.list = response.data;
+        self.spellbookArray.list = response.data;
       })
     };
 

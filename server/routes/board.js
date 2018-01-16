@@ -11,7 +11,11 @@ router.get('/all/:id', function (req, res) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            client.query(`SELECT c.content, c.date, u.username, c.huzzahs, c.image_url
+            client.query(`SELECT c.content, 
+                                c.date, 
+                                u.username, 
+                                c.huzzahs, 
+                                c.image_url
                         FROM comment c
                             JOIN users u ON u.id = c.user_id
                         WHERE c.campaign_id = $1
