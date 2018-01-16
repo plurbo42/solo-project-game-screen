@@ -64,7 +64,7 @@ router.get('/players', function (req, res) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            client.query(`SELECT c.name, c.hp AS current_hp, c.AC, c.initiative_bonus
+            client.query(`SELECT c.id, c.name, c.hp AS current_hp, c.AC, c.initiative_bonus
                             FROM characters c;`,
                             function (errorMakingDatabaseQuery, result) {
                 done();
@@ -176,6 +176,57 @@ router.delete('/npcDelete/:id', function (req, res) {
     });
 });
 
+//mark encounter as complete
+router.put('/end/:id', function (req, res) {
+    console.log(`end encounter`, req.params)
+    var encounter_id = req.params.id
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`UPDATE encounter
+                            SET is_complete = true
+                            WHERE id = $1;`, [req.params.id],
+                            function (errorMakingDatabaseQuery, result) {
+                done();
+                if (errorMakingDatabaseQuery) {
+                    console.log('error', errorMakingDatabaseQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(200);
+                }
+            });
+        }
+    });
+});
+
+//insert encounter loot into party inventory
+router.post('/distributeLoot/:id', function (req, res) {
+    console.log(`distribute loot`, req.params)
+    var encounter_id = req.params.id
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`INSERT INTO party_inventory (campaign_id, item_id)
+                            SELECT e.campaign_id, el.item_id
+                            FROM encounter_loot el
+                            JOIN encounter e ON e.id = el.encounter_id
+                            WHERE el.encounter_id = $1;`, [req.params.id],
+                            function (errorMakingDatabaseQuery, result) {
+                done();
+                if (errorMakingDatabaseQuery) {
+                    console.log('error', errorMakingDatabaseQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(200);
+                }
+            });
+        }
+    });
+});
 
 
 module.exports = router;

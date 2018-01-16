@@ -2,13 +2,13 @@ app.service('EncounterService', function ($http, $location) {
     console.log('EncounterService Loaded');
     var self = this;
     self.editingEncounterId = ''
+    self.editingEncounterArray = { list: [] };    
     self.encounterArray = { list: [] };
     self.currentEncounterArray = { list: [] };
     self.newEncounterObject = { description: '' };
     self.playerCharacterArray = { list: [] };
     self.encounterDetails = { details: [] };
     self.encounterItemsArray = { list: [] };
-    self.editingEncounterArray = { list: [] };
 
     self.encounterStatus = { roundCount: 0, turnsInRound: 0 }
 
@@ -175,9 +175,26 @@ app.service('EncounterService', function ($http, $location) {
         });
     };
 
-    self.endEncounter = function (id) {
-        console.log('in end encounter', id);
+    self.endEncounter = function (encounterId) {
+        console.log('in end encounter', encounterId);
+        $http({
+            method: 'PUT',
+            url: '/encounter/end/' + encounterId,
+        }).then(function (response){
+            console.log(response);
+            self.distributeLoot(encounterId);
+        })
     };
+
+    self.distributeLoot = function (encounterId){
+        console.log('distribute loot', encounterId);
+        $http({
+            method: 'POST',
+            url: 'encounter/distributeLoot/' + encounterId,
+        }).then(function(response){
+            console.log(response);
+        })
+    }
 
     self.deleteLoot = function (encounterLootId) {
         console.log('delete loot', encounterLootId);
@@ -199,6 +216,10 @@ app.service('EncounterService', function ($http, $location) {
             console.log(response);
             self.getEditingEncounter(self.editingEncounterId);
         });
+    };
+
+    self.removeCharacterFromInitiativeOrder = function (characterId) {
+        console.log('remove character', characterId);
     };
 
 });

@@ -5,6 +5,7 @@ app.controller('EncounterController', function(UserService, EncounterService, Pa
 
     self.selectedCampaignId = $routeParams.id;
 
+    //get encounter data
     self.encounterArray = EncounterService.encounterArray;
     EncounterService.getEncounter(self.selectedCampaignId);
     self.getCurrentEncounter = EncounterService.currentEncounter;
@@ -12,10 +13,11 @@ app.controller('EncounterController', function(UserService, EncounterService, Pa
     self.getEncounterDetails = EncounterService.getEncounterDetails;
     self.encounterDetails = EncounterService.encounterDetails;
 
+    //manage Encounter info
     self.nextTurn = EncounterService.nextTurn;
-
     self.encounterStatus = EncounterService.encounterStatus;
-  
+    self.removeCharacterFromInitiativeOrder = EncounterService.removeCharacterFromInitiativeOrder;
+    self.endEncounter = EncounterService.endEncounter;
     
   });
   
