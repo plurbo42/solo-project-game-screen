@@ -102,7 +102,8 @@ router.get('/spellbook/:id', function (req, res) {
                             JOIN characters c ON c.id = cs.character_id
                             JOIN spell s ON s.id = cs.spell_id
                         WHERE c.campaign_id = $1
-                        AND c.user_id = $2;`, [req.params.id, req.user.id], function (errorMakingDatabaseQuery, result) {
+                        AND c.user_id = $2
+                        ORDER BY s.spell_level;`, [req.params.id, req.user.id], function (errorMakingDatabaseQuery, result) {
                 done();
                 if (errorMakingDatabaseQuery) {
                     console.log('error', errorMakingDatabaseQuery);
