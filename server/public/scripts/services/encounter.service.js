@@ -41,7 +41,7 @@ app.service('EncounterService', function ($http, $location) {
 
     //get for list of all encounters - TODO change this to pull only encounters for current campaign
     self.getEncounter = function (id) {
-        console.log('get encounter');
+        console.log('get encounter', id);
         $http({
             method: 'GET',
             url: '/encounter/all/' + id,
@@ -99,11 +99,13 @@ app.service('EncounterService', function ($http, $location) {
             console.log('current encounter', response.data);
             self.editingEncounterArray.list = response.data;
             self.getEncounterItems(id);
+            self.getEncounterDetails(id);
         });
     };
 
     //add new encounter to list of encounters for this campaign
-    self.newEncounter = function (newEncounterObject) {
+    self.newEncounter = function (newEncounterObject, campaignId) {
+        newEncounterObject.campaignId = campaignId;
         console.log('clicked new encounter', newEncounterObject);
         $http({
             method: 'POST',
@@ -111,7 +113,7 @@ app.service('EncounterService', function ($http, $location) {
             data: newEncounterObject,
         }).then(function (response) {
             console.log(response);
-            self.getEncounter();
+            self.getEncounter(campaignId);
             self.newEncounterObject.description = ''
             self.newEncounterObject.notes = ''
 

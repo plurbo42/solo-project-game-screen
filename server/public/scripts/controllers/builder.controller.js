@@ -24,6 +24,7 @@ app.controller('BuilderController', function(UserService, BuilderService, Encoun
     self.newEncounterObject = EncounterService.newEncounterObject;
     self.encounterArray = EncounterService.encounterArray;
     self.groupsArray = EncounterService.groupsArray;
+    self.encounterDetails = EncounterService.encounterDetails;
     self.getEncounterDetail = EncounterService.getEncounterDetail;
     //encounter item/loot management
     self.getEncounterItems = EncounterService.getEncounterItems;

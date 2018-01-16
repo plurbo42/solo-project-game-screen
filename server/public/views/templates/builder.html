@@ -24,9 +24,9 @@
                 <md-content>
 
                     <h3> Encounter name:</h3>
-                    <p>{{vm.currentEncounterArray.list[0].description}}</p>
+                    <p>{{vm.encounterDetails.details[0].description}}</p>
                     <h3> Encounter notes:</h3>
-                    <p> {{vm.currentEncounterArray.list[0].notes}} </p>
+                    <p> {{vm.encounterDetails.details[0].notes}} </p>
                     <h3> NPCs:</h3>
                     <md-list ng-repeat="taco in vm.editingEncounterArray.list">
                         <md-list-item class="md-1-line" ng-click="null">
@@ -57,7 +57,7 @@
                             <label>Notes</label>
                             <textarea ng-model="vm.newEncounterObject.notes" md-maxlength="150" rows="5" md-select-on-focus></textarea>
                         </md-input-container>
-                        <md-button class="md-primary md-raised" ng-click="vm.newEncounter(vm.newEncounterObject)">Create New Encounter</md-button>
+                        <md-button class="md-primary md-raised" ng-click="vm.newEncounter(vm.newEncounterObject, vm.selectedCampaignId)">Create New Encounter</md-button>
                     </md-inline-form>
                 </div>
             </md-tab>
