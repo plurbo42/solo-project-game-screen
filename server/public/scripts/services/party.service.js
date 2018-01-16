@@ -7,6 +7,7 @@ app.service('PartyService', function ($http, $location) {
     self.classArray = { list: [] };
     self.alignmentArray = { list: [] };
     self.skillsArray = { list: [] };
+    self.partyInventoryArray = { list: [] };
     
 
     self.newCharacterObject = { strength: 10, dexterity: 10, constitution: 10, intelligence: 10, wisdom: 10, charisma: 10}
@@ -72,6 +73,17 @@ app.service('PartyService', function ($http, $location) {
         }).then(function(response){
             console.log(response);
             self.getParty();
+        })
+    };
+
+    self.getPartyInventory = function(campaignId) {
+        console.log('get party inventory');
+        $http({
+            method: 'GET',
+            url: '/party/inventory/' + campaignId,
+        }).then(function(response){
+            console.log(response.data);
+            self.partyInventoryArray.list = response.data;
         })
     };
   

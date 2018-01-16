@@ -2,4 +2,14 @@
 
 <md-content>
     <h1>Party Inventory</h1>
+
+    <md-list ng-repeat="item in vm.partyInventoryArray.list">
+        <md-list-item layout-padding>
+            {{item.name}} - {{item.description}}
+            <md-select ng-model="item.claimant">
+                <md-option ng-repeat="character in vm.partyArray.list" ng-value="character.id">{{character.name}}</md-option>
+            </md-select>
+            <md-button>Claim</md-button>
+        </md-list-item>
+    </md-list>
 </md-content>

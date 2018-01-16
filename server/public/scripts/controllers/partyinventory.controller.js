@@ -6,8 +6,9 @@ app.controller('PartyInventoryController', function(UserService, PartyService, C
 
     //PartyService
     self.partyArray = PartyService.partyArray;
-
     PartyService.getParty();
+    self.partyInventoryArray = PartyService.partyInventoryArray;
+    PartyService.getPartyInventory(self.selectedCampaignId);
 
 
   });

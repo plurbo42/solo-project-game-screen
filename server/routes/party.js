@@ -153,5 +153,29 @@ router.post('/new', function (req, res) {
     });
 });
 
+router.get('/inventory/:id', function (req, res) {
+    console.log('in get party inventory')
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`SELECT *
+                            FROM party_inventory pi
+                            JOIN item i ON i.id = pi.item_id
+                            WHERE pi.campaign_id = $1
+                            AND pi.is_claimed = false`, [req.params.id], function (errorMakingDatabaseQuery, result) {
+                done();
+                if (errorMakingDatabaseQuery) {
+                    console.log('error', errorMakingDatabaseQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.send(result.rows);
+                }
+            });
+        }
+    });
+});
+
 
 module.exports = router;

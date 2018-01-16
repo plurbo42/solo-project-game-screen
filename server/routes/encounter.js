@@ -13,7 +13,8 @@ router.get('/all/:id', function (req, res) {
         } else {
             client.query(`SELECT *
                             FROM encounter e
-                            WHERE e.campaign_id = $1`, [req.params.id], function (errorMakingDatabaseQuery, result) {
+                            WHERE e.campaign_id = $1
+                            AND e.is_complete = false`, [req.params.id], function (errorMakingDatabaseQuery, result) {
                 done();
                 if (errorMakingDatabaseQuery) {
                     console.log('error', errorMakingDatabaseQuery);
