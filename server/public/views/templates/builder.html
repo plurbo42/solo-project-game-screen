@@ -31,12 +31,15 @@
                     <md-list ng-repeat="taco in vm.editingEncounterArray.list">
                         <md-list-item class="md-1-line" ng-click="null">
                             {{taco.name}}, CR {{taco.challengerating}}
-                            <md-button class="md-raised md-warn npc_remove">Remove</md-button>
+                            <md-button ng-click="vm.removeNPC(taco.id)" class="md-raised md-warn npc_remove">Remove</md-button>
                         </md-list-item>
                     </md-list>
+                    <h3>Loot:</h3>
                     <md-list ng-repeat="loot in vm.encounterItemsArray.list">
-                            {{loot.name}} 
-                        <md-button class="md-raised md-warn npc_remove">Remove</md-button>
+                        <md-list-item>
+                            {{loot.name}} - {{loot.description}}
+                            <md-button ng-click="vm.deleteLoot(loot.encounter_loot_id)" class="md-raised md-warn npc_remove">Remove</md-button>
+                        </md-list-item>
                     </md-list>
 
                 </md-content>

@@ -1,6 +1,7 @@
 app.service('EncounterService', function ($http, $location) {
     console.log('EncounterService Loaded');
     var self = this;
+    self.editingEncounterId = ''
     self.encounterArray = { list: [] };
     self.currentEncounterArray = { list: [] };
     self.newEncounterObject = { description: '' };
@@ -90,6 +91,7 @@ app.service('EncounterService', function ($http, $location) {
     // At this point, they pull the same data, and I see no reason this should change with planned features
     self.getEditingEncounter = function (id) {
         console.log('in get editing encounter', id);
+        self.editingEncounterId = id;
         $http({
             method: 'GET',
             url: 'encounter/current/' + id,
@@ -157,6 +159,17 @@ app.service('EncounterService', function ($http, $location) {
 
     self.endEncounter = function (id) {
         console.log('in end encounter', id);
-    }
+    };
+
+    self.deleteLoot = function (encounterLootId) {
+        console.log('delete loot', encounterLootId);
+        $http({
+            method: 'DELETE',
+            url: 'encounter/lootDelete/' + encounterLootId,
+        }).then(function (response){
+            console.log(response);
+            self.getEncounterItems(self.editingEncounterId);
+        });
+    };
 
 });

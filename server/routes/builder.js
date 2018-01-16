@@ -143,7 +143,7 @@ router.post('/addLoot', function (req, res) {
                 }
             });
         }
-    });
+    }); 
 });
 
 

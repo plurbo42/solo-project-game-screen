@@ -128,6 +128,30 @@ router.get('/items/:id', function (req, res) {
     });
 });
 
+//delete loot from encounter
+router.delete('/lootDelete/:id', function (req, res) {
+    console.log(`get encounter items`, req.params)
+    var encounter_id = req.params.id
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`DELETE FROM encounter_loot
+                            WHERE id = $1;`, [req.params.id],
+                            function (errorMakingDatabaseQuery, result) {
+                done();
+                if (errorMakingDatabaseQuery) {
+                    console.log('error', errorMakingDatabaseQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.send(result.rows);
+                }
+            });
+        }
+    });
+});
+
 
 
 module.exports = router;

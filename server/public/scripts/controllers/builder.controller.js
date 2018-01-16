@@ -25,10 +25,11 @@ app.controller('BuilderController', function(UserService, BuilderService, Encoun
     self.encounterArray = EncounterService.encounterArray;
     self.groupsArray = EncounterService.groupsArray;
     self.getEncounterDetail = EncounterService.getEncounterDetail;
-    //add items to encounter
+    //encounter item/loot management
     self.getEncounterItems = EncounterService.getEncounterItems;
     self.encounterItemsArray = EncounterService.encounterItemsArray;
     self.addLootToEncounter = EncounterService.addLootToEncounter;
+    self.deleteLoot = EncounterService.deleteLoot;
     //get encounter information for encounter to be edited
     self.getEditingEncounter = EncounterService.getEditingEncounter;
     self.editingEncounterArray = EncounterService.editingEncounterArray;
