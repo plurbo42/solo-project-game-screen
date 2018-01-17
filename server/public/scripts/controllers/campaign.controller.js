@@ -35,7 +35,7 @@ app.controller('CampaignController', function(UserService, CampaignService, $mdD
 
     self.showAdvanced = function(ev) {
       $mdDialog.show({
-        controller: 'CampaignDialogController',
+        controller: 'CampaignDialogController as vm',
         templateUrl: './views/templates/campaign.dialog.html',
         parent: angular.element(document.body),
         targetEvent: ev,
