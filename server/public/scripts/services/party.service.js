@@ -86,6 +86,17 @@ app.service('PartyService', function ($http, $location) {
             self.partyInventoryArray.list = response.data;
         })
     };
+
+    self.claimLoot = function(partyInventoryObject) {
+        console.log('claim loot', partyInventoryObject);
+        $http({
+            method: 'POST',
+            url: '/party/claimLoot',
+            data: partyInventoryObject,
+        }).then(function(response){
+            console.log(response);
+        })
+    }
   
   });
   

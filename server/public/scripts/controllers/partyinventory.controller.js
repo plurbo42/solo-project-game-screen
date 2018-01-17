@@ -10,5 +10,6 @@ app.controller('PartyInventoryController', function(UserService, PartyService, C
     self.partyInventoryArray = PartyService.partyInventoryArray;
     PartyService.getPartyInventory(self.selectedCampaignId);
 
+    self.claimLoot = PartyService.claimLoot;
 
   });
