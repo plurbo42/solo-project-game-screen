@@ -72,4 +72,31 @@ router.get('/detail/:id', function (req, res) {
     });
 });
 
+router.post('/join', function (req, res) {
+    console.log('in join game', req.body, req.user.id)
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`WITH join_campaign AS (
+                            SELECT id 
+                            FROM campaign 
+                            WHERE join_code = $1)
+                        INSERT INTO campaign_user (user_id, campaign_id, is_gm)
+                        SELECT $2, jc.id, false
+                        FROM join_campaign jc;`,
+             [req.body.code, req.user.id], function (errorMakingDatabaseQuery, result) {
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        console.log('error', errorMakingDatabaseQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.send(result.rows);
+                    }
+                });
+        }
+    });
+});
+
 module.exports = router;

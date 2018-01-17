@@ -10,6 +10,8 @@ app.controller('CampaignController', function(UserService, CampaignService, $mdD
     self.campaignArray = CampaignService.campaignArray;
     CampaignService.getCampaign();
 
+    self.joinCampaignWithCode = CampaignService.joinCampaignWithCode;
+
     self.showAdvanced = function(ev) {
       $mdDialog.show({
         controller: 'CampaignDialogController as vm',
@@ -29,7 +31,7 @@ app.controller('CampaignController', function(UserService, CampaignService, $mdD
     self.showJoinCode = function(ev) {
       $mdDialog.show(
         $mdDialog.alert()
-          // .parent(angular.element(document.querySelector('#popupContainer')))
+          .parent(angular.element(document.querySelector('#popupContainer')))
           .clickOutsideToClose(true)
           .title('This is an alert title')
           .textContent('You can specify some description text in here.')

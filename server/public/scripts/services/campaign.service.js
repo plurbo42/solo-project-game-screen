@@ -44,4 +44,16 @@ app.service('CampaignService', function ($http, $location) {
     });
   };
 
+  self.joinCampaignWithCode = function (code) {
+    console.log('joining')
+    $http({
+      method: 'POST',
+      url: '/campaign/join',
+      data: code,
+    }).then(function (response){
+      console.log(response);
+      self.getCampaign();
+    });
+  };
+
 });
