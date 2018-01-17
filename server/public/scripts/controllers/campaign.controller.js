@@ -27,18 +27,17 @@ app.controller('CampaignController', function(UserService, CampaignService, $mdD
         console.log(cancelled)
       });
     };    
-
+ 
     self.showJoinCode = function(ev) {
-      $mdDialog.show(
-        $mdDialog.alert()
-          .parent(angular.element(document.querySelector('#popupContainer')))
-          .clickOutsideToClose(true)
-          .title('This is an alert title')
-          .textContent('You can specify some description text in here.')
-          .ariaLabel('Alert Dialog Demo')
-          .ok('Got it!')
-          .targetEvent(ev)
-      );
+      $mdDialog.show({
+        controller: 'JoinCodeController as vm',
+        templateUrl: './views/templates/joincode.dialog.html',
+        parent: angular.element(document.body),
+        locals: {id: 6},
+        targetEvent: ev,
+        clickOutsideToClose:true,
+        fullscreen: self.customFullscreen 
+      });
     };
   
 

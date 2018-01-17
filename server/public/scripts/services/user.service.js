@@ -2,7 +2,8 @@ app.service('UserService', function($http, $location){
   console.log('UserService Loaded');
   var self = this;
   self.userObject = {};
-
+  self.imageUrl = {};
+  
   self.getuser = function(){
     console.log('UserService -- getuser');
     $http.get('/user').then(function(response) {
@@ -34,7 +35,7 @@ app.service('UserService', function($http, $location){
     var fsClient = filestack.init('AR2OVvMAHTTiTRo7bG05Vz');
     function openPicker() {
       fsClient.pick({
-        fromSources: ["local_file_system", "url", "imagesearch", "facebook", "instagram", "googledrive", "dropbox", "evernote", "flickr", "box", "github", "webcam", "video", "audio"],
+        fromSources: ["local_file_system", "url", "imagesearch"],
         maxSize: 102400000,
         maxFiles: 5,
         minFiles: 1,
@@ -43,7 +44,7 @@ app.service('UserService', function($http, $location){
           circle:true}
       }).then(function (response) {
         // declare this function to handle response
-        self.imageUrl.link = response.filesUploaded[0].url;
+        self.imageUrl.image_url = response.filesUploaded[0].url;
         console.log('IS THIS EVEN WORKING', self.userObject, self.imageUrl);
         $http({
           method: 'PUT',

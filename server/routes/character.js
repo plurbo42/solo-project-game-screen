@@ -31,4 +31,34 @@ router.get('/sheet/:campaign_id', function (req, res) {
     });
 });
 
+router.get('/inventory/:campaign_id', function (req, res) {
+    console.log('in get character inventory')
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`SELECT *, (SELECT SUM(it.weight)
+                                            FROM inventory i
+                                                JOIN characters c ON c.id = i.character_id
+                                                JOIN item it ON it.id = i.item_id 
+                                            WHERE c.user_id = 3
+                                            AND c.campaign_id = 1) AS total_weight
+                                FROM inventory i
+                                    JOIN characters c ON c.id = i.character_id
+                                    JOIN item it ON it.id = i.item_id 
+                                WHERE c.user_id = $1
+                                AND c.campaign_id = $2;`, [req.user.id, req.params.campaign_id], function (errorMakingDatabaseQuery, result) {
+                done();
+                if (errorMakingDatabaseQuery) {
+                    console.log('error', errorMakingDatabaseQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.send(result.rows);
+                }
+            });
+        }
+    });
+});
+
 module.exports = router;

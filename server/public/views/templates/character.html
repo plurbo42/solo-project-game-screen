@@ -105,7 +105,17 @@
 
         <!-- Character's Inventory -->
         <md-tab label="Inventory">
-
+                <h3>Total Weight : {{vm.characterInventoryArray.list[0].total_weight}} lbs</h3>
+                <md-list ng-repeat="item in vm.characterInventoryArray.list">
+                        <md-list-item class="md-1-line" ng-click="null">
+                            <span>{{item.name}} - {{item.description}}</span>
+                            <span flex layout-align="end end"></span>
+                            <label for="">Ammo/Charges</label>
+                            {{item.charges}}
+                            <md-button class="md-fab md-mini md-accent">-</md-button>
+                            <md-button class="md-fab md-mini md-primary">+</md-button>                            
+                        </md-list-item>
+                    </md-list>
         </md-tab>
         <!-- Edit your Character -->
         <md-tab label="Edit Character">

@@ -8,7 +8,9 @@ app.controller('CharacterController', function (UserService, PartyService, Chara
 
     //Character Service
     self.characterSheetArray = CharacterService.characterSheetArray;
-    CharacterService.getCharacterSheet($routeParams.id);    
+    CharacterService.getCharacterSheet($routeParams.id);  
+    self.characterInventoryArray = CharacterService.characterInventoryArray;  
+    CharacterService.getCharacterInventory(self.selectedCampaignId);
 
     //PartyService
     self.partyArray = PartyService.partyArray;
