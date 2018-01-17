@@ -22,7 +22,7 @@
             </md-list>
             <md-button><a href="#/user" name="user home">User Profile</a></md-button>
         </div>
-        <div flex="80">
+        <div flex="75">
             <div class="newComment" flex layout="column">
                 <md-input-container>
                     <label>Post a new comment:</label>
@@ -35,7 +35,7 @@
             <!-- TODO - add pictures to photos -->
                 <md-subheader class="md-no-sticky">Comments</md-subheader>
                 <md-list-item class="md-3-line" ng-repeat="comment in vm.commentArray.list" ng-click="null">
-                    <img ng-src="{{comment.image_url}}" class="md-avatar" alt="{{item.who}}" />
+                    <img src={{comment.image_url}} class="md-avatar" />
                     <div class="md-list-item-text" layout="column">
                         <h3>{{ comment.username }} says:</h3>
                         <h4>{{ comment.date }} at {{comment.time}}</h4>
@@ -44,5 +44,6 @@
                 <md-divider></md-divider>                
                 </md-list-item>
         </div>
+        <div flex="5"></div>
     </div>
 </md-content>

@@ -28,12 +28,13 @@ app.controller('CampaignController', function(UserService, CampaignService, $mdD
       });
     };    
  
-    self.showJoinCode = function(ev) {
+    self.showJoinCode = function(ev, code) {
+      console.log(ev)
       $mdDialog.show({
         controller: 'JoinCodeController as vm',
         templateUrl: './views/templates/joincode.dialog.html',
         parent: angular.element(document.body),
-        locals: {id: 6},
+        locals: {join_code : code},
         targetEvent: ev,
         clickOutsideToClose:true,
         fullscreen: self.customFullscreen 

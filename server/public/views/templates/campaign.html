@@ -9,7 +9,7 @@
             <md-list-item class="md-3-line" ng-click="null">
                 <p>{{campaign.title}}</p>
                 <span>
-                    <md-button class="md-raised md-primary" ng-click="vm.showJoinCode($event)">Invite Code</md-button>
+                    <md-button class="md-raised md-primary" ng-click="vm.showJoinCode($event, campaign.join_code)">Invite Code</md-button>
                     <md-button class="md-raised md-accent" ng-href="#/board/{{campaign.id}}" name="user home" ng-click="vm.setSelectedCampaign(campaign.id)">Enter</md-button>
                 </span>
             </md-list-item>

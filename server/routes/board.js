@@ -16,7 +16,7 @@ router.get('/all/:id', function (req, res) {
                                 to_char(c.date, 'HH12:MI AM') AS time, 
                                 u.username, 
                                 c.huzzahs, 
-                                c.image_url
+                                u.image_url
                         FROM comment c
                             JOIN users u ON u.id = c.user_id
                         WHERE c.campaign_id = $1
