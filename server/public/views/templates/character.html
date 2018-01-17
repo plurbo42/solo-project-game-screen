@@ -94,8 +94,10 @@
         <md-tab label="My Spellbook">
         <md-button>Clear Cast Count</md-button>
             <md-list ng-repeat="spell in vm.spellbookArray.list">
-                <md-list-item>
-                    {{spell.name}} - Level {{spell.spell_level}} 
+                <md-list-item class="md-2-line" ng-click="null">
+                    <span>{{spell.name}} - Level {{spell.spell_level}}</span>
+                    <span flex layout-align="end end"></span>
+                    <md-button class="md-raised md-accent">Cast Count +</md-button>
                 </md-list-item>
             </md-list>
 

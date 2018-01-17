@@ -13,8 +13,8 @@
 
     <md-list class="md-2-line" ng-click="null" ng-repeat="spell in vm.spellArray.list">
         <md-list-item>
-            {{spell.name}} - Level {{spell.spell_level}} 
-            <span flex layout-align="end">
+            <p>{{spell.name}} - Level {{spell.spell_level}}</p>
+            <span>
                 <md-button ng-click="vm.addToSpellbook(spell.id, vm.characterSheetArray.details[0].id)" class="md-raised md-primary">Add to Spellbook</md-button>
             </span>
         </md-list-item>

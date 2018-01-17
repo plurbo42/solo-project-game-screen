@@ -28,4 +28,33 @@ app.service('UserService', function($http, $location){
       $location.path("/home");
     });
   }
+
+  self.uploadProfilePicture = function () {
+    console.log('uploadProfilePicture')
+    var fsClient = filestack.init('AR2OVvMAHTTiTRo7bG05Vz');
+    function openPicker() {
+      fsClient.pick({
+        fromSources: ["local_file_system", "url", "imagesearch", "facebook", "instagram", "googledrive", "dropbox", "evernote", "flickr", "box", "github", "webcam", "video", "audio"],
+        maxSize: 102400000,
+        maxFiles: 5,
+        minFiles: 1,
+        imageDim: [400, 250],
+        transformations:{
+          circle:true}
+      }).then(function (response) {
+        // declare this function to handle response
+        self.imageUrl.link = response.filesUploaded[0].url;
+        console.log('IS THIS EVEN WORKING', self.userObject, self.imageUrl);
+        $http({
+          method: 'PUT',
+          url: '/user/profilePicture',
+          data: self.imageUrl
+        }).then(function (response) {
+          console.log('response', response);
+        })
+      });
+    }
+    openPicker();
+  }
+
 });
