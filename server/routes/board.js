@@ -12,7 +12,8 @@ router.get('/all/:id', function (req, res) {
             res.sendStatus(500);
         } else {
             client.query(`SELECT c.content, 
-                                c.date, 
+                                COALESCE(EXTRACT(MONTH FROM c.date) || '-' || EXTRACT(DAY FROM c.date) || '-' || EXTRACT(YEAR FROM c.date), ' ') as date,
+                                to_char(c.date, 'HH12:MI AM') AS time, 
                                 u.username, 
                                 c.huzzahs, 
                                 c.image_url

@@ -2,7 +2,8 @@ app.service('BoardService', function ($http, $location) {
     console.log('BoardService Loaded');
     var self = this;
     self.commentArray = { list: [] };
-    self.campaignId = ''
+    self.campaignId = '';
+    self.newComment = { content: '' };
 
     self.getComments = function (campaignId) {
       self.campaignId = campaignId;
@@ -24,6 +25,7 @@ app.service('BoardService', function ($http, $location) {
       }).then(function (response){
         console.log(response);
         self.getComments(self.campaignId);
+        self.newComment.content = '';
       })
     }
   });

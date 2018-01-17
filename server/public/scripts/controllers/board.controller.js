@@ -10,4 +10,6 @@ app.controller('BoardController', function(UserService, BoardService, CampaignSe
     BoardService.getComments(self.selectedCampaignId);
     self.commentArray = BoardService.commentArray;
     self.postComment = BoardService.postComment;
+    self.newComment = BoardService.newComment;
+    
 })
