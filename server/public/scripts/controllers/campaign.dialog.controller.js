@@ -3,7 +3,11 @@ app.controller('CampaignDialogController', function (UserService, CampaignServic
     var self = this;
     self.userService = UserService;
     self.userObject = UserService.userObject;
-
+    
+    self.createCampaign = function (campaignObject){
+        CampaignService.createCampaign(campaignObject).then($mdDialog.hide);
+    }
+    
     self.hide = function () {
         $mdDialog.hide();
     };
@@ -12,9 +16,6 @@ app.controller('CampaignDialogController', function (UserService, CampaignServic
         $mdDialog.cancel();
     };
 
-    self.answer = function (answer) {
-        $mdDialog.hide(answer);
-    };
 }
-
+ 
 );

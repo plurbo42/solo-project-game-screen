@@ -11,14 +11,16 @@ app.service('CampaignService', function ($http, $location) {
     self.selectedCampaignId = id;
   };
 
-  self.createCampaign = function () {
+  self.createCampaign = function (newCampaignObject) {
     console.log('clicked create campaign')
-    $http({
+    return $http({
       method: 'POST',
       url: '/campaign/new',
+      data: newCampaignObject,
     }).then(function (response) {
       console.log(response);
-    })
+      self.getCampaign();
+    });
   };
 
   //get list of campaigns for this user 
@@ -29,7 +31,7 @@ app.service('CampaignService', function ($http, $location) {
       }).then(function (response) {
         console.log(response.data);
         self.campaignArray.list = response.data;
-      })
+      });
   };
 
   self.getCampaignDetail = function (campaignId) {
@@ -39,7 +41,7 @@ app.service('CampaignService', function ($http, $location) {
     }).then(function(response){
       console.log(response.data);
       self.campaignDetailArray.list = response.data;
-    })
+    });
   };
 
 });

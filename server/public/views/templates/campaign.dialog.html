@@ -5,7 +5,7 @@
                 <h2>Create Campaign</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="vm.cancel()">
-                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                    <!-- <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon> -->
                 </md-button>
             </div>
         </md-toolbar>
@@ -15,9 +15,6 @@
                 <h2>Campaign Details</h2>
                 <md-input-container>
                     <input ng-model="vm.newCampaign.title" type="text" placeholder="Campaign Title">
-                </md-input-container>
-                <md-input-container>
-                    <input ng-model="vm.newCampaign.description" type="text" placeholder="Campaign Description">
                 </md-input-container>
                 <p>Create a short join code for this campaign. Other users can join with this code!</p>
                 <md-input-container>
@@ -31,7 +28,7 @@
             <md-button ng-click="vm.hide()">
                 Cancel
             </md-button>
-            <md-button ng-click="vm.answer('useful')">
+            <md-button ng-click="vm.createCampaign(vm.newCampaign)">
                 Create
             </md-button>
         </md-dialog-actions>
