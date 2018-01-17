@@ -12,4 +12,7 @@ app.controller('BoardController', function(UserService, BoardService, CampaignSe
     self.postComment = BoardService.postComment;
     self.newComment = BoardService.newComment;
     
+    UserService.getRole(self.selectedCampaignId);
+    self.userRole = UserService.userRole;
+
 })

@@ -3,6 +3,7 @@ app.service('UserService', function($http, $location){
   var self = this;
   self.userObject = {};
   self.imageUrl = {};
+  self.userRole = { details: [] };
   
   self.getuser = function(){
     console.log('UserService -- getuser');
@@ -35,7 +36,7 @@ app.service('UserService', function($http, $location){
     var fsClient = filestack.init('AR2OVvMAHTTiTRo7bG05Vz');
     function openPicker() {
       fsClient.pick({
-        fromSources: ["local_file_system", "url", "imagesearch"],
+        fromSources: ["local_file_system", "url", "imagesearch", "facebook"],
         maxSize: 102400000,
         maxFiles: 5,
         minFiles: 1,
@@ -56,6 +57,16 @@ app.service('UserService', function($http, $location){
       });
     }
     openPicker();
+  };
+
+  self.getRole = function(campaignId) {
+    $http({
+      method: 'GET',
+      url: '/user/role/' + campaignId
+    }).then(function (response){
+      console.log(response.data);
+      self.userRole.details = response.data;
+    })
   }
 
 });

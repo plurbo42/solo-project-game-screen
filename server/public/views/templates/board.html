@@ -1,10 +1,9 @@
-<div ng-include="'views/partials/nav.html'"></div>
-<div ng-include="'views/partials/playernav.html'"></div>
+<div ng-if="vm.userRole.details[0].is_gm" ng-include="'views/partials/nav.html'"></div>
+<div ng-if="!vm.userRole.details[0].is_gm" ng-include="'views/partials/playernav.html'"></div>
 <!-- TODO - use ngIf to change nav here for player ?? or other method -->
 
 <md-content>
     <h1>{{vm.campaignDetailArray.list[0].title}}</h1>
-
     <div layout="row" layout-wrap>
         <div flex="20">
             <div>
