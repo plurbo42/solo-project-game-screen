@@ -17,16 +17,28 @@ app.controller('CampaignController', function(UserService, CampaignService, $mdD
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose:true,
-        fullscreen: self.customFullscreen // Only for -xs, -sm breakpoints.
+        fullscreen: self.customFullscreen 
       })
-      .then(function(answer) {
-        self.status = 'You said the information was "' + answer + '".';
-        console.log(answer)
+      .then(function() {
+        console.log(submitted)
       }, function() {
-        self.status = 'You cancelled the dialog.';
-        console.log(answer)
+        console.log(cancelled)
       });
     };    
+
+    self.showJoinCode = function(ev) {
+      $mdDialog.show(
+        $mdDialog.alert()
+          // .parent(angular.element(document.querySelector('#popupContainer')))
+          .clickOutsideToClose(true)
+          .title('This is an alert title')
+          .textContent('You can specify some description text in here.')
+          .ariaLabel('Alert Dialog Demo')
+          .ok('Got it!')
+          .targetEvent(ev)
+      );
+    };
+  
 
   });
   

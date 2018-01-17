@@ -4,13 +4,13 @@
     <md-content ng-cloak>
 
         <h1 id="welcome" class="lead">Welcome, {{vm.userObject.userName}}. Start your Adventure!</h1>
-
+        </md-list-item>
         <md-list layout="column" ng-repeat="campaign in vm.campaignArray.list">
             <md-list-item class="md-3-line" ng-click="null">
                 <p>{{campaign.title}}</p>
                 <span>
-                    <md-button class="md-raised md-primary">Invite Code</md-button>
-                    <md-button class="md-raised md-primary" ng-href="#/board/{{campaign.id}}" name="user home" ng-click="vm.setSelectedCampaign(campaign.id)">Enter</md-button>
+                    <md-button class="md-raised md-primary" ng-click="showJoinCode($event)">Invite Code</md-button>
+                    <md-button class="md-raised md-accent" ng-href="#/board/{{campaign.id}}" name="user home" ng-click="vm.setSelectedCampaign(campaign.id)">Enter</md-button>
                 </span>
             </md-list-item>
             <md-divider></md-divider>
@@ -20,6 +20,13 @@
             <md-button class="md-raised md-primary" ng-click="vm.showAdvanced($event)">Create Campaign</md-button>
         </md-input>
 
+        <md-list-item layout="column" layout-align="center center">
+            <span>
+                <md-input-container>
+                    <input type="text" placeholder="Join game with code">
+                </md-input-container>
+                <md-button class="md-raised md-accent">Join</md-button>
+            </span>
     </md-content>
 </div>
 
